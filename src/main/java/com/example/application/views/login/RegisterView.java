@@ -3,8 +3,11 @@ package com.example.application.views.login;
 import com.example.application.data.service.AuthService;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Composite;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.H2;
+import com.vaadin.flow.component.html.H3;
+import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.PasswordField;
@@ -37,6 +40,7 @@ public class RegisterView extends Composite {
                 ))
         );
     }
+
 
     private void register(String username, String password1, String password2) {
         if (username.trim().isEmpty()) {

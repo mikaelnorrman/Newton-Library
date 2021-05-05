@@ -5,7 +5,8 @@ import com.example.application.data.entity.User;
 import com.example.application.views.admin.AdminView;
 import com.example.application.views.home.HomeView;
 import com.example.application.views.logout.LogoutView;
-import com.example.application.views.main.MainView;
+import com.example.application.views.main.MainViewLayout;
+import com.example.application.views.search.SearchView;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.router.RouteConfiguration;
 import com.vaadin.flow.server.VaadinSession;
@@ -50,7 +51,7 @@ public class AuthService {
         getAuthorizedRoutes(role).stream()
                 .forEach(route ->
                         RouteConfiguration.forSessionScope().setRoute(
-                                route.route, route.view, MainView.class));
+                                route.route, route.view, MainViewLayout.class));
     }
 
     public List<AuthorizedRoute> getAuthorizedRoutes(Role role) {
@@ -58,6 +59,7 @@ public class AuthService {
 
         if (role.equals(Role.USER)) {
             routes.add(new AuthorizedRoute("home", "Home", HomeView.class));
+            routes.add(new AuthorizedRoute("search", "Search", SearchView.class));
             routes.add(new AuthorizedRoute("logout", "Logout", LogoutView.class));
 
         } else if (role.equals(Role.ADMIN)) {

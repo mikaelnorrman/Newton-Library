@@ -20,26 +20,20 @@ import com.vaadin.flow.component.tabs.Tabs;
 import com.vaadin.flow.component.tabs.TabsVariant;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.RouterLink;
-import com.vaadin.flow.server.PWA;
 import com.vaadin.flow.server.VaadinSession;
-import com.vaadin.flow.theme.Theme;
-import com.example.application.views.main.MainView;
-import com.example.application.views.login.LoginView;
-import com.example.application.views.home.HomeView;
-import com.example.application.views.admin.AdminView;
 
 /**
  * The main view is a top-level placeholder for other views.
  */
 @JsModule("./styles/shared-styles.js")
 @CssImport("./styles/views/main/main-view.css")
-public class MainView extends AppLayout {
+public class MainViewLayout extends AppLayout {
 
     private final Tabs menu;
     private H1 viewTitle;
     private AuthService authService;
 
-    public MainView(AuthService authService) {
+    public MainViewLayout(AuthService authService) {
         this.authService = authService;
         setPrimarySection(Section.DRAWER);
         addToNavbar(true, createHeaderContent());
@@ -72,7 +66,7 @@ public class MainView extends AppLayout {
         logoLayout.setId("logo");
         logoLayout.setAlignItems(FlexComponent.Alignment.CENTER);
         logoLayout.add(new Image("images/logo.png", "auth-example logo"));
-        logoLayout.add(new H1("auth-example"));
+        logoLayout.add(new H1("Libsys - Office Space"));
         layout.add(logoLayout, menu);
         return layout;
     }
