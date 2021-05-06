@@ -22,7 +22,7 @@ public class User extends AbstractEntity {
     public User(String username, String password, Role role) {
         this.username = username;
         this.role = role;
-        this.passwordSalt = RandomStringUtils.random(2);
+        this.passwordSalt = RandomStringUtils.random(32);
         this.passwordHash = DigestUtils.sha1Hex(password + passwordSalt);
         this.activationCode = RandomStringUtils.randomAlphanumeric(2);
     }

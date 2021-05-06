@@ -54,6 +54,12 @@ public class AuthService {
                                 route.route, route.view, MainViewLayout.class));
     }
 
+
+    /**
+     * Här vill vi skapa olika routes baserade på vilken role användaren har.
+     * @param role
+     * @return
+     */
     public List<AuthorizedRoute> getAuthorizedRoutes(Role role) {
         var routes = new ArrayList<AuthorizedRoute>();
 
@@ -64,6 +70,7 @@ public class AuthService {
 
         } else if (role.equals(Role.ADMIN)) {
             routes.add(new AuthorizedRoute("home", "Home", HomeView.class));
+            routes.add(new AuthorizedRoute("search", "Search", SearchView.class));
             routes.add(new AuthorizedRoute("admin", "Admin", AdminView.class));
             routes.add(new AuthorizedRoute("logout", "Logout", LogoutView.class));
         }
