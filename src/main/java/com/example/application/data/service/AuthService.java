@@ -37,7 +37,7 @@ public class AuthService {
     }
 
     //TODO - ta bort && user.isActive()
-    public void authenticate(String username, String password) throws AuthException {
+    public boolean authenticate(String username, String password) throws AuthException {
         User user = userRepository.getByUsername(username);
         if (user != null && user.checkPassword(password)) {
             VaadinSession.getCurrent().setAttribute(User.class, user);
@@ -45,6 +45,7 @@ public class AuthService {
         } else {
             throw new AuthException();
         }
+        return false;
     }
 
     private void createRoutes(Role role) {

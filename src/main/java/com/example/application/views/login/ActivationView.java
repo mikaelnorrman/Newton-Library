@@ -32,7 +32,7 @@ public class ActivationView extends Composite implements BeforeEnterObserver {
             authService.activate(code);
             layout.add(
                     new Text("Account activated."),
-                    new RouterLink("Login", LoginView.class)
+                    new RouterLink("Login", LoginView3.class)
             );
         } catch (AuthService.AuthException e) {
             layout.add(new Text("Invalid link."));
