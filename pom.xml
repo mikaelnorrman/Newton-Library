@@ -275,9 +275,9 @@
                                         </plugin>
                                         -->
 
-                                    </plugins>
-                                </build>
-                            </profile>
+                </plugins>
+            </build>
+        </profile>
 
-                        </profiles>
-                    </project>
+    </profiles>
+</project>
