@@ -14,7 +14,7 @@ import org.vaadin.artur.helpers.LaunchUtil;
  *
  */
 @SpringBootApplication
-@PWA(name = "auth-example", shortName = "auth-example")
+@PWA(name = "libsys", shortName = "libsys")
 public class Application extends SpringBootServletInitializer implements AppShellConfigurator {
 
     public static void main(String[] args) {
