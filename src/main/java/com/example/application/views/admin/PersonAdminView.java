@@ -24,9 +24,9 @@ import org.vaadin.artur.helpers.CrudServiceDataProvider;
 
 import java.util.Optional;
 
-@PageTitle("Admin")
+@PageTitle("User Admin")
 @CssImport("./styles/views/admin/admin-view.css")
-public class  AdminView extends Div {
+public class PersonAdminView extends Div {
 
     private Grid<Person> grid;
 
@@ -34,8 +34,10 @@ public class  AdminView extends Div {
     private TextField lastName = new TextField("Last name");
     private TextField email = new TextField("Email");
     private TextField phone = new TextField("Phone");
-    private DatePicker dateOfBirth = new DatePicker("Date of birth");
-    private TextField occupation = new TextField("Occupation");
+    private TextField street = new TextField("Street");
+    private TextField postalCode = new TextField("Postal code");
+    private TextField city = new TextField("City");
+    private TextField socialSecurityNo = new TextField("Social security number");
 
     private Button cancel = new Button("Cancel");
     private Button save = new Button("Save");
@@ -46,12 +48,12 @@ public class  AdminView extends Div {
 
     private PersonService personService;
 
-    public AdminView(@Autowired PersonService personService) {
-        setId("admin-view");
+    public PersonAdminView(@Autowired PersonService personService) {
+        setId("person-admin-view");
         this.personService = personService;
         // Configure Grid
         grid = new Grid<>(Person.class);
-        grid.setColumns("firstName", "lastName", "email", "phone", "dateOfBirth", "occupation");
+        grid.setColumns("first_name", "last_name", "email", "phone", "street", "postal_code", "city", "social_security_no");
         grid.getColumns().forEach(column -> column.setAutoWidth(true));
         grid.setDataProvider(new CrudServiceDataProvider<Person, Void>(personService));
         grid.addThemeVariants(GridVariant.LUMO_NO_BORDER);
@@ -116,7 +118,7 @@ public class  AdminView extends Div {
         editorLayoutDiv.add(editorDiv);
 
         FormLayout formLayout = new FormLayout();
-        AbstractField[] fields = new AbstractField[] { firstName, lastName, email, phone, dateOfBirth, occupation };
+        AbstractField[] fields = new AbstractField[] { firstName, lastName, email, phone, street, postalCode, city, socialSecurityNo};
         for (AbstractField field : fields) {
             ((HasStyle) field).addClassName("full-width");
         }
