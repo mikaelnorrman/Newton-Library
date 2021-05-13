@@ -2,7 +2,8 @@ package com.example.application.data.service;
 
 import com.example.application.data.entity.Role;
 import com.example.application.data.entity.User;
-import com.example.application.views.admin.AdminView;
+import com.example.application.views.admin.AdminSearchView;
+import com.example.application.views.admin.PersonAdminView;
 import com.example.application.views.home.HomeView;
 import com.example.application.views.logout.LogoutView;
 import com.example.application.views.main.MainViewLayout;
@@ -71,7 +72,14 @@ public class AuthService {
         } else if (role.equals(Role.ADMIN)) {
             routes.add(new AuthorizedRoute("home", "Home", HomeView.class));
             routes.add(new AuthorizedRoute("search", "Search", SearchView.class));
-            routes.add(new AuthorizedRoute("admin", "Admin", AdminView.class));
+            routes.add(new AuthorizedRoute("admin", "User Admin", PersonAdminView.class));
+            routes.add(new AuthorizedRoute("logout", "Logout", LogoutView.class));
+
+        } else if (role.equals(Role.SUPERADMIN)) {
+            routes.add(new AuthorizedRoute("home", "Home", HomeView.class));
+            routes.add(new AuthorizedRoute("search", "Search", SearchView.class));
+            routes.add(new AuthorizedRoute("admin search", "Admin Search", AdminSearchView.class));
+            routes.add(new AuthorizedRoute("admin", "Admin", PersonAdminView.class));
             routes.add(new AuthorizedRoute("logout", "Logout", LogoutView.class));
         }
 
