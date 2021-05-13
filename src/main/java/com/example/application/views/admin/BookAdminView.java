@@ -9,6 +9,7 @@ import com.example.application.views.search.SearchView;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.radiobutton.RadioButtonGroup;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.router.PageTitle;
@@ -18,14 +19,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 @PageTitle("Book Admin")
 @CssImport("./styles/views/admin/admin-view.css")
-public class BookAdminView extends SearchView {
+public class BookAdminView extends Div {
 
+    private SearchView searchView;
     private BookEditor editor;
 
     @Autowired
     public BookAdminView(BooksRepository repository) {
-        super(repository);
+        searchView = new SearchView(repository);
         editor = new BookEditor(repository);
+        HorizontalLayout layout = new HorizontalLayout(searchView, editor);
+        add(layout);
     }
     /*
     private Grid<Books> grid;
