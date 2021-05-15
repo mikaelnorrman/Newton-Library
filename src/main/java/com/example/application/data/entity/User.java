@@ -1,26 +1,24 @@
 package com.example.application.data.entity;
 
-import com.example.application.data.AbstractEntity;
+import com.example.application.data.service.PersonRepository;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 
-import javax.persistence.Entity;
+public final class User {
 
-@Entity
-public class User extends AbstractEntity {
+    private final PersonRepository personRepository;
 
-    private String username;
+    private Person person;
     private String passwordSalt;
     private String passwordHash;
     private Role role;
     private String activationCode;
     private boolean active;
 
-    public User() {
-    }
+    //public User() { }
 
-    public User(String username, String password, Role role) {
-        this.username = username;
+    public User(PersonRepository personRepository, String email, String password) {
+        this.personRepository = personRepository;
         this.role = role;
         this.passwordSalt = RandomStringUtils.random(32);
         this.passwordHash = DigestUtils.sha1Hex(password + passwordSalt);
@@ -29,14 +27,6 @@ public class User extends AbstractEntity {
 
     public boolean checkPassword(String password) {
         return DigestUtils.sha1Hex(password + passwordSalt).equals(passwordHash);
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public String getPasswordSalt() {

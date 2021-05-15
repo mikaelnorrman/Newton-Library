@@ -1,5 +1,6 @@
 package com.example.application.data.service;
 
+import com.example.application.data.entity.Person;
 import com.example.application.data.entity.Role;
 import com.example.application.data.entity.User;
 import com.example.application.views.admin.AdminSearchView;
@@ -21,28 +22,26 @@ import java.util.List;
 @Service
 public class AuthService {
 
-    public record AuthorizedRoute(String route, String name, Class<? extends Component> view) {
+    public record AuthorizedRoute(String route, String name, Class<? extends Component> view) { }
 
-    }
+    public class AuthException extends Exception { }
 
-    public class AuthException extends Exception {
+    private final PersonRepository personRepository;
 
-    }
-
-    private final UserRepository userRepository;
-    private final MailSender mailSender;
-
-    public AuthService(UserRepository userRepository, MailSender mailSender) {
-        this.userRepository = userRepository;
-        this.mailSender = mailSender;
+    public AuthService(PersonRepository personRepository) {
+        this.personRepository = personRepository;
     }
 
     //TODO - ta bort && user.isActive()
-    public void authenticate(String username, String password) throws AuthException {
-        User user = userRepository.getByUsername(username);
-        if (user != null && user.checkPassword(password)) {
-            VaadinSession.getCurrent().setAttribute(User.class, user);
-            createRoutes(user.getRole());
+    public void authenticate(String email, String password) throws AuthException {
+        List<Person> personList = personRepository.findByEmailIgnoreCase(email);
+        if (personList.size() != 1) {
+            throw new AuthException();
+        }
+        Person person = personList.get(0);
+        if (person != null && person.checkPassword(password)) {
+            VaadinSession.getCurrent().setAttribute(Person.class, person);
+            createRoutes(person.getRole());
         } else {
             throw new AuthException();
         }
@@ -86,8 +85,8 @@ public class AuthService {
         return routes;
     }
 
-    public void register(String email, String password) {
-        User user = userRepository.save(new User(email, password, Role.USER));
+    /*public void register(String email, String password) {
+        User user = userRepository.save(new User(email, password));
         String text = "http://localhost:8080/activate?code=" + user.getActivationCode();
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom("noreply@example.com");
@@ -95,9 +94,9 @@ public class AuthService {
         message.setText(text);
         message.setTo(email);
         mailSender.send(message);
-    }
+    }*/
 
-    public void activate(String activationCode) throws AuthException {
+    /*public void activate(String activationCode) throws AuthException {
         User user = userRepository.getByActivationCode(activationCode);
         if (user != null) {
             user.setActive(true);
@@ -105,7 +104,6 @@ public class AuthService {
         } else {
             throw new AuthException();
         }
-    }
-
+    }*/
 
 }

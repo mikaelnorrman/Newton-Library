@@ -1,9 +1,12 @@
 package com.example.application.data.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.Transient;
 
 import com.example.application.data.AbstractEntity;
 import java.time.LocalDate;
+import java.util.NoSuchElementException;
+import java.util.stream.Stream;
 
 @Entity
 public class Person extends AbstractEntity {
@@ -22,8 +25,25 @@ public class Person extends AbstractEntity {
     private Boolean loancard;
     private int id_user_role;
 
+    @Transient
+    private Role role;
+
+    public Role getRole() throws NoSuchElementException {
+        if ( role == null ) {
+            determineRole();
+        }
+        return role;
+    }
+
+    private void determineRole() throws NoSuchElementException {
+        this.role = Stream.of(Role.values()).filter(r -> r.getId_user_role() == this.id_user_role).findFirst().get();
+    }
+
     public int getId_user_role() { return id_user_role; }
-    public void setId_user_role(int id_user_role) { this.id_user_role = id_user_role; }
+    public void setId_user_role(int id_user_role) throws NoSuchElementException {
+        this.id_user_role = id_user_role;
+        determineRole();
+    }
 
     public String getFirst_name() { return first_name; }
     public void setFirst_name(String first_name) { this.first_name = first_name; }
@@ -60,5 +80,10 @@ public class Person extends AbstractEntity {
 
     public Boolean getLoancard() { return loancard; }
     public void setLoancard(Boolean loancard) { this.loancard = loancard; }
+
+    public boolean checkPassword(String password) {
+        return true; //FIXME
+        //TODO: Implementera lösenordskontroll.
+    }
 
 }
