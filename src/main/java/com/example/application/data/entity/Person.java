@@ -1,15 +1,18 @@
 package com.example.application.data.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Transient;
+import javax.annotation.Nullable;
+import javax.persistence.*;
 
-import com.example.application.data.AbstractEntity;
-import java.time.LocalDate;
+import java.sql.Date;
 import java.util.NoSuchElementException;
 import java.util.stream.Stream;
 
 @Entity
-public class Person extends AbstractEntity {
+public class Person /*extends AbstractEntity*/ {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id_users;
 
     private String first_name;
     private String last_name;
@@ -18,15 +21,26 @@ public class Person extends AbstractEntity {
     private String street;
     private String postal_code;
     private String city;
-    private double social_security_no;
+    private Double social_security_no;
     private int active_borrowed_books;
     private int total_borrowed_books;
     private String password;
     private Boolean loancard;
-    private int id_user_role;
+    private int role_id;
+
+    @GeneratedValue
+    private Date date_added;
 
     @Transient
     private Role role;
+
+    public Integer getId_users() {
+        return id_users;
+    }
+
+    public void setId_users(Integer id_users) {
+        this.id_users = id_users;
+    }
 
     public Role getRole() throws NoSuchElementException {
         if ( role == null ) {
@@ -35,13 +49,21 @@ public class Person extends AbstractEntity {
         return role;
     }
 
-    private void determineRole() throws NoSuchElementException {
-        this.role = Stream.of(Role.values()).filter(r -> r.getId_user_role() == this.id_user_role).findFirst().get();
+    public void setRole(@Nullable Role role) {
+        if ( role == null ) {
+            determineRole();
+        } else {
+            this.role = role;
+        }
     }
 
-    public int getId_user_role() { return id_user_role; }
-    public void setId_user_role(int id_user_role) throws NoSuchElementException {
-        this.id_user_role = id_user_role;
+    private void determineRole() throws NoSuchElementException {
+        this.role = Stream.of(Role.values()).filter(r -> r.getRole_id() == this.role_id).findFirst().get();
+    }
+
+    public int getRole_id() { return role_id; }
+    public void setRole_id(int id_user_role) throws NoSuchElementException {
+        this.role_id = id_user_role;
         determineRole();
     }
 
@@ -66,8 +88,8 @@ public class Person extends AbstractEntity {
     public String getCity() { return city; }
     public void setCity(String city) { this.city = city; }
 
-    public double getSocial_security_no() { return social_security_no; }
-    public void setSocial_security_no(double social_security_no) { this.social_security_no = social_security_no; }
+    public Double getSocial_security_no() { return social_security_no; }
+    public void setSocial_security_no(Double social_security_no) { this.social_security_no = social_security_no; }
 
     public int getActive_borrowed_books() { return active_borrowed_books; }
     public void setActive_borrowed_books(int active_borrowed_books) { this.active_borrowed_books = active_borrowed_books; }
@@ -80,6 +102,9 @@ public class Person extends AbstractEntity {
 
     public Boolean getLoancard() { return loancard; }
     public void setLoancard(Boolean loancard) { this.loancard = loancard; }
+
+    public Date getDate_added() { return date_added; }
+    public void setDate_added(Date date_added) { this.date_added = date_added; }
 
     public boolean checkPassword(String password) {
         return true; //FIXME

@@ -2,6 +2,7 @@ package com.example.application.views.main;
 
 import java.util.Optional;
 
+import com.example.application.data.entity.Person;
 import com.example.application.data.entity.User;
 import com.example.application.data.service.AuthService;
 import com.vaadin.flow.component.Component;
@@ -81,7 +82,7 @@ public class MainViewLayout extends AppLayout {
     }
 
     private Component[] createMenuItems() {
-        var user = VaadinSession.getCurrent().getAttribute(User.class);
+        var user = VaadinSession.getCurrent().getAttribute(Person.class);
         return authService.getAuthorizedRoutes(user.getRole()).stream()
                 .map(r -> createTab(r.name(), r.view()))
                 .toArray(Component[]::new);

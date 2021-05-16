@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface BooksRepository extends JpaRepository<Books, Long> {
+public interface BooksRepository extends JpaRepository<Books, Integer> {
 
     List<Books> findByTitleStartsWithIgnoreCase (String title);
     List<Books> findByGenreStartsWithIgnoreCase (String genre);

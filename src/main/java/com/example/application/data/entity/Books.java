@@ -9,12 +9,12 @@ import javax.persistence.Id;
 import java.sql.Date;
 
 @Entity
-public class Books extends AbstractEntity {
+public class Books /*extends AbstractEntity*/ {
 
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id_books;
+    private Integer Id_books;
     private String title;
     private String description;
     private String genre;
@@ -29,12 +29,12 @@ public class Books extends AbstractEntity {
     private int shelf;
     private String section;
     private Date date_added;
-    private int isbn;
+    private String isbn;
     private String publisher;
     private int is_active;
 
 
-    public Long getId_books() { return Id_books; }
+    public Integer getId_books() { return Id_books; }
     public String getTitle() { return title; }
     public void setTitle(String title) { this.title = title; }
     public String getDescription() { return description; }
@@ -63,8 +63,8 @@ public class Books extends AbstractEntity {
     public void setSection(String section) { this.section = section; }
     public Date getDate_added() { return date_added; }
     public void setDate_added(Date date_added) { this.date_added = date_added; }
-    public int getIsbn() { return isbn; }
-    public void setIsbn(int isbn) { this.isbn = isbn; }
+    public String getIsbn() { return isbn; }
+    public void setIsbn(String isbn) { this.isbn = isbn; }
     public String getPublisher() { return publisher; }
     public void setPublisher(String publisher) { this.publisher = publisher; }
     public int getIs_active() { return is_active; }

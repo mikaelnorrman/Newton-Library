@@ -15,6 +15,7 @@ public class AdminSearchView extends SearchView {
 
     @Autowired
     public AdminSearchView(BooksRepository repository){
+        super(repository);
         this.editor = new BookEditor(repository);
         this.addMovie = new Button("New Book", VaadinIcon.BOOK.create());
     }

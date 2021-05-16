@@ -1,14 +1,9 @@
 package com.example.application.data.entity;
 
-import com.example.application.data.service.PersonRepository;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 
-public final class User {
-
-    private final PersonRepository personRepository;
-
-    private Person person;
+public class User {
     private String passwordSalt;
     private String passwordHash;
     private Role role;
@@ -17,8 +12,7 @@ public final class User {
 
     //public User() { }
 
-    public User(PersonRepository personRepository, String email, String password) {
-        this.personRepository = personRepository;
+    public User(String email, String password, Role role) {
         this.role = role;
         this.passwordSalt = RandomStringUtils.random(32);
         this.passwordHash = DigestUtils.sha1Hex(password + passwordSalt);
