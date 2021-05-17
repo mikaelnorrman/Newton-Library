@@ -46,8 +46,9 @@ public class PersonAdminView extends Div {
 
     private Person person = new Person();
 
-    private PersonService personService;
+    private PersonService personService;//Går det att bygga bort denna?
 
+    //TODO: Obligatoriskt att skicka värde på id_user_role
     public PersonAdminView(@Autowired PersonService personService) {
         setId("person-admin-view");
         this.personService = personService;

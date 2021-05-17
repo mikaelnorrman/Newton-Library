@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.vaadin.artur.helpers.CrudService;
 import java.time.LocalDate;
 
+//Kan tas bort?
 @Service
 public class PersonService extends CrudService<Person, Integer> {
 
