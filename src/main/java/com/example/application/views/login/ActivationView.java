@@ -13,9 +13,9 @@ import com.vaadin.flow.router.RouterLink;
 import java.util.List;
 import java.util.Map;
 
-@Route("activate")
-public class ActivationView extends Composite implements BeforeEnterObserver {
-
+//@Route("activate")
+public abstract class ActivationView extends Composite implements BeforeEnterObserver {
+/*
     private VerticalLayout layout;
 
     private final AuthService authService;
@@ -43,5 +43,5 @@ public class ActivationView extends Composite implements BeforeEnterObserver {
     protected Component initContent() {
         layout = new VerticalLayout();
         return layout;
-    }
+    }*/
 }
