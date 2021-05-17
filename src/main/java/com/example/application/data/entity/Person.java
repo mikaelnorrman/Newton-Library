@@ -21,7 +21,7 @@ public class Person /*extends AbstractEntity*/ {
     private String street;
     private String postal_code;
     private String city;
-    private Double social_security_no;
+    private String social_security_no;
     private int active_borrowed_books;
     private int total_borrowed_books;
     private String password;
@@ -88,8 +88,8 @@ public class Person /*extends AbstractEntity*/ {
     public String getCity() { return city; }
     public void setCity(String city) { this.city = city; }
 
-    public Double getSocial_security_no() { return social_security_no; }
-    public void setSocial_security_no(Double social_security_no) { this.social_security_no = social_security_no; }
+    public String getSocial_security_no() { return social_security_no; }
+    public void setSocial_security_no(String social_security_no) { this.social_security_no = social_security_no; }
 
     public int getActive_borrowed_books() { return active_borrowed_books; }
     public void setActive_borrowed_books(int active_borrowed_books) { this.active_borrowed_books = active_borrowed_books; }

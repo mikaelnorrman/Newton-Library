@@ -11,6 +11,6 @@ public interface BooksRepository extends JpaRepository<Books, Integer> {
     List<Books> findByGenreStartsWithIgnoreCase (String genre);
     List<Books> findByAuthorStartsWithIgnoreCase (String author);
     List<Books> findByPublisherStartsWithIgnoreCase (String publisher);
-    List<Books> findByIsbnStartsWithIgnoreCase (int isbn);
+    List<Books> findByIsbnStartsWithIgnoreCase (String isbn);
 
 }
