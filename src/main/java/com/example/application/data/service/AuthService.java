@@ -22,6 +22,12 @@ import java.util.List;
 @Service
 public class AuthService {
 
+    public static final String HOME = "home";
+    public static final String SEARCH = "search";
+    public static final String LOGOUT = "logout";
+    public static final String ADMIN = "admin";
+    public static final String ADMIN_SEARCH = "admin search";
+
     public record AuthorizedRoute(String route, String name, Class<? extends Component> view) { }
 
     public class AuthException extends Exception { }
@@ -63,23 +69,30 @@ public class AuthService {
     public List<AuthorizedRoute> getAuthorizedRoutes(Role role) {
         var routes = new ArrayList<AuthorizedRoute>();
 
+        var home = "Home";
+        var search = "Search";
+        var logout = "Logout";
+        var userAdmin = "User Admin";
+        var admin = "Admin";
+        var adminSearch = "Admin Search";
+
         if (role.equals(Role.USER)) {
-            routes.add(new AuthorizedRoute("home", "Home", HomeView.class));
-            routes.add(new AuthorizedRoute("search", "Search", SearchView.class));
-            routes.add(new AuthorizedRoute("logout", "Logout", LogoutView.class));
+            routes.add(new AuthorizedRoute(HOME, home, HomeView.class));
+            routes.add(new AuthorizedRoute(SEARCH, search, SearchView.class));
+            routes.add(new AuthorizedRoute(LOGOUT, logout, LogoutView.class));
 
         } else if (role.equals(Role.ADMIN)) {
-            routes.add(new AuthorizedRoute("home", "Home", HomeView.class));
-            routes.add(new AuthorizedRoute("search", "Search", SearchView.class));
-            routes.add(new AuthorizedRoute("admin", "User Admin", PersonAdminView.class));
-            routes.add(new AuthorizedRoute("logout", "Logout", LogoutView.class));
+            routes.add(new AuthorizedRoute(HOME, home, HomeView.class));
+            routes.add(new AuthorizedRoute(SEARCH, search, SearchView.class));
+            routes.add(new AuthorizedRoute(ADMIN, userAdmin, PersonAdminView.class));
+            routes.add(new AuthorizedRoute(LOGOUT, logout, LogoutView.class));
 
         } else if (role.equals(Role.SUPERADMIN)) {
-            routes.add(new AuthorizedRoute("home", "Home", HomeView.class));
-            routes.add(new AuthorizedRoute("search", "Search", SearchView.class));
-            routes.add(new AuthorizedRoute("admin search", "Admin Search", AdminSearchView.class));
-            routes.add(new AuthorizedRoute("admin", "Admin", PersonAdminView.class));
-            routes.add(new AuthorizedRoute("logout", "Logout", LogoutView.class));
+            routes.add(new AuthorizedRoute(HOME, home, HomeView.class));
+            routes.add(new AuthorizedRoute(SEARCH, search, SearchView.class));
+            routes.add(new AuthorizedRoute(ADMIN_SEARCH, adminSearch, AdminSearchView.class));
+            routes.add(new AuthorizedRoute(ADMIN, admin, PersonAdminView.class));
+            routes.add(new AuthorizedRoute(LOGOUT, logout, LogoutView.class));
         }
 
         return routes;
