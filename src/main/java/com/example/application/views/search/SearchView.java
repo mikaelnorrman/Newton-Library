@@ -2,16 +2,14 @@ package com.example.application.views.search;
 
 import com.example.application.data.entity.Books;
 import com.example.application.data.service.BooksRepository;
-import com.example.application.views.main.MainViewLayout;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.grid.Grid;
-import com.vaadin.flow.component.gridpro.GridPro;
 import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.html.H4;
 import com.vaadin.flow.component.icon.VaadinIcon;
-import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.textfield.TextField;
@@ -36,24 +34,23 @@ public class SearchView extends Div {
     public SearchView (BooksRepository repository){
         this.repository = repository;
         this.grid = new Grid<>(Books.class);
-        this.title = new TextField();
-        this.genre = new TextField();
-        this.author = new TextField();
-        this.publisher = new TextField();
+        this.title = new TextField("Title");
+        this.genre = new TextField("Genre");
+        this.author = new TextField("Author");
+        this.publisher = new TextField("Publisher");
         this.back = new Button("Back", VaadinIcon.HOME.create());
 
         //bygg layout
-        HorizontalLayout actions = new HorizontalLayout(title,genre,author,publisher,back);
+        HorizontalLayout actions = new HorizontalLayout(new H4("Filter books by..."), title,genre,author,publisher,back);
         add(actions, grid);
         actions.setDefaultVerticalComponentAlignment(FlexComponent.Alignment.BASELINE);
 
 
         grid.setHeight("400px");
-        grid.setColumns("id_books", "bookName", "description","genre", "author", "for_ages",
+        grid.setColumns("id_books", "title", "description","genre", "author", "for_ages",
                 "physical_amount", "e_book", "price", "physical_active_borrowed", "e_active_borrowed",
-                "total_amount_borrowed", "shelf", "section", "date_added", "isbn", "publisher", "is_active",
-                "id", "name");
-        grid.getColumnByKey("Id_books").setWidth("50px").setFlexGrow(0);
+                "total_amount_borrowed", "shelf", "section", "date_added", "isbn", "publisher", "is_active");
+        grid.getColumnByKey("id_books").setWidth("50px").setFlexGrow(0);
 
         //Hook logic
         title.setValueChangeMode(ValueChangeMode.EAGER);
