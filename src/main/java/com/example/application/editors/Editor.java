@@ -1,7 +1,9 @@
 package com.example.application.editors;
 
 import com.example.application.data.entity.Books;
+import com.example.application.data.entity.Seminars;
 import com.example.application.data.service.BooksRepository;
+import com.example.application.data.service.SeminarsRepository;
 import com.vaadin.flow.component.KeyNotifier;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.icon.VaadinIcon;
@@ -16,8 +18,10 @@ import org.springframework.stereotype.Component;
 public class Editor extends VerticalLayout implements KeyNotifier {
 
     protected BooksRepository booksRepository;
+    protected SeminarsRepository seminarRepository;
 
     protected Books books;
+    protected Seminars seminars;
 
     Button save = new Button("Save", VaadinIcon.PLUS.create());
     Button cancel = new Button("Cancel", VaadinIcon.PLUS.create());
@@ -25,6 +29,7 @@ public class Editor extends VerticalLayout implements KeyNotifier {
     HorizontalLayout actions = new HorizontalLayout(save, cancel, delete);
 
     Binder<Books> booksBinder;
+    Binder<Seminars> seminarsBinder;
 
     protected ChangeHandler changeHandler;
 

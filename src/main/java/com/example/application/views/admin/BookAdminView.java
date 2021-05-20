@@ -175,7 +175,5 @@ public class BookAdminView extends Div {
     private void populateForm(Books value) {
         this.book = value;
         binder.readBean(this.book);
-
-
     }
 }

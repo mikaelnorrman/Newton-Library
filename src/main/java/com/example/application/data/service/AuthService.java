@@ -4,6 +4,7 @@ import com.example.application.data.entity.Person;
 import com.example.application.data.entity.Role;
 import com.example.application.views.admin.BookAdminView;
 import com.example.application.views.admin.PersonAdminView;
+import com.example.application.views.admin.SeminarAdminView;
 import com.example.application.views.home.HomeView;
 import com.example.application.views.logout.LogoutView;
 import com.example.application.views.main.MainViewLayout;
@@ -23,7 +24,7 @@ public class AuthService {
     public static final String SEARCH = "search";
     public static final String LOGOUT = "logout";
     public static final String ADMIN = "admin";
-    public static final String ADMIN_SEARCH = "admin search";
+    public static final String seminarAdminView = "seminarAdminView";
     public static final String bookAdminView = "bookAdminView";
 
     public record AuthorizedRoute(String route, String name, Class<? extends Component> view) { }
@@ -77,6 +78,7 @@ public class AuthService {
         var admin = "Admin";
         var adminSearch = "Admin Search";
         var bookAdmin = "Book Admin View";
+        var seminarAdmin = "Seminar Admin View";
 
         if (role.equals(Role.USER)) {
             routes.add(new AuthorizedRoute(HOME, home, HomeView.class));
@@ -87,6 +89,7 @@ public class AuthService {
             routes.add(new AuthorizedRoute(HOME, home, HomeView.class));
          //   routes.add(new AuthorizedRoute(SEARCH, search, SearchView.class));
             routes.add(new AuthorizedRoute(bookAdminView,bookAdmin, BookAdminView.class));
+            routes.add(new AuthorizedRoute(seminarAdminView,seminarAdmin, SeminarAdminView.class));
             routes.add(new AuthorizedRoute(ADMIN, userAdmin, PersonAdminView.class));
             routes.add(new AuthorizedRoute(LOGOUT, logout, LogoutView.class));
 

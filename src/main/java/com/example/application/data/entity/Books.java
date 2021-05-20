@@ -13,7 +13,7 @@ public class Books {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer Id_books;
+    private Integer id_books;
 
     private String title = "";
     private String description = "";
@@ -48,7 +48,7 @@ public class Books {
                  Integer total_amount_borrowed, Integer shelf, String section,
                  Date date_added, String isbn, String publisher, Integer is_active,
                  Integer id, String name) {
-        this.Id_books = id_books;
+        this.id_books = id_books;
         this.title = title;
         this.description = description;
         this.genre = genre;
@@ -74,7 +74,7 @@ public class Books {
     }
 
     public Integer getId_books() {
-        return Id_books;
+        return id_books;
     }
 
     public String getTitle() {
@@ -229,15 +229,43 @@ public class Books {
         this.name = name;
     }
 
+
+    /*
     @Override
     public String toString(){
         return String.format("Book[id=%d, Title='%s', description='%s', genre='%s', author='%s', " +
                         "for_ages='%s', physical_amount='%s', e_book='%s', price='%s', physical_active_borrowed='%s', " +
                         "e_active_borrowed='%s', total_amount_borrowed='%s', shelf='%s', section='%s', " +
                         "date_added='%s', isbn='%s',  publisher='%s', is_active='%s', id='%s', name='%s',]",
-                Id_books, title, description, genre, author, for_ages, physical_amount,
+                id_books, title, description, genre, author, for_ages, physical_amount,
                 e_book, price, physical_active_borrowed, e_active_borrowed, total_amount_borrowed,
                 shelf, section, date_added, isbn, publisher, is_active);
     }
+     */
 
+    @Override
+    public String toString() {
+        return "Books{" +
+                "id_books=" + id_books +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", genre='" + genre + '\'' +
+                ", author='" + author + '\'' +
+                ", for_ages='" + for_ages + '\'' +
+                ", physical_amount=" + physical_amount +
+                ", e_book=" + e_book +
+                ", price=" + price +
+                ", physical_active_borrowed=" + physical_active_borrowed +
+                ", e_active_borrowed=" + e_active_borrowed +
+                ", total_amount_borrowed=" + total_amount_borrowed +
+                ", shelf=" + shelf +
+                ", section='" + section + '\'' +
+                ", date_added=" + date_added +
+                ", isbn='" + isbn + '\'' +
+                ", publisher='" + publisher + '\'' +
+                ", is_active=" + is_active +
+                ", id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

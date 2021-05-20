@@ -12,7 +12,8 @@ public class BookService extends CrudService <Books, Integer> {
 
     private BooksRepository booksRepository;
 
-    public BookService(@Autowired BooksRepository booksRepository) {this.booksRepository = booksRepository;}
+    public BookService(@Autowired BooksRepository booksRepository)
+    {this.booksRepository = booksRepository;}
 
 
     @Override
