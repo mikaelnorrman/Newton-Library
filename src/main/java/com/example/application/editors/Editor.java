@@ -1,4 +1,4 @@
-package com.example.application.Editors;
+package com.example.application.editors;
 
 import com.example.application.data.entity.Books;
 import com.example.application.data.service.BooksRepository;

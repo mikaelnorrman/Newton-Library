@@ -1,4 +1,4 @@
-package com.example.application.Editors;
+package com.example.application.editors;
 
 import com.example.application.data.entity.Books;
 import com.example.application.data.service.BooksRepository;
@@ -8,16 +8,24 @@ import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.data.binder.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.sql.SQLException;
 
 public class BookEditor extends Editor {
 
-    TextField title, description, genre, author, forAges, physicalAmount;
-    TextField price, shelf, section, isbn, publisher;
+    TextField title;
+    TextField description;
+    TextField genre;
+    TextField author;
+    TextField forAges;
+    TextField physicalAmount;
+    TextField price;
+    TextField shelf;
+    TextField section;
+    TextField isbn;
+    TextField publisher;
 
     @Autowired
-    public BookEditor (BooksRepository repo){
-        this.booksRepository = repo;
+    public BookEditor (BooksRepository booksRepo){
+        this.booksRepository = booksRepo;
         this.booksBinder = new Binder<>(Books.class);
 
         //initierar textfields för inmatning
@@ -48,7 +56,7 @@ public class BookEditor extends Editor {
 
         //Knyt actions knapparna
         save.addClickListener(e->saveCatcher());
-        delete.addClickListener(e->deleteBook());
+        delete.addClickListener(e->deleteBook(books));
         cancel.addClickListener(e-> editBook(books));
         setVisible(false);
 
@@ -57,32 +65,32 @@ public class BookEditor extends Editor {
         try{
             booksBinder.writeBean(books);
             saveBook(books);
-        } catch (SQLException | ValidationException throwables){
+        } catch (ValidationException throwables){
             throwables.printStackTrace();
         }
     }
 
 
-    void deleteBook(){
+    void deleteBook(Books books){
    booksRepository.delete(books);
     changeHandler.onChange();
     }
 
-    void saveBook(Books books) throws SQLException {
+    void saveBook(Books books) {
         booksRepository.save(books);
         changeHandler.onChange();
     }
 
-    public final void editBook(Books b){
-        if (b == null){
+    public final void editBook(Books book){
+        if (book == null){
             setVisible(false);
             return;
         }
-        final boolean persisted = b.getId_books() != null;
+        final boolean persisted = book.getId_books() != null;
         if (persisted){
-            books = booksRepository.findById(b.getId_books()).get();
+            books = booksRepository.findById(book.getId_books()).get();
         } else {
-            books = b;
+            books = book;
         }
         cancel.setVisible(persisted);
         booksBinder.setBean(books);

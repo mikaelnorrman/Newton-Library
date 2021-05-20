@@ -3,7 +3,6 @@ package com.example.application.views.main;
 import java.util.Optional;
 
 import com.example.application.data.entity.Person;
-import com.example.application.data.entity.User;
 import com.example.application.data.service.AuthService;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.ComponentUtil;
@@ -26,6 +25,8 @@ import com.vaadin.flow.server.VaadinSession;
 /**
  * The main view is a top-level placeholder for other views.
  */
+
+@JsModule("./js/os-theme-switcher.js")
 @JsModule("./styles/shared-styles.js")
 @CssImport("./styles/views/main/main-view.css")
 public class MainViewLayout extends AppLayout {
