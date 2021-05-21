@@ -120,6 +120,8 @@ public class SeminarAdminView extends Div {
         editorDiv.setId("editor");
         editorLayoutDiv.add(editorDiv);
 
+        sidbarSeminarEdit();
+
         FormLayout formLayout = new FormLayout();
         AbstractField[] fields = new AbstractField[] {name, presenter, description};
         for (AbstractField field : fields) {
@@ -130,6 +132,39 @@ public class SeminarAdminView extends Div {
         createButtonLayout(editorLayoutDiv);
 
         splitLayout.addToSecondary(editorLayoutDiv);
+    }
+
+    private void sidbarSeminarEdit() {
+        name.setLabel("Name");
+        name.setPlaceholder("Enter name for seminar");
+        name.getElement().setAttribute("title", "Example: Yoga in nature");
+        name.setClearButtonVisible(true);
+        name.setErrorMessage("Your firstname needs to be at least two character long");
+        name.setPattern("^[A-Z]");
+        name.setErrorMessage("Numbers only. A-Z");
+        name.setMinLength(2);
+        name.setRequired(true);
+        //-----------------------------------------------------------------------
+        presenter.setLabel("Presenter");
+        presenter.setPlaceholder("Enter presenter");
+        presenter.getElement().setAttribute("title", "Example: Deborah Rademaker");
+        presenter.setClearButtonVisible(true);
+        presenter.setErrorMessage("Your presenter needs to be at least two character long");
+        presenter.setPattern("^[A-Z]");
+        presenter.setErrorMessage("Numbers only. A-Z");
+        presenter.setMinLength(2);
+        presenter.setRequired(true);
+
+        //-----------------------------------------------------------------------
+        description.setLabel("Description");
+        description.setPlaceholder("Enter description");
+        description.getElement().setAttribute("title", "Example: Experience the best places for yoga and becoming one with nature!");
+        description.setClearButtonVisible(true);
+        description.setErrorMessage("Your description needs to be at least two character long");
+        description.setPattern("^[A-Z]");
+        description.setErrorMessage("Numbers only. A-Z");
+        description.setMinLength(2);
+        description.setRequired(true);
     }
 
     private void createButtonLayout(Div editorLayoutDiv) {

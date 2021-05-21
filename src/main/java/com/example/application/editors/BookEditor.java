@@ -32,10 +32,10 @@ public class BookEditor extends Editor {
         title = new TextField("Book title");
         description = new TextField("Description");
         genre = new TextField("Book genre");
-        author = new TextField("Book Author");
+        author = new TextField("Author");
         forAges = new TextField("For ages");
         physicalAmount = new TextField("Amount of books");
-        price = new TextField("Book price");
+        price = new TextField("Price");
         shelf = new TextField("Shelf");
         section = new TextField("Book section");
         isbn = new TextField("ISBN #");

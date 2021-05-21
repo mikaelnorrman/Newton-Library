@@ -117,6 +117,8 @@ public class PersonAdminView extends Div {
         editorDiv.setId("editor");
         editorLayoutDiv.add(editorDiv);
 
+        sidbarPersonEdit();
+
         FormLayout formLayout = new FormLayout();
         AbstractField[] fields = new AbstractField[] { firstName, lastName, email, phone, street, postalCode, city, socialSecurityNo};
         for (AbstractField field : fields) {
@@ -128,6 +130,93 @@ public class PersonAdminView extends Div {
 
         splitLayout.addToSecondary(editorLayoutDiv);
     }
+
+    private void sidbarPersonEdit() {
+
+        firstName.setLabel("First Name");
+        firstName.setPlaceholder("Enter first name");
+        firstName.getElement().setAttribute("title", "Example: Johan");
+        firstName.setClearButtonVisible(true);
+        firstName.setErrorMessage("Your firstname needs to be at least two character long");
+        firstName.setPattern("^[A-Z]");
+        firstName.setErrorMessage("Numbers only. A-Z");
+        firstName.setMinLength(2);
+        firstName.setRequired(true);
+        //-----------------------------------------------------------------------
+        lastName.setLabel("Last Name");
+        lastName.setPlaceholder("Enter last name");
+        lastName.getElement().setAttribute("title", "Example: Johansson");
+        lastName.setClearButtonVisible(true);
+        lastName.setErrorMessage("Your last name needs to be at least two character long");
+        lastName.setPattern("^[A-Z]");
+        lastName.setErrorMessage("Numbers only. A-Z");
+        lastName.setMinLength(2);
+        lastName.setRequired(true);
+        //-----------------------------------------------------------------------
+        email.setLabel("E-mail");
+        email.setPlaceholder("Enter email");
+        email.getElement().setAttribute("title", "Example: Johan.Johansson@libsys.se");
+        email.setClearButtonVisible(true);
+        email.setErrorMessage("Your email needs to be at least five character long");
+        // email.setPattern("^[A-Z]"); Lägg till fler tecken
+        email.setErrorMessage("error message");
+        email.setMinLength(5);
+        email.setRequired(true);
+        //-----------------------------------------------------------------------
+        phone.setLabel("Phone");
+        phone.setPlaceholder("Enter phonenumber");
+        phone.getElement().setAttribute("title", "Example: 08-23423 & 0709123987");
+        phone.setClearButtonVisible(true);
+        phone.setErrorMessage("Your phonenumber needs to be at least 7 character long");
+        phone.setPattern("^[0-9]"); //Lägg till + tecken
+        phone.setErrorMessage("Phonenumber needs to be 7 characters long up to 13");
+        phone.setMinLength(7);
+        phone.setMaxLength(13);
+        phone.setRequired(true);
+        //-----------------------------------------------------------------------
+        street.setLabel("Street");
+        street.setPlaceholder("Enter street");
+        street.getElement().setAttribute("title", "Example: Stengatan");
+        street.setClearButtonVisible(true);
+        street.setErrorMessage("Your street needs to be at least 2 character long");
+        street.setPattern("^[a-zA-Z\\s]+[0-9]");
+        street.setErrorMessage("Phonenumber needs to be 7 characters long up to 13");
+        street.setMinLength(2);
+        street.setRequired(true);
+        //-----------------------------------------------------------------------
+        postalCode.setLabel("Postal Code");
+        postalCode.setPlaceholder("Enter postal code");
+        postalCode.getElement().setAttribute("title", "Example: 12398");
+        postalCode.setClearButtonVisible(true);
+        postalCode.setErrorMessage("Your postal code needs to be at least 5 character long");
+        postalCode.setPattern("^[0-9]");
+        postalCode.setErrorMessage("Postal Code needs to be 5 characters long");
+        postalCode.setMinLength(5);
+        postalCode.setRequired(true);
+
+        //-----------------------------------------------------------------------
+        city.setLabel("City");
+        city.setPlaceholder("Enter city");
+        city.getElement().setAttribute("title", "Example: Stockholm");
+        city.setClearButtonVisible(true);
+        city.setErrorMessage("Your city needs to be at least 2 character long");
+        city.setPattern("^[a-zA-z + åäöÅÄÖ]");
+        city.setErrorMessage("City needs to be 2 characters long");
+        city.setMinLength(2);
+        city.setRequired(true);
+        //-----------------------------------------------------------------------
+        socialSecurityNo.setLabel("Social Security Number");
+        socialSecurityNo.setPlaceholder("Enter social security Number");
+        socialSecurityNo.getElement().setAttribute("title", "Example: 7304205120");
+        socialSecurityNo.setClearButtonVisible(true);
+        socialSecurityNo.setErrorMessage("Your city needs to be at least 2 character long");
+        socialSecurityNo.setPattern("^[0-9]");
+        socialSecurityNo.setErrorMessage("Social security number needs to be 10 characters long");
+        socialSecurityNo.setMinLength(10);
+        socialSecurityNo.setMaxLength(12);
+        socialSecurityNo.setRequired(true);
+    }
+
 
     private void createButtonLayout(Div editorLayoutDiv) {
         HorizontalLayout buttonLayout = new HorizontalLayout();

@@ -29,11 +29,11 @@ public class BookAdminView extends Div {
 
     private Grid<Books> grid;
 
-    private TextField title = new TextField("Title");
-    private TextField description = new TextField("Description");
-    private TextField genre = new TextField("Genre"); //dropdown?
-    private TextField author = new TextField("Author");
-    private TextField forAges = new TextField("For Ages");
+    TextField title = new TextField();
+    private TextField description = new TextField();
+    private TextField genre = new TextField(); //dropdown?
+    private TextField author = new TextField();
+    private TextField forAges = new TextField();
     //private TextField physicalAmount = new TextField("Physical Amount");
     //private TextField e_book = new TextField("E book");
     //private TextField price = new TextField("Price");
@@ -42,13 +42,13 @@ public class BookAdminView extends Div {
     //private TextField totalAmountBorrowed = new TextField("Total Amount Borrowed");
     //private TextField shelf = new TextField("Shelf");
     //private TextField shelf = new TextField("Shelf");
-    private TextField section = new TextField("Section");
+    private TextField section = new TextField();
     //private TextField dateAdded = new TextField("Date Added");
-    private TextField isbn = new TextField("isbn");
-    private TextField publisher = new TextField("Publisher");
+    private TextField isbn = new TextField();
+    private TextField publisher = new TextField();
     //private TextField isActive = new TextField("Is Active");
     //private TextField id = new TextField("Id");
-    private TextField name = new TextField("Name");
+    private TextField name = new TextField();
 
 
     private Button cancel = new Button("Cancel");
@@ -131,6 +131,8 @@ public class BookAdminView extends Div {
         editorDiv.setId("editor");
         editorLayoutDiv.add(editorDiv);
 
+        sidbarBooksEdit();
+
         FormLayout formLayout = new FormLayout();
         AbstractField[] fields = new AbstractField[] {title, description,
                 genre, author, forAges, section, isbn, publisher, name};
@@ -142,6 +144,98 @@ public class BookAdminView extends Div {
         createButtonLayout(editorLayoutDiv);
 
         splitLayout.addToSecondary(editorLayoutDiv);
+    }
+
+    private void sidbarBooksEdit() {
+        title.setLabel("Book title");
+        title.setPlaceholder("Enter book title");
+        title.getElement().setAttribute("title", "Example: Alkemisten");
+        title.setClearButtonVisible(true);
+        title.setErrorMessage("Your title needs to be at least one character long");
+        title.setMinLength(1);
+        title.setRequired(true);
+        //-----------------------------------------------------------------------
+        description.setLabel("Description");
+        description.setPlaceholder("Enter a description");
+        description.getElement().setAttribute("Title", "Example: The Alchemist follows the journey of an Andalusian shepherd boy named Santiago.");
+        description.setClearButtonVisible(true);
+        description.setErrorMessage("Your description needs to be at least one character long");
+        description.setMinLength(1);
+        //-----------------------------------------------------------------------
+        // Borde göras till en dropdown!!
+        genre.setLabel("Genre");
+        genre.setPlaceholder("Enter a Genre");
+        genre.getElement().setAttribute("Title", "Example: Skönlittteratur or Kokböcker");
+        genre.setClearButtonVisible(true);
+        genre.setErrorMessage("Your genre needs to be at least one character long");
+        genre.setMinLength(1);
+        //-----------------------------------------------------------------------
+        author.setLabel("Author");
+        author.setLabel("Book Author");
+        author.setPlaceholder("Enter the author");
+        author.getElement().setAttribute("title", "Example: Paulo Coelho");
+        author.setClearButtonVisible(true);
+        author.setErrorMessage("Your book author needs to be at least one character long");
+        author.setMinLength(1);
+        //-----------------------------------------------------------------------
+        // Borde göras till en dropdown!!
+        forAges.setLabel("For Ages");
+        forAges.setPlaceholder("Enter a age");
+        forAges.getElement().setAttribute("Title", "Example: 0-3 or 15-99");
+        forAges.setPattern("^[0-9]"); // Lägg till - bindestreck
+        forAges.setErrorMessage("Numbers only. 0,1,2,3,4,5,6,7,8,9");
+        forAges.setClearButtonVisible(true);
+        forAges.setErrorMessage("Your book age needs to be at least one number long");
+        forAges.setMinLength(1);
+        //-----------------------------------------------------------------------
+        // Borde göras till en dropdown!!
+        section.setLabel("Section");
+        section.setPlaceholder("Enter a section");
+        section.getElement().setAttribute("Title", "Example: Skönlitteratur");
+        section.setClearButtonVisible(true);
+        section.setErrorMessage("Your book section needs to be at least one character long");
+        section.setMinLength(1);
+        //-----------------------------------------------------------------------
+        isbn.setLabel("isbn");
+        isbn.setPlaceholder("Enter a isbn");
+        isbn.getElement().setAttribute("Title", "Example: ");
+        forAges.setPattern("^[0-9]");
+        forAges.setErrorMessage("Numbers only. 0,1,2,3,4,5,6,7,8,9");
+        isbn.setClearButtonVisible(true);
+        isbn.setErrorMessage("Your book isbn number needs to be ten character long");
+        isbn.setMinLength(10);
+        //-----------------------------------------------------------------------
+        publisher.setLabel("Publisher");
+        publisher.setPlaceholder("Enter a publisher");
+        publisher.getElement().setAttribute("Title", "Example: HarperTorch");
+        publisher.setClearButtonVisible(true);
+        publisher.setErrorMessage("");
+        publisher.setMinLength(1);
+        //-----------------------------------------------------------------------
+        name.setLabel("Name");
+        name.setPlaceholder("Enter a name");
+        name.getElement().setAttribute("Title", "Example: ");
+        name.setClearButtonVisible(true);
+        name.setErrorMessage("");
+        name.setMinLength(1);
+        //-----------------------------------------------------------------------
+        /*
+        price.setLabel("Book price");
+        price.setPlaceholder("Enter a price");
+        price.getElement().setAttribute("title", "Example: 150");
+        price.setClearButtonVisible(true);
+        price.setRequired(true);
+        price.setMinLength(1);
+        price.setPattern("[0-9]");
+        price.setErrorMessage("Numbers only. 0,1,2,3,4,5,6,7,8,9");
+        price.addValueChangeListener(event -> {
+            if (price.isInvalid()) {
+                Notification.show("Invalid price");
+            }
+        });
+         */
+        //------------------------------------------
+
     }
 
     private void createButtonLayout(Div editorLayoutDiv) {

@@ -1,45 +1,81 @@
 package com.example.application.data.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.sql.Date;
 
+@Table(name = "books", schema = "agile_library")
 @Entity
 public class Books {
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id_books;
 
+    @Column(name="title")
     private String title = "";
+
+    @Column(name="description")
     private String description = "";
+
+    @Column(name="genre")
     private String genre = "";
+
+    @Column(name="author")
     private String author = "";
+
+    @Column(name="for_ages")
     private String for_ages = "";
+
+    @Column(name="physical_amount")
     private Integer physical_amount;
+
+    @Column(name="e_book")
     private Integer e_book;
 
     @NotNull
+    @Column(name="price")
     private Integer price;
+
+    @Column(name="physical_active_borrowed")
     private Integer physical_active_borrowed;
+
+    @Column(name="e_active_borrowed")
     private Integer e_active_borrowed;
+
+    @Column(name="total_amount_borrowed")
     private Integer total_amount_borrowed;
+
+    @Column(name="shelf")
     private Integer shelf;
+
+    @Column(name="section")
     private String section = "";
+
+    @Column(name="date_added")
     private Date date_added;
 
     @NotNull
+    @Column(name="isbn")
     private String isbn = "";
+
+    @Column(name="publisher")
     private String publisher = "";
+
+    @Column(name="is_active")
     private Integer is_active;
 
     @NotNull
+    @Column(name="id")
     private Integer id;
+
+    @Column(name="name")
     private String name = "";
+
+
+    public Books(){
+    }
+
 
     public Books(Integer id_books, String title, String description,
                  String genre, String author, String for_ages,
@@ -68,9 +104,6 @@ public class Books {
         this.is_active = is_active;
         this.id = id;
         this.name = name;
-    }
-
-    public Books(){
     }
 
     public Integer getId_books() {
