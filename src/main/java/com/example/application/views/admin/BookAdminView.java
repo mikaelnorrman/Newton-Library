@@ -29,25 +29,24 @@ public class BookAdminView extends Div {
 
     private Grid<Books> grid;
 
-    TextField title = new TextField();
+    private TextField title = new TextField();
     private TextField description = new TextField();
     private TextField genre = new TextField(); //dropdown?
     private TextField author = new TextField();
     private TextField forAges = new TextField();
-    //private TextField physicalAmount = new TextField("Physical Amount");
-    //private TextField e_book = new TextField("E book");
-    //private TextField price = new TextField("Price");
-    //private TextField physicalActiveBorrowed = new TextField("Physical Active Borrowed");
-    //private TextField eActiveBorrowed = new TextField("E Active Borrowed");
-    //private TextField totalAmountBorrowed = new TextField("Total Amount Borrowed");
-    //private TextField shelf = new TextField("Shelf");
-    //private TextField shelf = new TextField("Shelf");
+    private TextField physicalAmount = new TextField();
+    private TextField e_book = new TextField();
+    private TextField price = new TextField();
+    private TextField physicalActiveBorrowed = new TextField("Physical Active Borrowed");
+    private TextField eActiveBorrowed = new TextField("E Active Borrowed");
+    private TextField totalAmountBorrowed = new TextField("Total Amount Borrowed");
+    private TextField shelf = new TextField();
     private TextField section = new TextField();
     //private TextField dateAdded = new TextField("Date Added");
     private TextField isbn = new TextField();
     private TextField publisher = new TextField();
-    //private TextField isActive = new TextField("Is Active");
-    //private TextField id = new TextField("Id");
+    private TextField isActive = new TextField("Is Active");
+    private TextField id = new TextField("Id");
     private TextField name = new TextField();
 
 
@@ -67,7 +66,7 @@ public class BookAdminView extends Div {
         grid = new Grid<>(Books.class);
         grid.setColumns("title", "description", "genre", "author", "for_ages", "physical_amount",
                 "e_book", "price", "physical_active_borrowed", "e_active_borrowed", "total_amount_borrowed",
-                "shelf", "section", "date_added", "isbn", "publisher", "is_active", "id", "name");
+                "shelf", "section", /*"date_added",*/ "isbn", "publisher", "is_active", "id", "name");
         grid.getColumns().forEach(column -> column.setAutoWidth(true));
         grid.setDataProvider(new CrudServiceDataProvider<Books, Void>(bookService));
         grid.addThemeVariants(GridVariant.LUMO_NO_BORDER);
@@ -188,6 +187,21 @@ public class BookAdminView extends Div {
         forAges.setErrorMessage("Your book age needs to be at least one number long");
         forAges.setMinLength(1);
         //-----------------------------------------------------------------------
+        physicalAmount.setLabel("Physical Amount");
+        physicalAmount.setPlaceholder("Enter a amount");
+        //-----------------------------------------------------------------------
+        e_book.setLabel("E book");
+        e_book.setPlaceholder("Enter eBook");
+        //-----------------------------------------------------------------------
+        shelf.setLabel("Shelf");
+        //-----------------------------------------------------------------------
+
+        //-----------------------------------------------------------------------
+
+        //-----------------------------------------------------------------------
+
+        //-----------------------------------------------------------------------
+
         // Borde göras till en dropdown!!
         section.setLabel("Section");
         section.setPlaceholder("Enter a section");
@@ -196,8 +210,8 @@ public class BookAdminView extends Div {
         section.setErrorMessage("Your book section needs to be at least one character long");
         section.setMinLength(1);
         //-----------------------------------------------------------------------
-        isbn.setLabel("isbn");
-        isbn.setPlaceholder("Enter a isbn");
+        isbn.setLabel("ISBN");
+        isbn.setPlaceholder("Enter a isbn number");
         isbn.getElement().setAttribute("Title", "Example: ");
         forAges.setPattern("^[0-9]");
         forAges.setErrorMessage("Numbers only. 0,1,2,3,4,5,6,7,8,9");
@@ -219,7 +233,7 @@ public class BookAdminView extends Div {
         name.setErrorMessage("");
         name.setMinLength(1);
         //-----------------------------------------------------------------------
-        /*
+
         price.setLabel("Book price");
         price.setPlaceholder("Enter a price");
         price.getElement().setAttribute("title", "Example: 150");
@@ -233,7 +247,7 @@ public class BookAdminView extends Div {
                 Notification.show("Invalid price");
             }
         });
-         */
+
         //------------------------------------------
 
     }

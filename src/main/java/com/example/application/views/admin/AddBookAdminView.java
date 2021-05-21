@@ -16,7 +16,7 @@ import com.vaadin.flow.router.PageTitle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 
-@PageTitle("Add Book Admin View")
+@PageTitle("Add Book AdminView")
 @CssImport("./styles/views/admin/admin-view.css")
 public class AddBookAdminView extends VerticalLayout {
 
@@ -28,13 +28,15 @@ public class AddBookAdminView extends VerticalLayout {
     final TextField filterAuthor;
     final TextField filterPublisher;
     final TextField filterIbis;
-    private final Button addBook, back;
+    private final Button addBook;
+    private final Button back;
 
     @Autowired
     public AddBookAdminView(BooksRepository repository){
         this.repository = repository;
         this.grid = new Grid<>(Books.class);
         this.editor = new BookEditor(repository);
+
         this.filterTitle = new TextField();
         this.filterTitle.setPlaceholder("Filter by title");
 
@@ -49,19 +51,20 @@ public class AddBookAdminView extends VerticalLayout {
 
         this.filterIbis = new TextField();
         this.filterIbis.setPlaceholder("Filter by ibis");
+
         this.addBook = new Button("New book", VaadinIcon.PLUS.create());
         this.back = new Button("Back", VaadinIcon.HOME.create());
 
         //Build layout
-        HorizontalLayout actions = new HorizontalLayout(filterTitle, filterGenre, filterAuthor, filterPublisher, addBook, back);
+        var actions = new HorizontalLayout(filterTitle, filterGenre, filterAuthor, filterPublisher, addBook, back);
         add(actions, grid, editor);
         actions.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
 
         grid.setHeight("400px");
-        grid.setColumns("title", "description", "genre", "author", "for_ages", "physical_amount",
+        grid.setColumns("id_books", "title", "description", "genre", "author", "for_ages", "physical_amount",
                 "e_book", "price", "physical_active_borrowed", "e_active_borrowed", "total_amount_borrowed",
-                "shelf", "section", "date_added", "isbn", "publisher", "is_active", "id", "name");
-        grid.getColumnByKey("id_staff").setWidth("50px").setFlexGrow(0);
+                "shelf", "section", /*"date_added",*/ "isbn", "publisher", "is_active", "id", "name");
+        grid.getColumnByKey("id_books").setWidth("50px").setFlexGrow(0);
 
         //Hook logic
         //Replace listing with filter
@@ -77,22 +80,20 @@ public class AddBookAdminView extends VerticalLayout {
         filterIbis.addValueChangeListener(e -> listBook(e.getValue(),5));
 
         //Connect selected staff to editor or hide if none is selected
-        grid.asSingleSelect().addValueChangeListener(e -> { editor.editBook(e.getValue());
-        });
+        grid.asSingleSelect().addValueChangeListener(e ->  editor.editBook(e.getValue()));
+
 
         //instantiate end edit new staff
-        /* Får inte till den här biten korrekt pga allt som ej är varchar från databasen
-
         addBook.addClickListener (e -> editor.
-                editBook(new Books(0,"","","","",
-                        "",0,0, 0,0,
-                        0,0,0,null,"",
-                        "",null,null,0,"")));
+                editBook(new Books("","","","","",
+                        "","","", "","",
+                        "","","","","",
+                        "","","")));
 
-         */
+
 
         //back button | .navigate("") -> Bestämmer till vilken vy man skall gå till.
-        back.addClickListener(e -> UI.getCurrent().navigate(""));
+        back.addClickListener(e -> UI.getCurrent().navigate("home"));
 
         //Listen changes made by the editor, refresh data
         editor.setChangeHandler(() -> {

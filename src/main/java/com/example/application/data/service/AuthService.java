@@ -2,6 +2,7 @@ package com.example.application.data.service;
 
 import com.example.application.data.entity.Person;
 import com.example.application.data.entity.Role;
+import com.example.application.views.admin.AddBookAdminView;
 import com.example.application.views.admin.BookAdminView;
 import com.example.application.views.admin.PersonAdminView;
 import com.example.application.views.admin.SeminarAdminView;
@@ -77,7 +78,7 @@ public class AuthService {
         var userAdmin = "User Admin";
         var admin = "Admin";
         var bookAdmin = "Book Admin View";
-        var addBookAdmin = "Add Book Admin View";
+        var addBookAdmin = "Add Book AdminView";
         var seminarAdmin = "Seminar Admin View";
 
         if (role.equals(Role.USER)) {
@@ -87,7 +88,7 @@ public class AuthService {
         } else if (role.equals(Role.ADMIN)) {
             routes.add(new AuthorizedRoute(HOME, home, HomeView.class));
             routes.add(new AuthorizedRoute(bookAdminView,bookAdmin, BookAdminView.class));
-            routes.add(new AuthorizedRoute(addBookAdminView,addBookAdmin, BookAdminView.class));
+            routes.add(new AuthorizedRoute(addBookAdminView,addBookAdmin, AddBookAdminView.class));
             routes.add(new AuthorizedRoute(seminarAdminView,seminarAdmin, SeminarAdminView.class));
             routes.add(new AuthorizedRoute(ADMIN, userAdmin, PersonAdminView.class));
             routes.add(new AuthorizedRoute(LOGOUT, logout, LogoutView.class));

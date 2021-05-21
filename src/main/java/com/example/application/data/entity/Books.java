@@ -2,7 +2,6 @@ package com.example.application.data.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.sql.Date;
 
 @Table(name = "books", schema = "agile_library")
 @Entity
@@ -28,32 +27,34 @@ public class Books {
     private String for_ages = "";
 
     @Column(name="physical_amount")
-    private Integer physical_amount;
+    private String physical_amount;
 
     @Column(name="e_book")
-    private Integer e_book;
+    private String e_book;
 
     @NotNull
     @Column(name="price")
-    private Integer price;
+    private String price;
 
     @Column(name="physical_active_borrowed")
-    private Integer physical_active_borrowed;
+    private String physical_active_borrowed;
 
     @Column(name="e_active_borrowed")
-    private Integer e_active_borrowed;
+    private String e_active_borrowed;
 
     @Column(name="total_amount_borrowed")
-    private Integer total_amount_borrowed;
+    private String total_amount_borrowed;
 
     @Column(name="shelf")
-    private Integer shelf;
+    private String shelf;
 
     @Column(name="section")
     private String section = "";
 
+    /*
     @Column(name="date_added")
     private Date date_added;
+     */
 
     @NotNull
     @Column(name="isbn")
@@ -63,11 +64,11 @@ public class Books {
     private String publisher = "";
 
     @Column(name="is_active")
-    private Integer is_active;
+    private String is_active;
 
     @NotNull
     @Column(name="id")
-    private Integer id;
+    private String id;
 
     @Column(name="name")
     private String name = "";
@@ -77,14 +78,25 @@ public class Books {
     }
 
 
-    public Books(Integer id_books, String title, String description,
-                 String genre, String author, String for_ages,
-                 Integer physical_amount, Integer e_book, Integer price,
-                 Integer physical_active_borrowed, Integer e_active_borrowed,
-                 Integer total_amount_borrowed, Integer shelf, String section,
-                 Date date_added, String isbn, String publisher, Integer is_active,
-                 Integer id, String name) {
-        this.id_books = id_books;
+    public Books(String title,
+                 String description,
+                 String genre,
+                 String author,
+                 String for_ages,
+                 String physical_amount,
+                 String e_book,
+                 String price,
+                 String physical_active_borrowed,
+                 String e_active_borrowed,
+                 String total_amount_borrowed,
+                 String shelf,
+                 String section,
+                 //Date date_added,
+                 String isbn,
+                 String publisher,
+                 String is_active,
+                 String id,
+                 String name) {
         this.title = title;
         this.description = description;
         this.genre = genre;
@@ -98,7 +110,7 @@ public class Books {
         this.total_amount_borrowed = total_amount_borrowed;
         this.shelf = shelf;
         this.section = section;
-        this.date_added = date_added;
+       // this.date_added = date_added;
         this.isbn = isbn;
         this.publisher = publisher;
         this.is_active = is_active;
@@ -150,59 +162,59 @@ public class Books {
         this.for_ages = for_ages;
     }
 
-    public Integer getPhysical_amount() {
+    public String getPhysical_amount() {
         return physical_amount;
     }
 
-    public void setPhysical_amount(Integer physical_amount) {
+    public void setPhysical_amount(String physical_amount) {
         this.physical_amount = physical_amount;
     }
 
-    public Integer getE_book() {
+    public String getE_book() {
         return e_book;
     }
 
-    public void setE_book(Integer e_book) {
+    public void setE_book(String e_book) {
         this.e_book = e_book;
     }
 
-    public Integer getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(Integer price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 
-    public Integer getPhysical_active_borrowed() {
+    public String getPhysical_active_borrowed() {
         return physical_active_borrowed;
     }
 
-    public void setPhysical_active_borrowed(Integer physical_active_borrowed) {
+    public void setPhysical_active_borrowed(String physical_active_borrowed) {
         this.physical_active_borrowed = physical_active_borrowed;
     }
 
-    public Integer getE_active_borrowed() {
+    public String getE_active_borrowed() {
         return e_active_borrowed;
     }
 
-    public void setE_active_borrowed(Integer e_active_borrowed) {
+    public void setE_active_borrowed(String e_active_borrowed) {
         this.e_active_borrowed = e_active_borrowed;
     }
 
-    public Integer getTotal_amount_borrowed() {
+    public String getTotal_amount_borrowed() {
         return total_amount_borrowed;
     }
 
-    public void setTotal_amount_borrowed(Integer total_amount_borrowed) {
+    public void setTotal_amount_borrowed(String total_amount_borrowed) {
         this.total_amount_borrowed = total_amount_borrowed;
     }
 
-    public Integer getShelf() {
+    public String getShelf() {
         return shelf;
     }
 
-    public void setShelf(Integer shelf) {
+    public void setShelf(String shelf) {
         this.shelf = shelf;
     }
 
@@ -214,6 +226,7 @@ public class Books {
         this.section = section;
     }
 
+    /*
     public Date getDate_added() {
         return date_added;
     }
@@ -221,6 +234,8 @@ public class Books {
     public void setDate_added(Date date_added) {
         this.date_added = date_added;
     }
+     */
+
 
     public String getIsbn() {
         return isbn;
@@ -238,19 +253,19 @@ public class Books {
         this.publisher = publisher;
     }
 
-    public Integer getIs_active() {
+    public String getIs_active() {
         return is_active;
     }
 
-    public void setIs_active(Integer is_active) {
+    public void setIs_active(String is_active) {
         this.is_active = is_active;
     }
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -293,7 +308,7 @@ public class Books {
                 ", total_amount_borrowed=" + total_amount_borrowed +
                 ", shelf=" + shelf +
                 ", section='" + section + '\'' +
-                ", date_added=" + date_added +
+                //", date_added=" + date_added +
                 ", isbn='" + isbn + '\'' +
                 ", publisher='" + publisher + '\'' +
                 ", is_active=" + is_active +
