@@ -9,6 +9,7 @@ import com.example.application.views.home.HomeView;
 import com.example.application.views.logout.LogoutView;
 import com.example.application.views.main.MainViewLayout;
 import com.example.application.views.search.SearchView;
+import com.example.application.views.search.VisitorSearchBooksView;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.router.RouteConfiguration;
 import com.vaadin.flow.server.VaadinSession;
@@ -72,6 +73,7 @@ public class AuthService {
             routes.add(new AuthorizedRoute("home", "Home", HomeView.class));
             routes.add(new AuthorizedRoute("search", "Search", SearchView.class));
             routes.add(new AuthorizedRoute("admin", "User Admin", PersonAdminView.class));
+            routes.add(new AuthorizedRoute("visitor", "Search Books", VisitorSearchBooksView.class)); //TEST
             routes.add(new AuthorizedRoute("logout", "Logout", LogoutView.class));
 
         } else if (role.equals(Role.SUPERADMIN)) {
