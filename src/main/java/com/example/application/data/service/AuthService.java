@@ -72,22 +72,18 @@ public class AuthService {
          * HÄr sätter vi namnen på flikarna i menyen.
          */
         var home = "Home";
-        var search = "Search";
         var logout = "Logout";
         var userAdmin = "User Admin";
         var admin = "Admin";
-        var adminSearch = "Admin Search";
         var bookAdmin = "Book Admin View";
         var seminarAdmin = "Seminar Admin View";
 
         if (role.equals(Role.USER)) {
             routes.add(new AuthorizedRoute(HOME, home, HomeView.class));
-          //  routes.add(new AuthorizedRoute(SEARCH, search, SearchView.class));
             routes.add(new AuthorizedRoute(LOGOUT, logout, LogoutView.class));
 
         } else if (role.equals(Role.ADMIN)) {
             routes.add(new AuthorizedRoute(HOME, home, HomeView.class));
-         //   routes.add(new AuthorizedRoute(SEARCH, search, SearchView.class));
             routes.add(new AuthorizedRoute(bookAdminView,bookAdmin, BookAdminView.class));
             routes.add(new AuthorizedRoute(seminarAdminView,seminarAdmin, SeminarAdminView.class));
             routes.add(new AuthorizedRoute(ADMIN, userAdmin, PersonAdminView.class));
@@ -95,8 +91,6 @@ public class AuthService {
 
         } else if (role.equals(Role.SUPERADMIN)) {
             routes.add(new AuthorizedRoute(HOME, home, HomeView.class));
-         //   routes.add(new AuthorizedRoute(SEARCH, search, SearchView.class));
-         //   routes.add(new AuthorizedRoute(ADMIN_SEARCH, adminSearch, AdminSearchView.class));
             routes.add(new AuthorizedRoute(ADMIN, admin, PersonAdminView.class));
             routes.add(new AuthorizedRoute(LOGOUT, logout, LogoutView.class));
         }
