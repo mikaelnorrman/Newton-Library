@@ -146,6 +146,23 @@ public class BookAdminView extends Div {
     }
 
     private void sidbarBooksEdit() {
+        titleSidebarEditor();
+        descriptionSidebarEditor();
+        genreSidebarEditor();
+        authorSidebarEditor();
+        forAgeSidebarEditor();
+        physicalAmountSidebarEditor();
+        ebbokSidebarEditor();
+        shelfSidebarEditor();
+        sectionSidebarEditor();
+        isbnSidebarEditor();
+        publisherSidebarEditor();
+        nameSidebarEditor();
+        priceSidebarEditor();
+
+    }
+
+    private void titleSidebarEditor() {
         title.setLabel("Book title");
         title.setPlaceholder("Enter book title");
         title.getElement().setAttribute("title", "Example: Alkemisten");
@@ -153,14 +170,18 @@ public class BookAdminView extends Div {
         title.setErrorMessage("Your title needs to be at least one character long");
         title.setMinLength(1);
         title.setRequired(true);
-        //-----------------------------------------------------------------------
+    }
+
+    private void descriptionSidebarEditor() {
         description.setLabel("Description");
         description.setPlaceholder("Enter a description");
         description.getElement().setAttribute("Title", "Example: The Alchemist follows the journey of an Andalusian shepherd boy named Santiago.");
         description.setClearButtonVisible(true);
         description.setErrorMessage("Your description needs to be at least one character long");
         description.setMinLength(1);
-        //-----------------------------------------------------------------------
+    }
+
+    private void genreSidebarEditor() {
         // Borde göras till en dropdown!!
         genre.setLabel("Genre");
         genre.setPlaceholder("Enter a Genre");
@@ -168,7 +189,9 @@ public class BookAdminView extends Div {
         genre.setClearButtonVisible(true);
         genre.setErrorMessage("Your genre needs to be at least one character long");
         genre.setMinLength(1);
-        //-----------------------------------------------------------------------
+    }
+
+    private void authorSidebarEditor() {
         author.setLabel("Author");
         author.setLabel("Book Author");
         author.setPlaceholder("Enter the author");
@@ -176,7 +199,9 @@ public class BookAdminView extends Div {
         author.setClearButtonVisible(true);
         author.setErrorMessage("Your book author needs to be at least one character long");
         author.setMinLength(1);
-        //-----------------------------------------------------------------------
+    }
+
+    private void forAgeSidebarEditor() {
         // Borde göras till en dropdown!!
         forAges.setLabel("For Ages");
         forAges.setPlaceholder("Enter a age");
@@ -186,54 +211,19 @@ public class BookAdminView extends Div {
         forAges.setClearButtonVisible(true);
         forAges.setErrorMessage("Your book age needs to be at least one number long");
         forAges.setMinLength(1);
-        //-----------------------------------------------------------------------
+    }
+
+    private void physicalAmountSidebarEditor() {
         physicalAmount.setLabel("Physical Amount");
         physicalAmount.setPlaceholder("Enter a amount");
-        //-----------------------------------------------------------------------
+    }
+
+    private void ebbokSidebarEditor() {
         e_book.setLabel("E book");
         e_book.setPlaceholder("Enter eBook");
-        //-----------------------------------------------------------------------
-        shelf.setLabel("Shelf");
-        //-----------------------------------------------------------------------
+    }
 
-        //-----------------------------------------------------------------------
-
-        //-----------------------------------------------------------------------
-
-        //-----------------------------------------------------------------------
-
-        // Borde göras till en dropdown!!
-        section.setLabel("Section");
-        section.setPlaceholder("Enter a section");
-        section.getElement().setAttribute("Title", "Example: Skönlitteratur");
-        section.setClearButtonVisible(true);
-        section.setErrorMessage("Your book section needs to be at least one character long");
-        section.setMinLength(1);
-        //-----------------------------------------------------------------------
-        isbn.setLabel("ISBN");
-        isbn.setPlaceholder("Enter a isbn number");
-        isbn.getElement().setAttribute("Title", "Example: ");
-        forAges.setPattern("^[0-9]");
-        forAges.setErrorMessage("Numbers only. 0,1,2,3,4,5,6,7,8,9");
-        isbn.setClearButtonVisible(true);
-        isbn.setErrorMessage("Your book isbn number needs to be ten character long");
-        isbn.setMinLength(10);
-        //-----------------------------------------------------------------------
-        publisher.setLabel("Publisher");
-        publisher.setPlaceholder("Enter a publisher");
-        publisher.getElement().setAttribute("Title", "Example: HarperTorch");
-        publisher.setClearButtonVisible(true);
-        publisher.setErrorMessage("");
-        publisher.setMinLength(1);
-        //-----------------------------------------------------------------------
-        name.setLabel("Name");
-        name.setPlaceholder("Enter a name");
-        name.getElement().setAttribute("Title", "Example: ");
-        name.setClearButtonVisible(true);
-        name.setErrorMessage("");
-        name.setMinLength(1);
-        //-----------------------------------------------------------------------
-
+    private void priceSidebarEditor() {
         price.setLabel("Book price");
         price.setPlaceholder("Enter a price");
         price.getElement().setAttribute("title", "Example: 150");
@@ -247,10 +237,52 @@ public class BookAdminView extends Div {
                 Notification.show("Invalid price");
             }
         });
-
-        //------------------------------------------
-
     }
+
+    private void shelfSidebarEditor() {
+        shelf.setLabel("Shelf");
+    }
+
+    private void sectionSidebarEditor() {
+        // Borde göras till en dropdown!!
+        section.setLabel("Section");
+        section.setPlaceholder("Enter a section");
+        section.getElement().setAttribute("Title", "Example: Skönlitteratur");
+        section.setClearButtonVisible(true);
+        section.setErrorMessage("Your book section needs to be at least one character long");
+        section.setMinLength(1);
+    }
+
+    private void isbnSidebarEditor() {
+        isbn.setLabel("ISBN");
+        isbn.setPlaceholder("Enter a isbn number");
+        isbn.getElement().setAttribute("Title", "Example: ");
+        isbn.setPattern("^[0-9]");
+        isbn.setErrorMessage("Numbers only. 0,1,2,3,4,5,6,7,8,9");
+        isbn.setClearButtonVisible(true);
+        isbn.setErrorMessage("Your book isbn number needs to be ten character long");
+        isbn.setMinLength(10);
+    }
+
+    private void publisherSidebarEditor() {
+        publisher.setLabel("Publisher");
+        publisher.setPlaceholder("Enter a publisher");
+        publisher.getElement().setAttribute("Title", "Example: HarperTorch");
+        publisher.setClearButtonVisible(true);
+        publisher.setErrorMessage("");
+        publisher.setMinLength(1);
+    }
+
+    private void nameSidebarEditor() {
+        name.setLabel("Name");
+        name.setPlaceholder("Enter a name");
+        name.getElement().setAttribute("Title", "Example: ");
+        name.setClearButtonVisible(true);
+        name.setErrorMessage("");
+        name.setMinLength(1);
+    }
+
+
 
     private void createButtonLayout(Div editorLayoutDiv) {
         HorizontalLayout buttonLayout = new HorizontalLayout();
