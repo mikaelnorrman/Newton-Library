@@ -125,6 +125,7 @@ public class BookEditor extends Editor {
         physicalAmount = new TextField();
         physicalAmount.setLabel("Physical Amount");
         physicalAmount.setPlaceholder("Enter a amount");
+        physicalAmount.setClearButtonVisible(true);
     }
 
     private void priceEdit() {
@@ -133,7 +134,6 @@ public class BookEditor extends Editor {
         price.setPlaceholder("Enter a price");
         price.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: 150");
         price.setClearButtonVisible(true);
-        price.setRequired(true);
         price.setMinLength(1);
         price.setPattern("[0-9]");
         price.setErrorMessage(NUMBERS_ONLY);
@@ -142,12 +142,14 @@ public class BookEditor extends Editor {
                 Notification.show("Invalid price");
             }
         });
+        price.setRequired(true);
     }
 
     private void shelfEdit() {
         shelf = new TextField();
         shelf.setLabel("Shelf");
         shelf.setPlaceholder("Enter a shelf");
+        shelf.setClearButtonVisible(true);
     }
 
     private void sectionEdit() {
@@ -171,6 +173,7 @@ public class BookEditor extends Editor {
         isbn.setClearButtonVisible(true);
         isbn.setErrorMessage("Your book isbn number needs to be ten character long");
         isbn.setMinLength(10);
+        isbn.setRequired(true);
     }
 
     private void publisherEdit() {

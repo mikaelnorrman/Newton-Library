@@ -217,6 +217,7 @@ public class BookAdminView extends Div {
     private void ebbokSidebarEditor() {
         eBook.setLabel("E book");
         eBook.setPlaceholder("Enter eBook");
+        eBook.setClearButtonVisible(true);
     }
 
     private void priceSidebarEditor() {
@@ -237,6 +238,7 @@ public class BookAdminView extends Div {
 
     private void shelfSidebarEditor() {
         shelf.setLabel("Shelf");
+        shelf.setClearButtonVisible(true);
     }
 
     private void sectionSidebarEditor() {
