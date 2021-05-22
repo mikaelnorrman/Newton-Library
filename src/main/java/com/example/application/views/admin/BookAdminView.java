@@ -27,6 +27,8 @@ import java.util.Optional;
 @CssImport("./styles/views/admin/admin-view.css")
 public class BookAdminView extends Div {
 
+    public static final String TITLE_IN_SET_ATTRIBUTE = "Title";
+    public static final String NUMBERS_ONLY = "Numbers only. 0,1,2,3,4,5,6,7,8,9";
     private Grid<Books> grid;
 
     private TextField title = new TextField();
@@ -35,18 +37,12 @@ public class BookAdminView extends Div {
     private TextField author = new TextField();
     private TextField forAges = new TextField();
     private TextField physicalAmount = new TextField();
-    private TextField e_book = new TextField();
+    private TextField eBook = new TextField();
     private TextField price = new TextField();
-    private TextField physicalActiveBorrowed = new TextField("Physical Active Borrowed");
-    private TextField eActiveBorrowed = new TextField("E Active Borrowed");
-    private TextField totalAmountBorrowed = new TextField("Total Amount Borrowed");
     private TextField shelf = new TextField();
     private TextField section = new TextField();
-    //private TextField dateAdded = new TextField("Date Added");
     private TextField isbn = new TextField();
     private TextField publisher = new TextField();
-    private TextField isActive = new TextField("Is Active");
-    private TextField id = new TextField("Id");
     private TextField name = new TextField();
 
 
@@ -175,7 +171,7 @@ public class BookAdminView extends Div {
     private void descriptionSidebarEditor() {
         description.setLabel("Description");
         description.setPlaceholder("Enter a description");
-        description.getElement().setAttribute("Title", "Example: The Alchemist follows the journey of an Andalusian shepherd boy named Santiago.");
+        description.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: The Alchemist follows the journey of an Andalusian shepherd boy named Santiago.");
         description.setClearButtonVisible(true);
         description.setErrorMessage("Your description needs to be at least one character long");
         description.setMinLength(1);
@@ -185,7 +181,7 @@ public class BookAdminView extends Div {
         // Borde göras till en dropdown!!
         genre.setLabel("Genre");
         genre.setPlaceholder("Enter a Genre");
-        genre.getElement().setAttribute("Title", "Example: Skönlittteratur or Kokböcker");
+        genre.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: Skönlittteratur or Kokböcker");
         genre.setClearButtonVisible(true);
         genre.setErrorMessage("Your genre needs to be at least one character long");
         genre.setMinLength(1);
@@ -195,7 +191,7 @@ public class BookAdminView extends Div {
         author.setLabel("Author");
         author.setLabel("Book Author");
         author.setPlaceholder("Enter the author");
-        author.getElement().setAttribute("title", "Example: Paulo Coelho");
+        author.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: Paulo Coelho");
         author.setClearButtonVisible(true);
         author.setErrorMessage("Your book author needs to be at least one character long");
         author.setMinLength(1);
@@ -205,9 +201,9 @@ public class BookAdminView extends Div {
         // Borde göras till en dropdown!!
         forAges.setLabel("For Ages");
         forAges.setPlaceholder("Enter a age");
-        forAges.getElement().setAttribute("Title", "Example: 0-3 or 15-99");
+        forAges.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: 0-3 or 15-99");
         forAges.setPattern("^[0-9]"); // Lägg till - bindestreck
-        forAges.setErrorMessage("Numbers only. 0,1,2,3,4,5,6,7,8,9");
+        forAges.setErrorMessage(NUMBERS_ONLY);
         forAges.setClearButtonVisible(true);
         forAges.setErrorMessage("Your book age needs to be at least one number long");
         forAges.setMinLength(1);
@@ -219,19 +215,19 @@ public class BookAdminView extends Div {
     }
 
     private void ebbokSidebarEditor() {
-        e_book.setLabel("E book");
-        e_book.setPlaceholder("Enter eBook");
+        eBook.setLabel("E book");
+        eBook.setPlaceholder("Enter eBook");
     }
 
     private void priceSidebarEditor() {
         price.setLabel("Book price");
         price.setPlaceholder("Enter a price");
-        price.getElement().setAttribute("title", "Example: 150");
+        price.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: 150");
         price.setClearButtonVisible(true);
         price.setRequired(true);
         price.setMinLength(1);
         price.setPattern("[0-9]");
-        price.setErrorMessage("Numbers only. 0,1,2,3,4,5,6,7,8,9");
+        price.setErrorMessage(NUMBERS_ONLY);
         price.addValueChangeListener(event -> {
             if (price.isInvalid()) {
                 Notification.show("Invalid price");
@@ -247,7 +243,7 @@ public class BookAdminView extends Div {
         // Borde göras till en dropdown!!
         section.setLabel("Section");
         section.setPlaceholder("Enter a section");
-        section.getElement().setAttribute("Title", "Example: Skönlitteratur");
+        section.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: Skönlitteratur");
         section.setClearButtonVisible(true);
         section.setErrorMessage("Your book section needs to be at least one character long");
         section.setMinLength(1);
@@ -256,9 +252,9 @@ public class BookAdminView extends Div {
     private void isbnSidebarEditor() {
         isbn.setLabel("ISBN");
         isbn.setPlaceholder("Enter a isbn number");
-        isbn.getElement().setAttribute("Title", "Example: ");
+        isbn.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: ");
         isbn.setPattern("^[0-9]");
-        isbn.setErrorMessage("Numbers only. 0,1,2,3,4,5,6,7,8,9");
+        isbn.setErrorMessage(NUMBERS_ONLY);
         isbn.setClearButtonVisible(true);
         isbn.setErrorMessage("Your book isbn number needs to be ten character long");
         isbn.setMinLength(10);
@@ -267,7 +263,7 @@ public class BookAdminView extends Div {
     private void publisherSidebarEditor() {
         publisher.setLabel("Publisher");
         publisher.setPlaceholder("Enter a publisher");
-        publisher.getElement().setAttribute("Title", "Example: HarperTorch");
+        publisher.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: HarperTorch");
         publisher.setClearButtonVisible(true);
         publisher.setErrorMessage("");
         publisher.setMinLength(1);
@@ -276,7 +272,7 @@ public class BookAdminView extends Div {
     private void nameSidebarEditor() {
         name.setLabel("Name");
         name.setPlaceholder("Enter a name");
-        name.getElement().setAttribute("Title", "Example: ");
+        name.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: ");
         name.setClearButtonVisible(true);
         name.setErrorMessage("");
         name.setMinLength(1);
