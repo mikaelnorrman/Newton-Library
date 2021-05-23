@@ -11,16 +11,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 @PageTitle("Search")
 @CssImport(value = "./styles/views/search/search-view.css")
 @JsModule("@vaadin/vaadin-lumo-styles/badge.js")
-public class VisitorSearchBooksView extends Div {
+public class VisitorBookSearchView extends Div {
 
-    private final SearchBooksBlock visitorSearch;
+    private final BookSearchBlock visitorSearch;
 
     @Autowired
-    public VisitorSearchBooksView(BooksRepository repository) {
-        visitorSearch = new SearchBooksBlock(Books.class, repository);
+    public VisitorBookSearchView(BooksRepository repository) {
+        visitorSearch = new BookSearchBlock(Books.class, repository);
         visitorSearch.setFilterTitle("Filter by...");
-        visitorSearch.addFilters("Title", "Genre", "Author");
-        visitorSearch.setColumns("title", "description","genre", "author", "for_ages", "shelf", "section", "isbn", "publisher");
+        visitorSearch.addFilters(BookSearchBlock.TITLE, BookSearchBlock.GENRE, BookSearchBlock.AUTHOR, BookSearchBlock.ISBN);
+        visitorSearch.setColumns("title", "author", "genre", "for_ages", "section", "shelf");
         this.add(visitorSearch);
     }
 }
