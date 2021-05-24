@@ -61,10 +61,18 @@ public class BookView extends Div {
         this.bookService = bookService;
         // Configure Grid - This will show up in the Grid
         grid = new Grid<>(Books.class);
-        grid.setColumns("title", "description", "genre", "author", "for_ages", "physical_amount",
-                "e_book", "price", "physical_active_borrowed", "e_active_borrowed", "total_amount_borrowed",
-                "shelf", "section", /*"date_added",*/ "isbn", "publisher", "is_active", "id", "name");
-        grid.getColumns().forEach(column -> column.setAutoWidth(true));
+        grid.setColumns("title", "genre", "description", "author", "section", "shelf", "isbn", "for_ages", "physical_amount",
+                "e_book", "price", "publisher");
+        //grid.getColumns().forEach(column -> column.setAutoWidth(true));
+        grid.getColumnByKey("title").setAutoWidth(true);
+        grid.getColumnByKey("genre").setAutoWidth(true);
+        grid.getColumnByKey("author").setAutoWidth(true);
+        grid.getColumnByKey("for_ages").setAutoWidth(true);
+        grid.getColumnByKey("price").setAutoWidth(true);
+        grid.getColumnByKey("section").setAutoWidth(true);
+        grid.getColumnByKey("isbn").setAutoWidth(true);
+        grid.getColumnByKey("publisher").setAutoWidth(true);
+        grid.getColumnByKey("description").setWidth("150px").setFlexGrow(0);
         grid.setDataProvider(new CrudServiceDataProvider<Books, Void>(bookService));
         grid.addThemeVariants(GridVariant.LUMO_NO_BORDER,
                 GridVariant.LUMO_NO_ROW_BORDERS, GridVariant.LUMO_ROW_STRIPES);
@@ -238,11 +246,14 @@ public class BookView extends Div {
         price.setMinLength(1);
         price.setPattern("[0-9]");
         price.setErrorMessage(NUMBERS_ONLY);
+        /* Kanske går att använda vid en validering.
         price.addValueChangeListener(event -> {
             if (price.isInvalid()) {
                 Notification.show("Invalid price");
             }
         });
+
+         */
         price.addThemeVariants(TextFieldVariant.LUMO_SMALL);
     }
 
