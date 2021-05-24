@@ -34,7 +34,6 @@ public class AddBookView extends VerticalLayout {
     private final Button addBook;
     private final Button back;
 
-    Icon iconSearch = VaadinIcon.SEARCH.create();
 
     @Autowired
     public AddBookView(BooksRepository repository){
@@ -45,31 +44,33 @@ public class AddBookView extends VerticalLayout {
         filterTitle = new TextField();
         filterTitle.setPlaceholder("Filter by title");
         filterTitle.addThemeVariants(TextFieldVariant.LUMO_SMALL);
-        filterTitle.setPrefixComponent(iconSearch);
+        filterTitle.setPrefixComponent(VaadinIcon.SEARCH.create());
 
         this.filterGenre = new TextField();
         this.filterGenre.setPlaceholder("Filter by genre");
         this.filterGenre.addThemeVariants(TextFieldVariant.LUMO_SMALL);
-        this.filterGenre.setPrefixComponent(iconSearch);
+        this.filterGenre.setPrefixComponent(VaadinIcon.SEARCH.create());
 
         this.filterAuthor = new TextField();
         this.filterAuthor.setPlaceholder("Filter by author");
         this.filterAuthor.addThemeVariants(TextFieldVariant.LUMO_SMALL);
-        this.filterAuthor.setPrefixComponent(iconSearch);
+        this.filterAuthor.setPrefixComponent(VaadinIcon.SEARCH.create());
 
         this.filterPublisher = new TextField();
         this.filterPublisher.setPlaceholder("Filter by publisher");
         this.filterPublisher.addThemeVariants(TextFieldVariant.LUMO_SMALL);
-        this.filterPublisher.setPrefixComponent(iconSearch);
+        this.filterPublisher.setPrefixComponent(VaadinIcon.SEARCH.create());
 
         this.filterIbis = new TextField();
         this.filterIbis.setPlaceholder("Filter by ibis");
         this.filterIbis.setPlaceholder("Filter by ibis");
         this.filterIbis.addThemeVariants(TextFieldVariant.LUMO_SMALL);
-        this.filterIbis.setPrefixComponent(iconSearch);
+        this.filterIbis.setPrefixComponent(VaadinIcon.SEARCH.create());
+
 
         this.addBook = new Button("New book", VaadinIcon.PLUS.create());
         this.back = new Button("Back", VaadinIcon.HOME.create());
+
 
         //Build layout
         var actions = new HorizontalLayout(filterTitle, filterGenre, filterAuthor, filterPublisher, addBook, back);
