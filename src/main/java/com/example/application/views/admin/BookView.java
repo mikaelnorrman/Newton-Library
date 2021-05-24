@@ -26,7 +26,7 @@ import java.util.Optional;
 
 @PageTitle("Books")
 @CssImport("./styles/views/admin/admin-view.css")
-public class BookAdminView extends Div {
+public class BookView extends Div {
 
     public static final String TITLE_IN_SET_ATTRIBUTE = "Title";
     public static final String NUMBERS_ONLY = "Numbers only. 0,1,2,3,4,5,6,7,8,9";
@@ -56,7 +56,7 @@ public class BookAdminView extends Div {
 
     private BookService bookService;
 
-    public BookAdminView(@Autowired BookService bookService){
+    public BookView(@Autowired BookService bookService){
         setId("book-admin-view");
         this.bookService = bookService;
         // Configure Grid - This will show up in the Grid
