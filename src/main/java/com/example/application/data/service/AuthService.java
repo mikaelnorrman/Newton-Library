@@ -17,7 +17,7 @@ import java.util.List;
 @Service
 public class AuthService {
 
-    // Här sätter länkar vi till @PageTitle("Book AdminView")
+    // Här sätter vi länkarna till @PageTitle("Book AdminView")
     public static final String OPENING = "opening";
     public static final String SEARCH = "search";
     public static final String LOGOUT = "logout";

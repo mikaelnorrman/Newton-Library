@@ -29,7 +29,7 @@ public class Editor extends VerticalLayout implements KeyNotifier {
 
 
     Button save = new Button("Save", VaadinIcon.PLUS.create());
-    Button cancel = new Button("Cancel", VaadinIcon.PLUS.create());
+    Button cancel = new Button("Cancel", VaadinIcon.MINUS.create());
     Button delete = new Button("Delete", VaadinIcon.TRASH.create());
     HorizontalLayout actions = new HorizontalLayout(save, cancel, delete);
 
