@@ -2,11 +2,8 @@ package com.example.application.data.service;
 
 import com.example.application.data.entity.Person;
 import com.example.application.data.entity.Role;
-import com.example.application.views.admin.AddBookAdminView;
-import com.example.application.views.admin.BookAdminView;
-import com.example.application.views.admin.PersonAdminView;
-import com.example.application.views.admin.SeminarAdminView;
-import com.example.application.views.home.HomeView;
+import com.example.application.views.admin.*;
+import com.example.application.views.home.OpeningView;
 import com.example.application.views.logout.LogoutView;
 import com.example.application.views.main.MainViewLayout;
 import com.vaadin.flow.component.Component;
@@ -21,13 +18,14 @@ import java.util.List;
 public class AuthService {
 
     // Här sätter länkar vi till @PageTitle("Book AdminView")
-    public static final String HOME = "home";
+    public static final String OPENING = "opening";
     public static final String SEARCH = "search";
     public static final String LOGOUT = "logout";
     public static final String ADMIN = "admin";
-    public static final String seminarAdminView = "seminarAdminView";
-    public static final String bookAdminView = "bookAdminView";
-    public static final String addBookAdminView = "addBookAdminView";
+    public static final String SEMINARS = "seminar";
+    public static final String BOOKS = "books";
+    public static final String ADD_BOOK_VIEW = "addBookView";
+    public static final String PERSONS = "Persons";
 
     public record AuthorizedRoute(String route, String name, Class<? extends Component> view) { }
 
@@ -73,29 +71,31 @@ public class AuthService {
         /**
          * HÄr sätter vi namnen på flikarna i menyen.
          */
-        var home = "Home";
+        var opening = "Opening";
         var logout = "Logout";
         var userAdmin = "User";
         var admin = "Admin";
         var bookAdmin = "Books";
-        var addBookAdmin = "Add Book & Search";
-        var seminarAdmin = "Seminar";
+        var addBooks = "Add Books";
+        var persons = "Person";
+        var seminars = "Seminars";
 
         if (role.equals(Role.USER)) {
-            routes.add(new AuthorizedRoute(HOME, home, HomeView.class));
+            routes.add(new AuthorizedRoute(OPENING, opening, OpeningView.class));
             routes.add(new AuthorizedRoute(LOGOUT, logout, LogoutView.class));
 
         } else if (role.equals(Role.ADMIN)) {
-            routes.add(new AuthorizedRoute(HOME, home, HomeView.class));
-            routes.add(new AuthorizedRoute(bookAdminView,bookAdmin, BookAdminView.class));
-            routes.add(new AuthorizedRoute(addBookAdminView,addBookAdmin, AddBookAdminView.class));
-            routes.add(new AuthorizedRoute(seminarAdminView,seminarAdmin, SeminarAdminView.class));
-            routes.add(new AuthorizedRoute(ADMIN, userAdmin, PersonAdminView.class));
+            routes.add(new AuthorizedRoute(OPENING, opening, OpeningView.class));
+            routes.add(new AuthorizedRoute(BOOKS,bookAdmin, BookAdminView.class));
+            routes.add(new AuthorizedRoute(ADD_BOOK_VIEW,addBooks, AddBookView.class));
+            routes.add(new AuthorizedRoute(PERSONS,persons, AddPersonView.class));
+            routes.add(new AuthorizedRoute(SEMINARS,seminars, SeminarView.class));
+            routes.add(new AuthorizedRoute(ADMIN, userAdmin, PersonView.class));
             routes.add(new AuthorizedRoute(LOGOUT, logout, LogoutView.class));
 
         } else if (role.equals(Role.SUPERADMIN)) {
-            routes.add(new AuthorizedRoute(HOME, home, HomeView.class));
-            routes.add(new AuthorizedRoute(ADMIN, admin, PersonAdminView.class));
+            routes.add(new AuthorizedRoute(OPENING, opening, OpeningView.class));
+            routes.add(new AuthorizedRoute(ADMIN, admin, PersonView.class));
             routes.add(new AuthorizedRoute(LOGOUT, logout, LogoutView.class));
         }
 

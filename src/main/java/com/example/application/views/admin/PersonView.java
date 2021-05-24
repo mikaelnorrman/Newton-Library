@@ -27,11 +27,12 @@ import java.util.Optional;
 
 @PageTitle("User Admin")
 @CssImport("./styles/views/admin/admin-view.css")
-public class PersonAdminView extends Div {
+public class PersonView extends Div {
 
+    public static final String TITLE_IN_SET_ATTRIBUTE = "Title";
     private Grid<Person> grid;
 
-    private TextField firstName = new TextField("First name");
+    private TextField firstName = new TextField();
     private TextField lastName = new TextField("Last name");
     private EmailField email = new EmailField("Email");
     private TextField phone = new TextField("Phone");
@@ -45,11 +46,12 @@ public class PersonAdminView extends Div {
 
     private Binder<Person> binder;
 
-    private Person person = new Person();
+    private Person person = new Person("", "", "", "",
+            "", "", "", "", "");
 
     private PersonService personService;
 
-    public PersonAdminView(@Autowired PersonService personService) {
+    public PersonView(@Autowired PersonService personService) {
         setId("person-admin-view");
         this.personService = personService;
         // Configure Grid
@@ -64,7 +66,7 @@ public class PersonAdminView extends Div {
         // when a row is selected or deselected, populate form
         grid.asSingleSelect().addValueChangeListener(event -> {
             if (event.getValue() != null) {
-                Optional<Person> personFromBackend = personService.get(event.getValue().getId_users());
+                Optional<Person> personFromBackend = personService.get(event.getValue().getId_persons());
                 // when a row is selected but the data is no longer available, refresh grid
                 if (personFromBackend.isPresent()) {
                     populateForm(personFromBackend.get());
@@ -90,7 +92,8 @@ public class PersonAdminView extends Div {
         save.addClickListener(e -> {
             try {
                 if (this.person == null) {
-                    this.person = new Person();
+                    this.person = new Person("", "", "", "",
+                            "", "", "", "", "");
                 }
                 binder.writeBean(this.person);
                 personService.update(this.person);
@@ -135,9 +138,20 @@ public class PersonAdminView extends Div {
 
     private void sidbarPersonEdit() {
 
+        firstNameEdit();
+        lastNameEdit();
+        emailEdit();
+        phoneEdit();
+        streetEdit();
+        postalCodeEdit();
+        cityEdit();
+        socialSecurityNoEdit();
+    }
+
+    private void firstNameEdit() {
         firstName.setLabel("First Name");
         firstName.setPlaceholder("Enter first name");
-        firstName.getElement().setAttribute("title", "Example: Johan");
+        firstName.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: Johan");
         firstName.setClearButtonVisible(true);
         firstName.setErrorMessage("Your firstname needs to be at least two character long");
         firstName.setPattern("^[A-Z]");
@@ -145,10 +159,14 @@ public class PersonAdminView extends Div {
         firstName.setMinLength(2);
         firstName.setRequired(true);
         firstName.addThemeVariants(TextFieldVariant.LUMO_SMALL);
+    }
+
+    private void lastNameEdit() {
+
         //-----------------------------------------------------------------------
         lastName.setLabel("Last Name");
         lastName.setPlaceholder("Enter last name");
-        lastName.getElement().setAttribute("title", "Example: Johansson");
+        lastName.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: Johansson");
         lastName.setClearButtonVisible(true);
         lastName.setErrorMessage("Your last name needs to be at least two character long");
         lastName.setPattern("^[A-Z]");
@@ -156,21 +174,25 @@ public class PersonAdminView extends Div {
         lastName.setMinLength(2);
         lastName.setRequired(true);
         lastName.addThemeVariants(TextFieldVariant.LUMO_SMALL);
-        //-----------------------------------------------------------------------
+    }
+
+    private void emailEdit() {
+        // email.setPattern("^[A-Z]"); Lägg till fler tecken
         email.setLabel("E-mail");
         email.setPlaceholder("Enter email");
-        email.getElement().setAttribute("title", "Example: Johan.Johansson@libsys.se");
+        email.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: Johan.Johansson@libsys.se");
         email.setClearButtonVisible(true);
         email.setErrorMessage("Your email needs to be at least five character long");
-        // email.setPattern("^[A-Z]"); Lägg till fler tecken
-        email.setErrorMessage("error message");
         email.setMinLength(5);
+        //email.setRequired(true);
         email.setRequiredIndicatorVisible(true);
         email.addThemeVariants(TextFieldVariant.LUMO_SMALL);
-        //-----------------------------------------------------------------------
+    }
+
+    private void phoneEdit() {
         phone.setLabel("Phone");
         phone.setPlaceholder("Enter phonenumber");
-        phone.getElement().setAttribute("title", "Example: 08-23423 & 0709123987");
+        phone.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: 08-23423 & 0709123987");
         phone.setClearButtonVisible(true);
         phone.setErrorMessage("Your phonenumber needs to be at least 7 character long");
         phone.setPattern("^[0-9]"); //Lägg till + tecken
@@ -179,10 +201,12 @@ public class PersonAdminView extends Div {
         phone.setMaxLength(13);
         phone.setRequired(true);
         phone.addThemeVariants(TextFieldVariant.LUMO_SMALL);
-        //-----------------------------------------------------------------------
+    }
+
+    private void streetEdit() {
         street.setLabel("Street");
         street.setPlaceholder("Enter street");
-        street.getElement().setAttribute("title", "Example: Stengatan");
+        street.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: Stengatan");
         street.setClearButtonVisible(true);
         street.setErrorMessage("Your street needs to be at least 2 character long");
         street.setPattern("^[a-zA-Z\\s]+[0-9]");
@@ -190,20 +214,25 @@ public class PersonAdminView extends Div {
         street.setMinLength(2);
         street.setRequired(true);
         street.addThemeVariants(TextFieldVariant.LUMO_SMALL);
-        //-----------------------------------------------------------------------
+    }
+
+    private void postalCodeEdit() {
         postalCode.setLabel("Postal Code");
         postalCode.setPlaceholder("Enter postal code");
-        postalCode.getElement().setAttribute("title", "Example: 12398");
+        postalCode.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: 12398");
         postalCode.setClearButtonVisible(true);
         postalCode.setErrorMessage("Your postal code needs to be at least 5 character long");
+        postalCode.setPattern("^[0-9]");
         postalCode.setErrorMessage("Postal Code needs to be 5 characters long");
-        postalCode.setRequiredIndicatorVisible(true);
+        postalCode.setMinLength(5);
+        postalCode.setRequired(true);
         postalCode.addThemeVariants(TextFieldVariant.LUMO_SMALL);
+    }
 
-        //-----------------------------------------------------------------------
+    private void cityEdit() {
         city.setLabel("City");
         city.setPlaceholder("Enter city");
-        city.getElement().setAttribute("title", "Example: Stockholm");
+        city.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: Stockholm");
         city.setClearButtonVisible(true);
         city.setErrorMessage("Your city needs to be at least 2 character long");
         city.setPattern("^[a-zA-z + åäöÅÄÖ]");
@@ -211,10 +240,12 @@ public class PersonAdminView extends Div {
         city.setMinLength(2);
         city.setRequired(true);
         city.addThemeVariants(TextFieldVariant.LUMO_SMALL);
-        //-----------------------------------------------------------------------
+    }
+
+    private void socialSecurityNoEdit() {
         socialSecurityNo.setLabel("Social Security Number");
         socialSecurityNo.setPlaceholder("Enter social security Number");
-        socialSecurityNo.getElement().setAttribute("title", "Example: 7304205120");
+        socialSecurityNo.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: 7304205120");
         socialSecurityNo.setClearButtonVisible(true);
         socialSecurityNo.setErrorMessage("Your city needs to be at least 2 character long");
         socialSecurityNo.setPattern("^[0-9]");

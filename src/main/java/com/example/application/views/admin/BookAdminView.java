@@ -24,7 +24,7 @@ import org.vaadin.artur.helpers.CrudServiceDataProvider;
 
 import java.util.Optional;
 
-@PageTitle("Book Admin View")
+@PageTitle("Books")
 @CssImport("./styles/views/admin/admin-view.css")
 public class BookAdminView extends Div {
 

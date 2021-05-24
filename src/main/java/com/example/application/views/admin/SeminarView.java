@@ -24,9 +24,9 @@ import org.vaadin.artur.helpers.CrudServiceDataProvider;
 
 import java.util.Optional;
 
-@PageTitle("Seminars Admin View")
+@PageTitle("Seminars")
 @CssImport("./styles/views/admin/admin-view.css")
-public class SeminarAdminView extends Div {
+public class SeminarView extends Div {
 
     private Grid<Seminars> grid;
 
@@ -50,7 +50,7 @@ public class SeminarAdminView extends Div {
 
     private SeminarService seminarService;
 
-    public SeminarAdminView (@Autowired SeminarService seminarService){
+    public SeminarView(@Autowired SeminarService seminarService){
         setId("book-admin-view");
         this.seminarService = seminarService;
         // Configure Grid - This will show up in the Grid

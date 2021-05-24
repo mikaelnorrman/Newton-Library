@@ -19,9 +19,9 @@ import com.vaadin.flow.router.PageTitle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 
-@PageTitle("Add Book AdminView")
+@PageTitle("Add BookView")
 @CssImport("./styles/views/admin/admin-view.css")
-public class AddBookAdminView extends VerticalLayout {
+public class AddBookView extends VerticalLayout {
 
     private final BooksRepository repository;
     final BookEditor editor;
@@ -34,10 +34,10 @@ public class AddBookAdminView extends VerticalLayout {
     private final Button addBook;
     private final Button back;
 
-    Icon icon = VaadinIcon.SEARCH.create();
+    Icon iconSearch = VaadinIcon.SEARCH.create();
 
     @Autowired
-    public AddBookAdminView(BooksRepository repository){
+    public AddBookView(BooksRepository repository){
         this.repository = repository;
         this.grid = new Grid<>(Books.class);
         this.editor = new BookEditor(repository);
@@ -45,28 +45,28 @@ public class AddBookAdminView extends VerticalLayout {
         filterTitle = new TextField();
         filterTitle.setPlaceholder("Filter by title");
         filterTitle.addThemeVariants(TextFieldVariant.LUMO_SMALL);
-        filterTitle.setPrefixComponent(icon);
+        filterTitle.setPrefixComponent(iconSearch);
 
         this.filterGenre = new TextField();
         this.filterGenre.setPlaceholder("Filter by genre");
         this.filterGenre.addThemeVariants(TextFieldVariant.LUMO_SMALL);
-        this.filterGenre.setPrefixComponent(icon);
+        this.filterGenre.setPrefixComponent(iconSearch);
 
         this.filterAuthor = new TextField();
         this.filterAuthor.setPlaceholder("Filter by author");
         this.filterAuthor.addThemeVariants(TextFieldVariant.LUMO_SMALL);
-        this.filterAuthor.setPrefixComponent(icon);
+        this.filterAuthor.setPrefixComponent(iconSearch);
 
         this.filterPublisher = new TextField();
         this.filterPublisher.setPlaceholder("Filter by publisher");
         this.filterPublisher.addThemeVariants(TextFieldVariant.LUMO_SMALL);
-        this.filterPublisher.setPrefixComponent(icon);
+        this.filterPublisher.setPrefixComponent(iconSearch);
 
         this.filterIbis = new TextField();
         this.filterIbis.setPlaceholder("Filter by ibis");
         this.filterIbis.setPlaceholder("Filter by ibis");
         this.filterIbis.addThemeVariants(TextFieldVariant.LUMO_SMALL);
-        this.filterIbis.setPrefixComponent(icon);
+        this.filterIbis.setPrefixComponent(iconSearch);
 
         this.addBook = new Button("New book", VaadinIcon.PLUS.create());
         this.back = new Button("Back", VaadinIcon.HOME.create());
@@ -111,7 +111,7 @@ public class AddBookAdminView extends VerticalLayout {
 
 
         //back button | .navigate("") -> Bestämmer till vilken vy man skall gå till.
-        back.addClickListener(e -> UI.getCurrent().navigate("home"));
+        back.addClickListener(e -> UI.getCurrent().navigate("opening"));
 
         //Listen changes made by the editor, refresh data
         editor.setChangeHandler(() -> {
