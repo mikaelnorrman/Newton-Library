@@ -14,6 +14,7 @@ import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.splitlayout.SplitLayout;
 import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.component.textfield.TextFieldVariant;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.data.binder.ValidationException;
 import com.vaadin.flow.router.PageTitle;
@@ -58,7 +59,8 @@ public class SeminarAdminView extends Div {
                 "date_added" , "active" */, "id");
         grid.getColumns().forEach(column -> column.setAutoWidth(true));
         grid.setDataProvider(new CrudServiceDataProvider<Seminars, Void>(seminarService));
-        grid.addThemeVariants(GridVariant.LUMO_NO_BORDER);
+        grid.addThemeVariants(GridVariant.LUMO_NO_BORDER,
+                GridVariant.LUMO_NO_ROW_BORDERS, GridVariant.LUMO_ROW_STRIPES);
         grid.setHeightFull();
 
         // when a row is selected or deselected, populate form
@@ -144,6 +146,7 @@ public class SeminarAdminView extends Div {
         name.setErrorMessage("Numbers only. A-Z");
         name.setMinLength(2);
         name.setRequired(true);
+        name.addThemeVariants(TextFieldVariant.LUMO_SMALL);
         //-----------------------------------------------------------------------
         presenter.setLabel("Presenter");
         presenter.setPlaceholder("Enter presenter");
@@ -154,6 +157,7 @@ public class SeminarAdminView extends Div {
         presenter.setErrorMessage("Numbers only. A-Z");
         presenter.setMinLength(2);
         presenter.setRequired(true);
+        presenter.addThemeVariants(TextFieldVariant.LUMO_SMALL);
 
         //-----------------------------------------------------------------------
         description.setLabel("Description");
@@ -165,6 +169,7 @@ public class SeminarAdminView extends Div {
         description.setErrorMessage("Numbers only. A-Z");
         description.setMinLength(2);
         description.setRequired(true);
+        description.addThemeVariants(TextFieldVariant.LUMO_SMALL);
     }
 
     private void createButtonLayout(Div editorLayoutDiv) {

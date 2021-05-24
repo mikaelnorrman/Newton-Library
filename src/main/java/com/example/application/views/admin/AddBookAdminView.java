@@ -7,10 +7,13 @@ import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.grid.GridVariant;
+import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.component.textfield.TextFieldVariant;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,26 +34,39 @@ public class AddBookAdminView extends VerticalLayout {
     private final Button addBook;
     private final Button back;
 
+    Icon icon = VaadinIcon.SEARCH.create();
+
     @Autowired
     public AddBookAdminView(BooksRepository repository){
         this.repository = repository;
         this.grid = new Grid<>(Books.class);
         this.editor = new BookEditor(repository);
 
-        this.filterTitle = new TextField();
-        this.filterTitle.setPlaceholder("Filter by title");
+        filterTitle = new TextField();
+        filterTitle.setPlaceholder("Filter by title");
+        filterTitle.addThemeVariants(TextFieldVariant.LUMO_SMALL);
+        filterTitle.setPrefixComponent(icon);
 
         this.filterGenre = new TextField();
         this.filterGenre.setPlaceholder("Filter by genre");
+        this.filterGenre.addThemeVariants(TextFieldVariant.LUMO_SMALL);
+        this.filterGenre.setPrefixComponent(icon);
 
         this.filterAuthor = new TextField();
         this.filterAuthor.setPlaceholder("Filter by author");
+        this.filterAuthor.addThemeVariants(TextFieldVariant.LUMO_SMALL);
+        this.filterAuthor.setPrefixComponent(icon);
 
         this.filterPublisher = new TextField();
         this.filterPublisher.setPlaceholder("Filter by publisher");
+        this.filterPublisher.addThemeVariants(TextFieldVariant.LUMO_SMALL);
+        this.filterPublisher.setPrefixComponent(icon);
 
         this.filterIbis = new TextField();
         this.filterIbis.setPlaceholder("Filter by ibis");
+        this.filterIbis.setPlaceholder("Filter by ibis");
+        this.filterIbis.addThemeVariants(TextFieldVariant.LUMO_SMALL);
+        this.filterIbis.setPrefixComponent(icon);
 
         this.addBook = new Button("New book", VaadinIcon.PLUS.create());
         this.back = new Button("Back", VaadinIcon.HOME.create());
@@ -65,6 +81,8 @@ public class AddBookAdminView extends VerticalLayout {
                 "e_book", "price", "physical_active_borrowed", "e_active_borrowed", "total_amount_borrowed",
                 "shelf", "section", /*"date_added",*/ "isbn", "publisher", "is_active", "id", "name");
         grid.getColumnByKey("id_books").setWidth("50px").setFlexGrow(0);
+        grid.addThemeVariants(GridVariant.LUMO_NO_BORDER,
+                GridVariant.LUMO_NO_ROW_BORDERS, GridVariant.LUMO_ROW_STRIPES);
 
         //Hook logic
         //Replace listing with filter

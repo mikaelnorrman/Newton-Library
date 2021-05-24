@@ -6,7 +6,6 @@ import com.vaadin.flow.component.AbstractField;
 import com.vaadin.flow.component.HasStyle;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
-import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.grid.Grid;
@@ -15,7 +14,9 @@ import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.splitlayout.SplitLayout;
+import com.vaadin.flow.component.textfield.EmailField;
 import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.component.textfield.TextFieldVariant;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.data.binder.ValidationException;
 import com.vaadin.flow.router.PageTitle;
@@ -32,7 +33,7 @@ public class PersonAdminView extends Div {
 
     private TextField firstName = new TextField("First name");
     private TextField lastName = new TextField("Last name");
-    private TextField email = new TextField("Email");
+    private EmailField email = new EmailField("Email");
     private TextField phone = new TextField("Phone");
     private TextField street = new TextField("Street");
     private TextField postalCode = new TextField("Postal code");
@@ -56,7 +57,8 @@ public class PersonAdminView extends Div {
         grid.setColumns("first_name", "last_name", "email", "phone", "street", "postal_code", "city", "social_security_no");
         grid.getColumns().forEach(column -> column.setAutoWidth(true));
         grid.setDataProvider(new CrudServiceDataProvider<Person, Void>(personService));
-        grid.addThemeVariants(GridVariant.LUMO_NO_BORDER);
+        grid.addThemeVariants(GridVariant.LUMO_NO_BORDER,
+                GridVariant.LUMO_NO_ROW_BORDERS, GridVariant.LUMO_ROW_STRIPES);
         grid.setHeightFull();
 
         // when a row is selected or deselected, populate form
@@ -142,6 +144,7 @@ public class PersonAdminView extends Div {
         firstName.setErrorMessage("Numbers only. A-Z");
         firstName.setMinLength(2);
         firstName.setRequired(true);
+        firstName.addThemeVariants(TextFieldVariant.LUMO_SMALL);
         //-----------------------------------------------------------------------
         lastName.setLabel("Last Name");
         lastName.setPlaceholder("Enter last name");
@@ -152,6 +155,7 @@ public class PersonAdminView extends Div {
         lastName.setErrorMessage("Numbers only. A-Z");
         lastName.setMinLength(2);
         lastName.setRequired(true);
+        lastName.addThemeVariants(TextFieldVariant.LUMO_SMALL);
         //-----------------------------------------------------------------------
         email.setLabel("E-mail");
         email.setPlaceholder("Enter email");
@@ -161,7 +165,8 @@ public class PersonAdminView extends Div {
         // email.setPattern("^[A-Z]"); Lägg till fler tecken
         email.setErrorMessage("error message");
         email.setMinLength(5);
-        email.setRequired(true);
+        email.setRequiredIndicatorVisible(true);
+        email.addThemeVariants(TextFieldVariant.LUMO_SMALL);
         //-----------------------------------------------------------------------
         phone.setLabel("Phone");
         phone.setPlaceholder("Enter phonenumber");
@@ -173,6 +178,7 @@ public class PersonAdminView extends Div {
         phone.setMinLength(7);
         phone.setMaxLength(13);
         phone.setRequired(true);
+        phone.addThemeVariants(TextFieldVariant.LUMO_SMALL);
         //-----------------------------------------------------------------------
         street.setLabel("Street");
         street.setPlaceholder("Enter street");
@@ -183,16 +189,16 @@ public class PersonAdminView extends Div {
         street.setErrorMessage("Phonenumber needs to be 7 characters long up to 13");
         street.setMinLength(2);
         street.setRequired(true);
+        street.addThemeVariants(TextFieldVariant.LUMO_SMALL);
         //-----------------------------------------------------------------------
         postalCode.setLabel("Postal Code");
         postalCode.setPlaceholder("Enter postal code");
         postalCode.getElement().setAttribute("title", "Example: 12398");
         postalCode.setClearButtonVisible(true);
         postalCode.setErrorMessage("Your postal code needs to be at least 5 character long");
-        postalCode.setPattern("^[0-9]");
         postalCode.setErrorMessage("Postal Code needs to be 5 characters long");
-        postalCode.setMinLength(5);
-        postalCode.setRequired(true);
+        postalCode.setRequiredIndicatorVisible(true);
+        postalCode.addThemeVariants(TextFieldVariant.LUMO_SMALL);
 
         //-----------------------------------------------------------------------
         city.setLabel("City");
@@ -204,6 +210,7 @@ public class PersonAdminView extends Div {
         city.setErrorMessage("City needs to be 2 characters long");
         city.setMinLength(2);
         city.setRequired(true);
+        city.addThemeVariants(TextFieldVariant.LUMO_SMALL);
         //-----------------------------------------------------------------------
         socialSecurityNo.setLabel("Social Security Number");
         socialSecurityNo.setPlaceholder("Enter social security Number");
@@ -215,6 +222,7 @@ public class PersonAdminView extends Div {
         socialSecurityNo.setMinLength(10);
         socialSecurityNo.setMaxLength(12);
         socialSecurityNo.setRequired(true);
+        socialSecurityNo.addThemeVariants(TextFieldVariant.LUMO_SMALL);
     }
 
 

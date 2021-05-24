@@ -14,6 +14,7 @@ import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.splitlayout.SplitLayout;
 import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.component.textfield.TextFieldVariant;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.data.binder.ValidationException;
 import com.vaadin.flow.router.PageTitle;
@@ -65,7 +66,8 @@ public class BookAdminView extends Div {
                 "shelf", "section", /*"date_added",*/ "isbn", "publisher", "is_active", "id", "name");
         grid.getColumns().forEach(column -> column.setAutoWidth(true));
         grid.setDataProvider(new CrudServiceDataProvider<Books, Void>(bookService));
-        grid.addThemeVariants(GridVariant.LUMO_NO_BORDER);
+        grid.addThemeVariants(GridVariant.LUMO_NO_BORDER,
+                GridVariant.LUMO_NO_ROW_BORDERS, GridVariant.LUMO_ROW_STRIPES);
         grid.setHeightFull();
 
         // when a row is selected or deselected, populate form
@@ -166,6 +168,7 @@ public class BookAdminView extends Div {
         title.setErrorMessage("Your title needs to be at least one character long");
         title.setMinLength(1);
         title.setRequired(true);
+        title.addThemeVariants(TextFieldVariant.LUMO_SMALL);
     }
 
     private void descriptionSidebarEditor() {
@@ -175,6 +178,7 @@ public class BookAdminView extends Div {
         description.setClearButtonVisible(true);
         description.setErrorMessage("Your description needs to be at least one character long");
         description.setMinLength(1);
+        description.addThemeVariants(TextFieldVariant.LUMO_SMALL);
     }
 
     private void genreSidebarEditor() {
@@ -185,6 +189,7 @@ public class BookAdminView extends Div {
         genre.setClearButtonVisible(true);
         genre.setErrorMessage("Your genre needs to be at least one character long");
         genre.setMinLength(1);
+        genre.addThemeVariants(TextFieldVariant.LUMO_SMALL);
     }
 
     private void authorSidebarEditor() {
@@ -195,6 +200,7 @@ public class BookAdminView extends Div {
         author.setClearButtonVisible(true);
         author.setErrorMessage("Your book author needs to be at least one character long");
         author.setMinLength(1);
+        author.addThemeVariants(TextFieldVariant.LUMO_SMALL);
     }
 
     private void forAgeSidebarEditor() {
@@ -207,17 +213,20 @@ public class BookAdminView extends Div {
         forAges.setClearButtonVisible(true);
         forAges.setErrorMessage("Your book age needs to be at least one number long");
         forAges.setMinLength(1);
+        forAges.addThemeVariants(TextFieldVariant.LUMO_SMALL);
     }
 
     private void physicalAmountSidebarEditor() {
         physicalAmount.setLabel("Physical Amount");
         physicalAmount.setPlaceholder("Enter a amount");
+        physicalAmount.addThemeVariants(TextFieldVariant.LUMO_SMALL);
     }
 
     private void ebbokSidebarEditor() {
         eBook.setLabel("E book");
         eBook.setPlaceholder("Enter eBook");
         eBook.setClearButtonVisible(true);
+        eBook.addThemeVariants(TextFieldVariant.LUMO_SMALL);
     }
 
     private void priceSidebarEditor() {
@@ -234,11 +243,13 @@ public class BookAdminView extends Div {
                 Notification.show("Invalid price");
             }
         });
+        price.addThemeVariants(TextFieldVariant.LUMO_SMALL);
     }
 
     private void shelfSidebarEditor() {
         shelf.setLabel("Shelf");
         shelf.setClearButtonVisible(true);
+        shelf.addThemeVariants(TextFieldVariant.LUMO_SMALL);
     }
 
     private void sectionSidebarEditor() {
@@ -249,6 +260,7 @@ public class BookAdminView extends Div {
         section.setClearButtonVisible(true);
         section.setErrorMessage("Your book section needs to be at least one character long");
         section.setMinLength(1);
+        section.addThemeVariants(TextFieldVariant.LUMO_SMALL);
     }
 
     private void isbnSidebarEditor() {
@@ -260,6 +272,7 @@ public class BookAdminView extends Div {
         isbn.setClearButtonVisible(true);
         isbn.setErrorMessage("Your book isbn number needs to be ten character long");
         isbn.setMinLength(10);
+        isbn.addThemeVariants(TextFieldVariant.LUMO_SMALL);
     }
 
     private void publisherSidebarEditor() {
@@ -269,6 +282,7 @@ public class BookAdminView extends Div {
         publisher.setClearButtonVisible(true);
         publisher.setErrorMessage("");
         publisher.setMinLength(1);
+        publisher.addThemeVariants(TextFieldVariant.LUMO_SMALL);
     }
 
     private void nameSidebarEditor() {
@@ -278,6 +292,7 @@ public class BookAdminView extends Div {
         name.setClearButtonVisible(true);
         name.setErrorMessage("");
         name.setMinLength(1);
+        name.addThemeVariants(TextFieldVariant.LUMO_SMALL);
     }
 
 

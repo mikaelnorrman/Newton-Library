@@ -75,11 +75,11 @@ public class AuthService {
          */
         var home = "Home";
         var logout = "Logout";
-        var userAdmin = "User Admin";
+        var userAdmin = "User";
         var admin = "Admin";
-        var bookAdmin = "Book Admin View";
-        var addBookAdmin = "Add Book AdminView";
-        var seminarAdmin = "Seminar Admin View";
+        var bookAdmin = "Books";
+        var addBookAdmin = "Add Book & Search";
+        var seminarAdmin = "Seminar";
 
         if (role.equals(Role.USER)) {
             routes.add(new AuthorizedRoute(HOME, home, HomeView.class));
