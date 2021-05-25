@@ -10,6 +10,7 @@ import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
@@ -19,6 +20,25 @@ import org.springframework.util.StringUtils;
 @PageTitle("Persons")
 @CssImport("./styles/views/admin/admin-view.css")
 public class AddPersonView extends VerticalLayout {
+
+
+    //TODO ta bort texten och fixa så att vi kan se användarna samt lägga till ny användare..
+    public AddPersonView() {
+        setId("add-person-view");
+        addClassName("add-person-view");
+        setSizeFull();
+
+        TextArea textArea = new TextArea();
+        textArea.setWidth("400px");
+
+
+        textArea.setValue("""
+               Här kommer vi se användare samt kunna lägga till dem""");
+        add(textArea);
+
+    }
+
+
 /*
     private final PersonRepository repository;
     final PersonEditor editor;

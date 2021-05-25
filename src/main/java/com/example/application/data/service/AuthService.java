@@ -26,7 +26,8 @@ public class AuthService {
     public static final String BOOKS = "books";
     public static final String ADD_BOOK_VIEW = "addBookView";
     public static final String ADD_SEMINAR_VIEW = "addSeminarView";
-    public static final String PERSONS = "Persons";
+    public static final String PERSONS = "persons";
+    public static final String LOANED_BOOKS_VIEW = "loanedBooks";
 
     public record AuthorizedRoute(String route, String name, Class<? extends Component> view) { }
 
@@ -78,6 +79,7 @@ public class AuthService {
         var admin = "Admin";
         var bookAdmin = "Books";
         var addBooks = "Add Books";
+        var loanedBooks = "Loaned Books";
         var persons = "Person";
         var seminars = "Seminars";
         var addSeminars = "Add Seminars";
@@ -90,6 +92,7 @@ public class AuthService {
             routes.add(new AuthorizedRoute(OPENING, opening, OpeningView.class));
             routes.add(new AuthorizedRoute(BOOKS,bookAdmin, BookView.class));
             routes.add(new AuthorizedRoute(ADD_BOOK_VIEW,addBooks, AddBookView.class));
+            routes.add(new AuthorizedRoute(LOANED_BOOKS_VIEW,loanedBooks, LoanedBooksView.class));
             routes.add(new AuthorizedRoute(PERSONS,persons, AddPersonView.class));
             routes.add(new AuthorizedRoute(SEMINARS,seminars, SeminarView.class));
             routes.add(new AuthorizedRoute(ADD_SEMINAR_VIEW,addSeminars, AddSeminarView.class));
