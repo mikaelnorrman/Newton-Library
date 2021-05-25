@@ -44,7 +44,6 @@ public class BookView extends Div {
     private TextField section = new TextField();
     private TextField isbn = new TextField();
     private TextField publisher = new TextField();
-    private TextField name = new TextField();
 
 
     private Button cancel = new Button("Cancel");
@@ -61,17 +60,13 @@ public class BookView extends Div {
         this.bookService = bookService;
         // Configure Grid - This will show up in the Grid
         grid = new Grid<>(Books.class);
-        grid.setColumns("title", "genre", "description", "author", "section", "shelf", "isbn", "for_ages", "physical_amount",
-                "e_book", "price", "publisher");
+        grid.setColumns("title", "genre", "description", "author", "section", "shelf");
         //grid.getColumns().forEach(column -> column.setAutoWidth(true));
         grid.getColumnByKey("title").setAutoWidth(true);
         grid.getColumnByKey("genre").setAutoWidth(true);
         grid.getColumnByKey("author").setAutoWidth(true);
-        grid.getColumnByKey("for_ages").setAutoWidth(true);
-        grid.getColumnByKey("price").setAutoWidth(true);
         grid.getColumnByKey("section").setAutoWidth(true);
-        grid.getColumnByKey("isbn").setAutoWidth(true);
-        grid.getColumnByKey("publisher").setAutoWidth(true);
+        grid.getColumnByKey("shelf").setAutoWidth(true);
         grid.getColumnByKey("description").setWidth("150px").setFlexGrow(0);
         grid.setDataProvider(new CrudServiceDataProvider<Books, Void>(bookService));
         grid.addThemeVariants(GridVariant.LUMO_NO_BORDER,
@@ -140,7 +135,7 @@ public class BookView extends Div {
 
         FormLayout formLayout = new FormLayout();
         AbstractField[] fields = new AbstractField[] {title, description,
-                genre, author, forAges, section, isbn, publisher, name};
+                genre, author, forAges, section, isbn, publisher};
         for (AbstractField field : fields) {
             ((HasStyle) field).addClassName("full-width");
         }
@@ -163,7 +158,6 @@ public class BookView extends Div {
         sectionSidebarEditor();
         isbnSidebarEditor();
         publisherSidebarEditor();
-        nameSidebarEditor();
         priceSidebarEditor();
 
     }
@@ -296,15 +290,6 @@ public class BookView extends Div {
         publisher.addThemeVariants(TextFieldVariant.LUMO_SMALL);
     }
 
-    private void nameSidebarEditor() {
-        name.setLabel("Name");
-        name.setPlaceholder("Enter a name");
-        name.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: ");
-        name.setClearButtonVisible(true);
-        name.setErrorMessage("");
-        name.setMinLength(1);
-        name.addThemeVariants(TextFieldVariant.LUMO_SMALL);
-    }
 
 
 
