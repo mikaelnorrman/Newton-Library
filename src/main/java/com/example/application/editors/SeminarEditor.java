@@ -42,9 +42,9 @@ public class SeminarEditor extends Editor {
         idEdit();
 
 
-        //Lägg till knappar
+        //Actions Lägg till knapparna. + TextField lägger till fälten att redigera datan i.
         add(name, presenter, description, length, seats_booked,
-                date_time, date_added, active, id);
+                date_time, date_added, active, id, actions);
 
         seminarsBinder.bindInstanceFields(this);
         setSpacing(true);

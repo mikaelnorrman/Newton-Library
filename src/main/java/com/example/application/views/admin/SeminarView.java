@@ -57,7 +57,11 @@ public class SeminarView extends Div {
         // Configure Grid - This will show up in the Grid
         grid = new Grid<>(Seminars.class);
         grid.setColumns("name", "presenter", "description", "length");
-        grid.getColumns().forEach(column -> column.setAutoWidth(true));
+        grid.getColumnByKey("name").setAutoWidth(true);
+        grid.getColumnByKey("presenter").setAutoWidth(true);
+        grid.getColumnByKey("length").setAutoWidth(true);
+        grid.getColumnByKey("description").setWidth("150px").setFlexGrow(0);
+        //grid.getColumns().forEach(column -> column.setAutoWidth(true));
         grid.setDataProvider(new CrudServiceDataProvider<Seminars, Void>(seminarService));
         grid.addThemeVariants(GridVariant.LUMO_NO_BORDER,
                 GridVariant.LUMO_NO_ROW_BORDERS, GridVariant.LUMO_ROW_STRIPES);
@@ -136,7 +140,7 @@ public class SeminarView extends Div {
         splitLayout.addToSecondary(editorLayoutDiv);
     }
 
-    //TODO Fixa Patterns och Errormessage för sidbarSeminarEdit samt gör dem till egna methoder
+    //TODO Fixa Patterns och Errormessage för sidbarSeminarEdit
     private void sidbarSeminarEdit() {
         nameEdit();
         presenterEdit();
