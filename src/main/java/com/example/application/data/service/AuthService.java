@@ -25,6 +25,7 @@ public class AuthService {
     public static final String SEMINARS = "seminar";
     public static final String BOOKS = "books";
     public static final String ADD_BOOK_VIEW = "addBookView";
+    public static final String ADD_SEMINAR_VIEW = "addSeminarView";
     public static final String PERSONS = "Persons";
 
     public record AuthorizedRoute(String route, String name, Class<? extends Component> view) { }
@@ -79,6 +80,7 @@ public class AuthService {
         var addBooks = "Add Books";
         var persons = "Person";
         var seminars = "Seminars";
+        var addSeminars = "Add Seminars";
 
         if (role.equals(Role.USER)) {
             routes.add(new AuthorizedRoute(OPENING, opening, OpeningView.class));
@@ -90,6 +92,7 @@ public class AuthService {
             routes.add(new AuthorizedRoute(ADD_BOOK_VIEW,addBooks, AddBookView.class));
             routes.add(new AuthorizedRoute(PERSONS,persons, AddPersonView.class));
             routes.add(new AuthorizedRoute(SEMINARS,seminars, SeminarView.class));
+            routes.add(new AuthorizedRoute(ADD_SEMINAR_VIEW,addSeminars, AddSeminarView.class));
             routes.add(new AuthorizedRoute(ADMIN, userAdmin, PersonView.class));
             routes.add(new AuthorizedRoute(LOGOUT, logout, LogoutView.class));
 

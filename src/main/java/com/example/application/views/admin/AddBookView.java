@@ -41,29 +41,33 @@ public class AddBookView extends VerticalLayout {
         this.grid = new Grid<>(Books.class);
         this.editor = new BookEditor(repository);
 
-        filterTitle = new TextField();
-        filterTitle.setPlaceholder("Filter by title");
-        filterTitle.addThemeVariants(TextFieldVariant.LUMO_SMALL);
-        filterTitle.setPrefixComponent(VaadinIcon.SEARCH.create());
+        this.filterTitle = new TextField();
+        this.filterTitle.setPlaceholder("Filter by title");
+        this.filterTitle.setClearButtonVisible(true);
+        this.filterTitle.addThemeVariants(TextFieldVariant.LUMO_SMALL);
+        this.filterTitle.setPrefixComponent(VaadinIcon.SEARCH.create());
 
         this.filterGenre = new TextField();
         this.filterGenre.setPlaceholder("Filter by genre");
+        this.filterGenre.setClearButtonVisible(true);
         this.filterGenre.addThemeVariants(TextFieldVariant.LUMO_SMALL);
         this.filterGenre.setPrefixComponent(VaadinIcon.SEARCH.create());
 
         this.filterAuthor = new TextField();
         this.filterAuthor.setPlaceholder("Filter by author");
+        this.filterAuthor.setClearButtonVisible(true);
         this.filterAuthor.addThemeVariants(TextFieldVariant.LUMO_SMALL);
         this.filterAuthor.setPrefixComponent(VaadinIcon.SEARCH.create());
 
         this.filterPublisher = new TextField();
         this.filterPublisher.setPlaceholder("Filter by publisher");
+        this.filterPublisher.setClearButtonVisible(true);
         this.filterPublisher.addThemeVariants(TextFieldVariant.LUMO_SMALL);
         this.filterPublisher.setPrefixComponent(VaadinIcon.SEARCH.create());
 
         this.filterIbis = new TextField();
         this.filterIbis.setPlaceholder("Filter by ibis");
-        this.filterIbis.setPlaceholder("Filter by ibis");
+        this.filterIbis.setClearButtonVisible(true);
         this.filterIbis.addThemeVariants(TextFieldVariant.LUMO_SMALL);
         this.filterIbis.setPrefixComponent(VaadinIcon.SEARCH.create());
 

@@ -192,7 +192,7 @@ public class BookEditor extends Editor {
         try{
             booksBinder.writeBean(books);
             saveBook(books);
-            Notification.show("YOu saved your book");
+            Notification.show("You saved your book");
         } catch (ValidationException throwables){
             throwables.printStackTrace();
         }

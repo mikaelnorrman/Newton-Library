@@ -28,16 +28,17 @@ import java.util.Optional;
 @CssImport("./styles/views/admin/admin-view.css")
 public class SeminarView extends Div {
 
+    public static final String TITLE_IN_SET_ATTRIBUTE = "title";
     private Grid<Seminars> grid;
 
     private TextField name = new TextField("Name");
     private TextField presenter = new TextField("Presenter");
     private TextField description = new TextField("Description");
-   // private TextField length = new TextField("Length");
-   // private TextField seats_booked = new TextField("Seats Booked");
+    private TextField length = new TextField("Length");
+    private TextField seats_booked = new TextField("Seats Booked");
    // private TextField date_time = new TextField("Date Time");
    // private TextField date_added = new TextField("Date Added");
-   // private TextField active = new TextField("Active");
+    private TextField active = new TextField("Active");
    // private TextField id = new TextField("Id");
 
 
@@ -55,8 +56,7 @@ public class SeminarView extends Div {
         this.seminarService = seminarService;
         // Configure Grid - This will show up in the Grid
         grid = new Grid<>(Seminars.class);
-        grid.setColumns("name", "presenter", "description" /*, "length", "seats_booked", "date_time",
-                "date_added" , "active" */, "id");
+        grid.setColumns("name", "presenter", "description", "length");
         grid.getColumns().forEach(column -> column.setAutoWidth(true));
         grid.setDataProvider(new CrudServiceDataProvider<Seminars, Void>(seminarService));
         grid.addThemeVariants(GridVariant.LUMO_NO_BORDER,
@@ -125,7 +125,7 @@ public class SeminarView extends Div {
         sidbarSeminarEdit();
 
         FormLayout formLayout = new FormLayout();
-        AbstractField[] fields = new AbstractField[] {name, presenter, description};
+        AbstractField[] fields = new AbstractField[] {name, presenter, description, length, seats_booked, active};
         for (AbstractField field : fields) {
             ((HasStyle) field).addClassName("full-width");
         }
@@ -136,10 +136,20 @@ public class SeminarView extends Div {
         splitLayout.addToSecondary(editorLayoutDiv);
     }
 
+    //TODO Fixa Patterns och Errormessage för sidbarSeminarEdit samt gör dem till egna methoder
     private void sidbarSeminarEdit() {
+        nameEdit();
+        presenterEdit();
+        descriptionEdit();
+        lengthEdit();
+        seats_bookedEdit();
+        activeEdit();
+    }
+
+    private void nameEdit() {
         name.setLabel("Name");
         name.setPlaceholder("Enter name for seminar");
-        name.getElement().setAttribute("title", "Example: Yoga in nature");
+        name.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: Yoga in nature");
         name.setClearButtonVisible(true);
         name.setErrorMessage("Your firstname needs to be at least two character long");
         name.setPattern("^[A-Z]");
@@ -147,10 +157,12 @@ public class SeminarView extends Div {
         name.setMinLength(2);
         name.setRequired(true);
         name.addThemeVariants(TextFieldVariant.LUMO_SMALL);
-        //-----------------------------------------------------------------------
+    }
+
+    private void presenterEdit() {
         presenter.setLabel("Presenter");
         presenter.setPlaceholder("Enter presenter");
-        presenter.getElement().setAttribute("title", "Example: Deborah Rademaker");
+        presenter.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: Deborah Rademaker");
         presenter.setClearButtonVisible(true);
         presenter.setErrorMessage("Your presenter needs to be at least two character long");
         presenter.setPattern("^[A-Z]");
@@ -158,11 +170,12 @@ public class SeminarView extends Div {
         presenter.setMinLength(2);
         presenter.setRequired(true);
         presenter.addThemeVariants(TextFieldVariant.LUMO_SMALL);
+    }
 
-        //-----------------------------------------------------------------------
+    private void descriptionEdit() {
         description.setLabel("Description");
         description.setPlaceholder("Enter description");
-        description.getElement().setAttribute("title", "Example: Experience the best places for yoga and becoming one with nature!");
+        description.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: Experience the best places for yoga and becoming one with nature!");
         description.setClearButtonVisible(true);
         description.setErrorMessage("Your description needs to be at least two character long");
         description.setPattern("^[A-Z]");
@@ -170,6 +183,39 @@ public class SeminarView extends Div {
         description.setMinLength(2);
         description.setRequired(true);
         description.addThemeVariants(TextFieldVariant.LUMO_SMALL);
+    }
+
+    private void lengthEdit() {
+        length.setPlaceholder("Enter a lenght");
+        length.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: 01:30:00");
+        length.setClearButtonVisible(true);
+        length.setErrorMessage("Your seminar lenght needs to be in -> hours : minutes : seconds");
+        length.setMinLength(8);
+        length.addThemeVariants(TextFieldVariant.LUMO_SMALL);
+    }
+
+    private void seats_bookedEdit() {
+        seats_booked.setLabel("Seats Booked");
+        seats_booked.setPlaceholder("Enter a seats booked");
+        seats_booked.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: 15");
+        seats_booked.setClearButtonVisible(true);
+        seats_booked.setErrorMessage("Your specify if there is seats booked");
+        seats_booked.setPattern("^[0-9]");
+        seats_booked.setErrorMessage("Numbers only.");
+        seats_booked.setMinLength(1);
+        seats_booked.setRequired(true);
+        seats_booked.addThemeVariants(TextFieldVariant.LUMO_SMALL);
+    }
+
+    private void activeEdit() {
+        active.setLabel("Active");
+        active.setPlaceholder("Enter active");
+        active.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: 1 or 0");
+        active.setClearButtonVisible(true);
+        active.setErrorMessage("Your can only select 1 or 0");
+        active.setMinLength(1);
+        active.setMaxLength(1);
+        active.addThemeVariants(TextFieldVariant.LUMO_SMALL);
     }
 
     private void createButtonLayout(Div editorLayoutDiv) {
