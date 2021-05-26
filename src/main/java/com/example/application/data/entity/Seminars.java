@@ -57,7 +57,7 @@ public class Seminars {
                     //String date_added,
                     String active,
                     String id) {
-        this.id_seminar = id_seminar;
+        //this.id_seminar = id_seminar;
         this.name = name;
         this.presenter = presenter;
         this.description = description;

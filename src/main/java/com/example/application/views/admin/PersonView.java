@@ -47,7 +47,7 @@ public class PersonView extends Div {
     private Binder<Person> binder;
 
     private Person person = new Person("", "", "", "",
-            "", "", "", "", "");
+            "", "", "", "", "", null);
 
     private PersonService personService;
 
@@ -56,7 +56,7 @@ public class PersonView extends Div {
         this.personService = personService;
         // Configure Grid
         grid = new Grid<>(Person.class);
-        grid.setColumns("first_name", "last_name", "email", "phone", "street", "postal_code", "city", "social_security_no");
+        grid.setColumns("firstName", "lastName", "email", "phone", "street", "postal_code", "city", "social_security_no");
         grid.getColumns().forEach(column -> column.setAutoWidth(true));
         grid.setDataProvider(new CrudServiceDataProvider<Person, Void>(personService));
         grid.addThemeVariants(GridVariant.LUMO_NO_BORDER,
@@ -93,7 +93,7 @@ public class PersonView extends Div {
             try {
                 if (this.person == null) {
                     this.person = new Person("", "", "", "",
-                            "", "", "", "", "");
+                            "", "", "", "", "",null);
                 }
                 binder.writeBean(this.person);
                 personService.update(this.person);

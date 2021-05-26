@@ -1,5 +1,7 @@
 package com.example.application.data.entity;
 
+import io.swagger.models.auth.In;
+
 import javax.persistence.*;
 import javax.annotation.Nullable;
 
@@ -14,9 +16,9 @@ public class Person {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id_persons;
 
-    private String first_name;
+    private String firstName;
 
-    private String last_name;
+    private String lastName;
 
     private String email;
 
@@ -30,9 +32,9 @@ public class Person {
 
     private String social_security_no;
 
-    private int active_borrowed_books;
+    private String active_borrowed_books;
 
-    private int total_borrowed_books;
+    private String total_borrowed_books;
 
     private String password;
 
@@ -62,13 +64,13 @@ public class Person {
                   String social_security_no,
                   // int active_borrowed_books,
                   // int total_borrowed_books,
-                  String password){
-                  //Boolean loancard,
+                  String password,
+        Boolean loancard){
                   //int role_id,
                   //Date date_added,
                   //Role role) {
-        this.first_name = first_name;
-        this.last_name = last_name;
+        this.firstName = first_name;
+        this.lastName = last_name;
         this.email = email;
         this.phone = phone;
         this.street = street;
@@ -77,8 +79,8 @@ public class Person {
         this.social_security_no = social_security_no;
         // this.active_borrowed_books = active_borrowed_books;
         // this.total_borrowed_books = total_borrowed_books;
-        this.password = password;
-        // this.loancard = loancard;
+        // this.password = password;
+        this.loancard = loancard;
         // this.role_id = role_id;
         // this.date_added = date_added;
         // this.role = role;
@@ -117,11 +119,11 @@ public class Person {
         determineRole();
     }
 
-    public String getFirst_name() { return first_name; }
-    public void setFirst_name(String first_name) { this.first_name = first_name; }
+    public String getFirstName() { return firstName; }
+    public void setFirstName(String firstName) { this.firstName = firstName; }
 
-    public String getLast_name() { return last_name; }
-    public void setLast_name(String last_name) { this.last_name = last_name; }
+    public String getLastName() { return lastName; }
+    public void setLastName(String lastName) { this.lastName = lastName; }
 
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
@@ -141,11 +143,11 @@ public class Person {
     public String getSocial_security_no() { return social_security_no; }
     public void setSocial_security_no(String social_security_no) { this.social_security_no = social_security_no; }
 
-    public int getActive_borrowed_books() { return active_borrowed_books; }
-    public void setActive_borrowed_books(int active_borrowed_books) { this.active_borrowed_books = active_borrowed_books; }
+    public String getActive_borrowed_books() { return active_borrowed_books; }
+    public void setActive_borrowed_books(String active_borrowed_books) { this.active_borrowed_books = active_borrowed_books; }
 
-    public int getTotal_borrowed_books() { return total_borrowed_books; }
-    public void setTotal_borrowed_books(int total_borrowed_books) { this.total_borrowed_books = total_borrowed_books; }
+    public String getTotal_borrowed_books() { return total_borrowed_books; }
+    public void setTotal_borrowed_books(String total_borrowed_books) { this.total_borrowed_books = total_borrowed_books; }
 
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }
@@ -162,5 +164,6 @@ public class Person {
         return true; //FIXME
         //TODO: Implementera lösenordskontroll.
     }
+
 
 }

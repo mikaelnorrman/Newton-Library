@@ -7,6 +7,8 @@ import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.data.binder.ValidationException;
+import com.vaadin.flow.data.converter.StringToBooleanConverter;
+import com.vaadin.flow.data.converter.StringToIntegerConverter;
 
 public class PersonEditor extends Editor {
 
@@ -52,6 +54,14 @@ public class PersonEditor extends Editor {
         add(first_name, last_name,email,phone,steet,postalCode,city,social_security_no,
                 active_borrowed_books,total_borrowed_books,password,date_added,loancard,role_id);
 
+
+        //TODO -> !!!
+        personBinder.forField(loancard).withConverter(new StringToBooleanConverter("Must be ???"))
+                .bind(Person::getLoancard, Person::setLoancard);
+        personBinder.forField(role_id).withConverter(new StringToIntegerConverter("Must be ???"))
+                .bind(Person::getRole_id, Person::setRole_id);
+
+
         personBinder.bindInstanceFields(this);
         setSpacing(true);
 
@@ -63,8 +73,8 @@ public class PersonEditor extends Editor {
 
         //Knyt actions knapparna
         save.addClickListener(e ->saveCatcher());
-        delete.addClickListener(e->deletePerson(person));
-        cancel.addClickListener(e-> editPerson(person));
+        delete.addClickListener(e->deletePerson(persons));
+        cancel.addClickListener(e-> editPerson(persons));
         setVisible(false);
     }
 
@@ -83,8 +93,8 @@ public class PersonEditor extends Editor {
 
     void saveCatcher(){
         try{
-            personBinder.writeBean(person);
-            savePerson(person);
+            personBinder.writeBean(persons);
+            savePerson(persons);
             Notification.show("YOu saved your person");
         } catch (ValidationException throwables){
             throwables.printStackTrace();
@@ -109,12 +119,12 @@ public class PersonEditor extends Editor {
         }
         final boolean persisted = person.getId_persons() != null;
         if (persisted){
-            person = personRepository.findById(person.getId_persons()).get();
+            persons = personRepository.findById(person.getId_persons()).get();
         } else {
-            person = person;
+            persons = person;
         }
         cancel.setVisible(persisted);
-        booksBinder.setBean(books);
+        personBinder.setBean(persons);
         setVisible(true);
         first_name.focus();
     }

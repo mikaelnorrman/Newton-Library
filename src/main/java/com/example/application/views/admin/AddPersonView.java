@@ -20,7 +20,7 @@ import org.springframework.util.StringUtils;
 @PageTitle("Persons")
 @CssImport("./styles/views/admin/admin-view.css")
 public class AddPersonView extends VerticalLayout {
-
+/*
 
     //TODO ta bort texten och fixa så att vi kan se användarna samt lägga till ny användare..
     public AddPersonView() {
@@ -37,9 +37,9 @@ public class AddPersonView extends VerticalLayout {
         add(textArea);
 
     }
+*/
 
 
-/*
     private final PersonRepository repository;
     final PersonEditor editor;
     final Grid<Person> grid;
@@ -50,7 +50,7 @@ public class AddPersonView extends VerticalLayout {
     private final Button back;
 
     @Autowired
-    public AddPersonAdminView(PersonRepository repository) {
+    public AddPersonView(PersonRepository repository) {
         this.repository = repository;
         this.grid = new Grid<>(Person.class);
         this.editor = new PersonEditor(repository);
@@ -73,9 +73,9 @@ public class AddPersonView extends VerticalLayout {
         actions.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
 
         grid.setHeight("400px");
-        grid.setColumns("id_persons", "first_name", "last_name", "email", "phone", "street", "postal_code",
+        grid.setColumns("id_persons", "firstName", "lastName", "email", "phone", "street", "postal_code",
                 "city", "social_security_no", "active_borrowed_books", "total_borrowed_books", "password",
-                "date_added", "loancard", "role_id");
+                /*"date_added",*/ "loancard", "role_id");
         grid.getColumnByKey("id_persons").setWidth("50px").setFlexGrow(0);
 
         //Hook logic
@@ -93,7 +93,7 @@ public class AddPersonView extends VerticalLayout {
         //instantiate end edit new staff
         addPerson.addClickListener (e -> editor.
                 editPerson(new Person("","","","","",
-                        "","","","")));
+                        "","","","",null)));
 
 
 
@@ -126,5 +126,5 @@ public class AddPersonView extends VerticalLayout {
         }
     }
 
- */
+
 }

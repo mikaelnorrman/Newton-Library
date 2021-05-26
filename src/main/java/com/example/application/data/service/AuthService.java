@@ -58,7 +58,7 @@ public class AuthService {
         getAuthorizedRoutes(role).stream()
                 .forEach(route ->
                         RouteConfiguration.forSessionScope().setRoute(
-                                route.route, route.view, MainViewLayout.class));
+                                route.route, route.view, MainViewLayout.class)); //TODO - Kolla upp!!!
     }
 
 

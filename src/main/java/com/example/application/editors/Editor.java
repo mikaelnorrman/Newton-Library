@@ -25,7 +25,7 @@ public class Editor extends VerticalLayout implements KeyNotifier {
 
     protected Books books;
     protected Seminars seminars;
-    protected Person person;
+    protected Person persons;
 
 
     Button save = new Button("Save", VaadinIcon.PLUS.create());
