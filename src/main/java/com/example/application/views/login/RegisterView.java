@@ -14,9 +14,9 @@ import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 
-@Route("register")
-public class RegisterView extends Composite {
-
+//@Route("register")
+public abstract class RegisterView extends Composite {
+/*
     private final AuthService authService;
 
     public RegisterView(AuthService authService) {
@@ -53,5 +53,5 @@ public class RegisterView extends Composite {
             authService.register(username, password1);
             Notification.show("Check your email.");
         }
-    }
+    }*/
 }

@@ -2,7 +2,7 @@ package com.example.application.views.main;
 
 import java.util.Optional;
 
-import com.example.application.data.entity.User;
+import com.example.application.data.entity.Person;
 import com.example.application.data.service.AuthService;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.ComponentUtil;
@@ -25,6 +25,8 @@ import com.vaadin.flow.server.VaadinSession;
 /**
  * The main view is a top-level placeholder for other views.
  */
+
+@JsModule("./js/os-theme-switcher.js")
 @JsModule("./styles/shared-styles.js")
 @CssImport("./styles/views/main/main-view.css")
 public class MainViewLayout extends AppLayout {
@@ -65,7 +67,7 @@ public class MainViewLayout extends AppLayout {
         HorizontalLayout logoLayout = new HorizontalLayout();
         logoLayout.setId("logo");
         logoLayout.setAlignItems(FlexComponent.Alignment.CENTER);
-        logoLayout.add(new Image("images/logo.png", "auth-example logo"));
+        logoLayout.add(new Image("images/logo.png", "Libsys logo"));
         logoLayout.add(new H1("Libsys - Office Space"));
         layout.add(logoLayout, menu);
         return layout;
@@ -81,7 +83,7 @@ public class MainViewLayout extends AppLayout {
     }
 
     private Component[] createMenuItems() {
-        var user = VaadinSession.getCurrent().getAttribute(User.class);
+        var user = VaadinSession.getCurrent().getAttribute(Person.class);
         return authService.getAuthorizedRoutes(user.getRole()).stream()
                 .map(r -> createTab(r.name(), r.view()))
                 .toArray(Component[]::new);
