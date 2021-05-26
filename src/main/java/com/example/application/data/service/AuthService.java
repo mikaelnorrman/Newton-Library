@@ -6,6 +6,7 @@ import com.example.application.views.admin.*;
 import com.example.application.views.home.OpeningView;
 import com.example.application.views.logout.LogoutView;
 import com.example.application.views.main.MainViewLayout;
+import com.example.application.views.search.VisitorBookSearchView;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.router.RouteConfiguration;
 import com.vaadin.flow.server.VaadinSession;
@@ -95,6 +96,9 @@ public class AuthService {
             routes.add(new AuthorizedRoute(LOANED_BOOKS_VIEW,loanedBooks, LoanedBooksView.class));
             routes.add(new AuthorizedRoute(PERSONS,persons, AddPersonView.class));
             routes.add(new AuthorizedRoute(SEMINARS,seminars, SeminarView.class));
+
+            routes.add(new AuthorizedRoute("visitor","Search", VisitorBookSearchView.class));
+
             routes.add(new AuthorizedRoute(ADD_SEMINAR_VIEW,addSeminars, AddSeminarView.class));
             routes.add(new AuthorizedRoute(ADMIN, userAdmin, PersonView.class));
             routes.add(new AuthorizedRoute(LOGOUT, logout, LogoutView.class));

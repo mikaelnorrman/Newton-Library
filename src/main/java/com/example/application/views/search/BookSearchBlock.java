@@ -10,6 +10,7 @@ public class BookSearchBlock extends AbstractSearchBlock<Books, BooksRepository>
     public static final String AUTHOR = "Author";
     public static final String PUBLISHER = "Publisher";
     public static final String ISBN = "ISBN";
+    public static final String MULTISEARCH = "Title, author, genre or ISBN";
 
     public BookSearchBlock(Class<Books> entityClass, BooksRepository repository) {
         super(entityClass, repository);
@@ -26,6 +27,7 @@ public class BookSearchBlock extends AbstractSearchBlock<Books, BooksRepository>
                 case AUTHOR -> grid.setItems(repository.findByAuthorStartsWithIgnoreCase(filterText));
                 case PUBLISHER -> grid.setItems(repository.findByPublisherStartsWithIgnoreCase(filterText));
                 case ISBN -> grid.setItems(repository.findByIsbnStartsWithIgnoreCase(filterText));
+                case MULTISEARCH -> grid.setItems(repository.findByAuthorOrTitleOrGenreOrIsbn(filterText));
                 default -> throw new NoSuchMethodError(
                         "No repository method has been matched against argument of value '" + choice + "'");
             }
