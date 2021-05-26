@@ -84,7 +84,7 @@ public class AddBookView extends VerticalLayout {
         grid.setHeight("400px");
         grid.setColumns("id_books", "title", "description", "genre", "author", "for_ages", "physical_amount",
                 "e_book", "price", "physical_active_borrowed", "e_active_borrowed", "total_amount_borrowed",
-                "shelf", "section", /*"date_added",*/ "isbn", "publisher", "is_active", "id", "name");
+                "shelf", "section", /*"date_added",*/ "isbn", "publisher", "is_active");
         grid.getColumnByKey("id_books").setWidth("50px").setFlexGrow(0);
         grid.addThemeVariants(GridVariant.LUMO_NO_BORDER,
                 GridVariant.LUMO_NO_ROW_BORDERS, GridVariant.LUMO_ROW_STRIPES);
@@ -112,7 +112,7 @@ public class AddBookView extends VerticalLayout {
                 editBook(new Books("","","","","",
                         "","","", "","",
                         "","","","","",
-                        "","","")));
+                        "")));
 
 
 
