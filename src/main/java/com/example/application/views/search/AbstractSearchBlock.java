@@ -3,24 +3,21 @@ package com.example.application.views.search;
 import com.vaadin.flow.component.HasValue;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.GridVariant;
-import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.splitlayout.SplitLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.ArrayList;
 
-public abstract class AbstractSearchBlock<S, T extends JpaRepository<S, Integer>> extends SplitLayout {
+public abstract class AbstractSearchBlock<S, T extends JpaRepository<S, Integer>> extends HorizontalLayout {
 
     protected T repository;
     protected Grid<S> grid;
 
     private ArrayList<TextField> filters = new ArrayList<>();
-    //private Div filterWrapper = new Div(), gridWrapper = new Div(), panelWrapper = new Div();
     private VerticalLayout gridLayout = new VerticalLayout(), panelLayout = new VerticalLayout();
     private HorizontalLayout filterLayout = new HorizontalLayout();
     private H3 filterHead = new H3();
@@ -30,16 +27,9 @@ public abstract class AbstractSearchBlock<S, T extends JpaRepository<S, Integer>
         this.repository = repository;
         this.grid = new Grid<>(entityClass);
         gridLayout.add(filterLayout, grid);
-        this.addToPrimary(gridLayout);
-        this.addToSecondary(panelLayout);
-        /*
-        filterWrapper.setId("filter-wrapper");
-        filterWrapper.setWidthFull();
-        gridWrapper.setId("grid-wrapper");
-        gridWrapper.setSizeFull();
-        gridWrapper.add(grid);
-        this.add(filterWrapper, gridWrapper);
-         */
+        this.add(gridLayout, panelLayout);
+        //this.addToPrimary(gridLayout);
+        //this.addToSecondary(panelLayout);
     }
 
     public void setColumns(String... propertyNames) {
