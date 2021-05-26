@@ -34,7 +34,7 @@ public class PersonView extends Div {
 
     private TextField firstName = new TextField();
     private TextField lastName = new TextField("Last name");
-    private EmailField email = new EmailField("Email");
+    private TextField email = new TextField("Email");
     private TextField phone = new TextField("Phone");
     private TextField street = new TextField("Street");
     private TextField postalCode = new TextField("Postal code");
@@ -47,7 +47,7 @@ public class PersonView extends Div {
     private Binder<Person> binder;
 
     private Person person = new Person("", "", "", "",
-            "", "", "", "", "", null);
+            "", "", "", "", "", false);
 
     private PersonService personService;
 
@@ -93,7 +93,7 @@ public class PersonView extends Div {
             try {
                 if (this.person == null) {
                     this.person = new Person("", "", "", "",
-                            "", "", "", "", "",null);
+                            "", "", "", "", "", false);
                 }
                 binder.writeBean(this.person);
                 personService.update(this.person);
@@ -122,6 +122,7 @@ public class PersonView extends Div {
         editorDiv.setId("editor");
         editorLayoutDiv.add(editorDiv);
 
+
         sidbarPersonEdit();
 
         FormLayout formLayout = new FormLayout();
@@ -134,6 +135,7 @@ public class PersonView extends Div {
         createButtonLayout(editorLayoutDiv);
 
         splitLayout.addToSecondary(editorLayoutDiv);
+
     }
 
     private void sidbarPersonEdit() {

@@ -4,6 +4,8 @@ import com.example.application.data.entity.Person;
 import com.example.application.data.service.PersonRepository;
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.data.binder.ValidationException;
@@ -48,22 +50,25 @@ public class PersonEditor extends Editor {
         loancard = new TextField("Loancard");
         role_id = new TextField("Role Id");
 
+        HorizontalLayout personerEdit = new HorizontalLayout();
 
+        //TODO eventuellt skapa en FormLayout
 
         //Lägg till knappar
-        add(first_name, last_name,email,phone,steet,postalCode,city,social_security_no,
-                active_borrowed_books,total_borrowed_books,password,date_added,loancard,role_id);
+        personerEdit.add(first_name, last_name,email,phone,steet,postalCode,city,social_security_no,
+                active_borrowed_books,total_borrowed_books,password,date_added,loancard,role_id, actions);
+
+        add(personerEdit);
 
 
         //TODO -> !!!
-        personBinder.forField(loancard).withConverter(new StringToBooleanConverter("Must be ???"))
+        personBinder.forField(loancard).withConverter(new StringToBooleanConverter("Must be true or false"))
                 .bind(Person::getLoancard, Person::setLoancard);
-        personBinder.forField(role_id).withConverter(new StringToIntegerConverter("Must be ???"))
+        personBinder.forField(role_id).withConverter(new StringToIntegerConverter("Must be 1-5"))
                 .bind(Person::getRole_id, Person::setRole_id);
-
-
         personBinder.bindInstanceFields(this);
         setSpacing(true);
+
 
         save.getElement().getThemeList().add("primary");
         delete.getElement().getThemeList().add("error");

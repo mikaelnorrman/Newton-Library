@@ -173,6 +173,7 @@ public class BookEditor extends Editor {
         isbn.setClearButtonVisible(true);
         isbn.setErrorMessage("Your book isbn number needs to be ten character long");
         isbn.setMinLength(10);
+        isbn.setMaxLength(12);
         isbn.setRequired(true);
     }
 
