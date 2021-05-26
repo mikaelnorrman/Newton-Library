@@ -27,7 +27,7 @@ public class LoginView extends Composite<LoginOverlay> {
 
         loginOverlay.addLoginListener(event -> {try {
             authService.authenticate(event.getUsername(), event.getPassword());
-            UI.getCurrent().navigate("home");
+            UI.getCurrent().navigate("opening");
         } catch (AuthService.AuthException e) {
             e.printStackTrace();
             Notification.show("Wrong credentials.");
