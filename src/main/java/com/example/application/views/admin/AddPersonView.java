@@ -54,7 +54,6 @@ public class AddPersonView extends VerticalLayout {
         actions.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
 
         grid.setHeight("400px");
-
         grid.setColumns("id_persons", "firstName", "lastName", "email", "phone", "street", "postal_code",
                 "city", "social_security_no", "active_borrowed_books", "total_borrowed_books", "loancard", "role_id");
         grid.getColumns().forEach(column -> column.setAutoWidth(true));
