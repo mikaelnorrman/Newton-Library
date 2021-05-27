@@ -9,7 +9,8 @@ public class Books {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_books;
+    @Column(name="id_books")
+    private Integer id  ;
 
     @Column(name="title")
     private String title = "";
@@ -24,7 +25,7 @@ public class Books {
     private String author = "";
 
     @Column(name="for_ages")
-    private String for_ages = "";
+    private String ages = "";
 
     @Column(name="physical_amount")
     private String physical_amount;
@@ -92,7 +93,7 @@ public class Books {
         this.description = description;
         this.genre = genre;
         this.author = author;
-        this.for_ages = for_ages;
+        this.ages = for_ages;
         this.physical_amount = physical_amount;
         this.e_book = e_book;
         this.price = price;
@@ -107,8 +108,8 @@ public class Books {
         this.is_active = is_active;
     }
 
-    public Integer getId_books() {
-        return id_books;
+    public Integer getId() {
+        return id;
     }
 
     public String getTitle() {
@@ -143,12 +144,12 @@ public class Books {
         this.author = author;
     }
 
-    public String getFor_ages() {
-        return for_ages;
+    public String getAges() {
+        return ages;
     }
 
-    public void setFor_ages(String for_ages) {
-        this.for_ages = for_ages;
+    public void setAges(String ages) {
+        this.ages = ages;
     }
 
     public String getPhysical_amount() {
@@ -268,12 +269,12 @@ public class Books {
     @Override
     public String toString() {
         return "Books{" +
-                "id_books=" + id_books +
+                "id_books=" + id +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", genre='" + genre + '\'' +
                 ", author='" + author + '\'' +
-                ", for_ages='" + for_ages + '\'' +
+                ", for_ages='" + ages + '\'' +
                 ", physical_amount=" + physical_amount +
                 ", e_book=" + e_book +
                 ", price=" + price +

@@ -231,9 +231,9 @@ public class BookEditor extends Editor {
             setVisible(false);
             return;
         }
-        final boolean persisted = book.getId_books() != null;
+        final boolean persisted = book.getId() != null;
         if (persisted){
-            books = booksRepository.findById(book.getId_books()).get();
+            books = booksRepository.findById(book.getId()).get();
         } else {
             books = book;
         }

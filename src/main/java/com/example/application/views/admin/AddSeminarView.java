@@ -17,6 +17,7 @@ import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import org.springframework.util.StringUtils;
 
+
 @PageTitle("Add SeminarView")
 @CssImport("./styles/views/admin/admin-view.css")
 public class AddSeminarView extends VerticalLayout {
@@ -57,7 +58,7 @@ public class AddSeminarView extends VerticalLayout {
 
         grid.setHeight("400px");
         grid.setColumns("id_seminar", "name", "presenter", "description", "length", "seats_booked", "date_time",
-                /*"date_added",*/ "active", "id");
+                 "active", "id");
         grid.getColumnByKey("id_seminar").setWidth("50px").setFlexGrow(0);
         grid.addThemeVariants(GridVariant.LUMO_NO_BORDER,
                 GridVariant.LUMO_NO_ROW_BORDERS, GridVariant.LUMO_ROW_STRIPES);
@@ -76,7 +77,7 @@ public class AddSeminarView extends VerticalLayout {
 
         //instantiate end edit new staff
         addSeminar.addClickListener (e -> editor.
-                editSeminar(new Seminars("","","","","","",
+                editSeminar(new Seminars("","","",  "00:00:00","","",
                         "","")));
 
 

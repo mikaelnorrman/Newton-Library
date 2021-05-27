@@ -1,6 +1,7 @@
 package com.example.application.data.entity;
 
-import io.swagger.models.auth.In;
+
+import org.joda.time.DateTime;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -23,18 +24,13 @@ public class Seminars {
     private String description = "";
 
     @Column(name="length")
-    private String length = "";
+    private String length;
 
     @Column(name="seats_booked")
     private String seats_booked;
 
     @Column(name="date_time")
     private String date_time;
-
-    /*
-    @Column(name="date_added")
-    private String date_added;
-     */
 
     @Column(name="active")
     private String active;
@@ -54,17 +50,14 @@ public class Seminars {
                     String length,
                     String seats_booked,
                     String date_time,
-                    //String date_added,
                     String active,
                     String id) {
-        //this.id_seminar = id_seminar;
         this.name = name;
         this.presenter = presenter;
         this.description = description;
         this.length = length;
         this.seats_booked = seats_booked;
         this.date_time = date_time;
-        //this.date_added = date_added;
         this.active = active;
         this.id = id;
     }
@@ -121,16 +114,6 @@ public class Seminars {
         this.date_time = date_time;
     }
 
-    /*
-    public String getDate_added() {
-        return date_added;
-    }
-
-    public void setDate_added(String date_added) {
-        this.date_added = date_added;
-    }
-    (
-     */
 
     public String getActive() {
         return active;
@@ -149,7 +132,6 @@ public class Seminars {
     }
 
 
-
     @Override
     public String toString() {
         return "Seminars{" +
@@ -160,7 +142,6 @@ public class Seminars {
                 ", length=" + length +
                 ", seats_booked=" + seats_booked +
                 ", date_time=" + date_time +
-               // ", date_added=" + date_added +
                 ", active=" + active +
                 ", id=" + id +
                 '}';

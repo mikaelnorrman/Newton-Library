@@ -47,7 +47,7 @@ public class PersonView extends Div {
     private Binder<Person> binder;
 
     private Person person = new Person("", "", "", "",
-            "", "", "", "", "", false);
+            "", "", "", "", "",false);
 
     private PersonService personService;
 

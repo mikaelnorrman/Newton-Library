@@ -76,7 +76,7 @@ public class BookView extends Div {
         // when a row is selected or deselected, populate form
         grid.asSingleSelect().addValueChangeListener(event -> {
             if (event.getValue() != null) {
-                Optional<Books> booksFromBackend = bookService.get(event.getValue().getId_books());
+                Optional<Books> booksFromBackend = bookService.get(event.getValue().getId());
                 // when a row is selected but the data is no longer available, refresh grid
                 if (booksFromBackend.isPresent()) {
                     populateForm(booksFromBackend.get());
