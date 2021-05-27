@@ -20,25 +20,6 @@ import org.springframework.util.StringUtils;
 @PageTitle("Persons")
 @CssImport("./styles/views/admin/admin-view.css")
 public class AddPersonView extends VerticalLayout {
-/*
-
-    //TODO ta bort texten och fixa så att vi kan se användarna samt lägga till ny användare..
-    public AddPersonView() {
-        setId("add-person-view");
-        addClassName("add-person-view");
-        setSizeFull();
-
-        TextArea textArea = new TextArea();
-        textArea.setWidth("400px");
-
-
-        textArea.setValue("""
-               Här kommer vi se användare samt kunna lägga till dem""");
-        add(textArea);
-
-    }
-*/
-
 
     private final PersonRepository repository;
     final PersonEditor editor;
@@ -117,11 +98,11 @@ public class AddPersonView extends VerticalLayout {
             grid.setItems(repository.findAll());
         } else {
             if (choice == 1) {
-                grid.setItems(repository.findByFirstNameIgnoreCase(filterText));
+                grid.setItems(repository.findByFirstNameStartsWithIgnoreCase(filterText));
             } else if (choice == 2) {
-                grid.setItems(repository.findByLastNameIgnoreCase(filterText));
+                grid.setItems(repository.findByLastNameStartsWithIgnoreCase(filterText));
             } else if (choice == 3) {
-                grid.setItems(repository.findByEmailIgnoreCase(filterText));
+                grid.setItems(repository.findByEmailStartsWithIgnoreCase(filterText));
             }
         }
     }

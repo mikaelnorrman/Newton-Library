@@ -27,6 +27,7 @@ public class LoginView extends Composite<LoginOverlay> {
 
         loginOverlay.addLoginListener(event -> {try {
             authService.authenticate(event.getUsername(), event.getPassword());
+            loginOverlay.close();
             UI.getCurrent().navigate("opening");
         } catch (AuthService.AuthException e) {
             e.printStackTrace();
