@@ -1,6 +1,7 @@
 package com.example.application.views.admin;
 
 import com.example.application.data.entity.Books;
+import com.example.application.data.entity.Person;
 import com.example.application.data.service.BookService;
 import com.vaadin.flow.component.AbstractField;
 import com.vaadin.flow.component.HasStyle;
@@ -289,7 +290,6 @@ public class BookView extends Div {
         publisher.setMinLength(1);
         publisher.addThemeVariants(TextFieldVariant.LUMO_SMALL);
     }
-
 
 
 

@@ -3,6 +3,7 @@ package com.example.application.editors;
 import com.example.application.data.entity.Person;
 import com.example.application.data.service.PersonRepository;
 import com.vaadin.flow.component.Key;
+import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
@@ -31,7 +32,7 @@ public class PersonEditor extends Editor {
 
      */
     PasswordField password;
-    TextField loancard;
+    Checkbox loancard;
     TextField role_id;
 
 
@@ -78,8 +79,11 @@ public class PersonEditor extends Editor {
 
 
         //TODO -> !!!
+        /*
         personBinder.forField(loancard).withConverter(new StringToBooleanConverter("Must be true or false"))
                 .bind(Person::getLoancard, Person::setLoancard);
+         */
+
         personBinder.forField(role_id).withConverter(new StringToIntegerConverter("Must be 1-5"))
                 .bind(Person::getRole_id, Person::setRole_id);
         personBinder.bindInstanceFields(this);
@@ -175,9 +179,10 @@ public class PersonEditor extends Editor {
 
 
     private void loancardEdit() {
-        loancard = new TextField("Loancard");
-        loancard.setClearButtonVisible(true);
-        loancard.setRequired(true);
+        loancard = new Checkbox("Loancard");
+        loancard.setValue(true);
+       // loancard.setClearButtonVisible(true);
+        //loancard.setRequired(true);
     }
 
     private void roleIdEdit() {

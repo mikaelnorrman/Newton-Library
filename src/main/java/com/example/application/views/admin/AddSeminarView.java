@@ -17,6 +17,9 @@ import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import org.springframework.util.StringUtils;
 
+import java.time.Instant;
+import java.util.Date;
+
 
 @PageTitle("Add SeminarView")
 @CssImport("./styles/views/admin/admin-view.css")
@@ -77,7 +80,7 @@ public class AddSeminarView extends VerticalLayout {
 
         //instantiate end edit new staff
         addSeminar.addClickListener (e -> editor.
-                editSeminar(new Seminars("","","",  "00:00:00","","",
+                editSeminar(new Seminars("","","",  "00:00:00","", Date.from(Instant.now()),
                         "","")));
 
 

@@ -1,10 +1,8 @@
 package com.example.application.data.entity;
 
-
-import org.joda.time.DateTime;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 @Table(name = "seminars", schema = "agile_library")
 @Entity
@@ -30,7 +28,7 @@ public class Seminars {
     private String seats_booked;
 
     @Column(name="date_time")
-    private String date_time;
+    private Date date_time;
 
     @Column(name="active")
     private String active;
@@ -38,7 +36,6 @@ public class Seminars {
     @NotNull
     @Column(name="id")
     private String id;
-
 
 
     public Seminars(){
@@ -49,7 +46,7 @@ public class Seminars {
                     String description,
                     String length,
                     String seats_booked,
-                    String date_time,
+                    Date date_time,
                     String active,
                     String id) {
         this.name = name;
@@ -106,11 +103,11 @@ public class Seminars {
         this.seats_booked = seats_booked;
     }
 
-    public String getDate_time() {
+    public Date getDate_time() {
         return date_time;
     }
 
-    public void setDate_time(String date_time) {
+    public void setDate_time(Date date_time) {
         this.date_time = date_time;
     }
 

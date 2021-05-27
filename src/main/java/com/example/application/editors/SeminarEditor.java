@@ -3,14 +3,18 @@ package com.example.application.editors;
 import com.example.application.data.entity.Seminars;
 import com.example.application.data.service.SeminarsRepository;
 import com.vaadin.flow.component.Key;
+import com.vaadin.flow.component.datetimepicker.DateTimePicker;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.data.binder.ValidationException;
+import com.vaadin.flow.data.converter.LocalDateTimeToDateConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 
 public class SeminarEditor extends Editor {
 
@@ -20,8 +24,7 @@ public class SeminarEditor extends Editor {
     TextField description;
     TextField length;
     TextField seats_booked;
-    // DateTimePicker date_time;
-    TextField date_time;
+    DateTimePicker date_time;
     TextField date_added;
     TextField active;
     TextField id;
@@ -62,10 +65,10 @@ public class SeminarEditor extends Editor {
 // --------------------------------------------------------------------------------------------------------
 
 //TODO - Fixa converteringen för date_time
-        /*
-        seminarsBinder.forField(date_time).withConverter(new LocalDateTimeToDateConverter(LocalDateTime))
+
+        seminarsBinder.forField(date_time).withConverter(
+                new LocalDateTimeToDateConverter(ZoneId.systemDefault()))
                 .bind(Seminars::getDate_time, Seminars::setDate_time);
-         */
 
         /*
         seminarsBinder.forField(date_time).withConverter(new StringToIntegerConverter("TESTAR")).
@@ -136,18 +139,10 @@ public class SeminarEditor extends Editor {
     }
 
     private void dateTimeEdit() {
-        //date_time = new DateTimePicker("Date Time");
-        //LocalDateTime now = LocalDateTime.now();
-        //date_time.setValue(now);
-        //date_time.setErrorMessage("Your time needs tobe date and time");
-
-
-
-        date_time = new TextField ("Date Time");
-        date_time.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: 2021-05-20 15:00:00");
-        date_time.setPlaceholder("Enter a time");
-        date_time.setClearButtonVisible(true);
-        date_time.setMinLength(15);
+        date_time = new DateTimePicker("Date Time");
+        LocalDateTime now = LocalDateTime.now();
+        date_time.setValue(now);
+        date_time.setErrorMessage("Your time needs tobe date and time");
     }
 
     private void dateAddedEdit() {

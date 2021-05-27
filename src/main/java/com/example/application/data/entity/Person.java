@@ -1,6 +1,5 @@
 package com.example.application.data.entity;
 
-import io.swagger.models.auth.In;
 
 import javax.persistence.*;
 import javax.annotation.Nullable;
@@ -42,11 +41,6 @@ public class Person {
 
     private int role_id;
 
-    /*
-    @GeneratedValue
-    private Date date_added;
-     */
-
 
     @Transient
     private Role role;
@@ -62,13 +56,8 @@ public class Person {
                   String postal_code,
                   String city,
                   String social_security_no,
-                  // int active_borrowed_books,
-                  // int total_borrowed_books,
                   String password,
         Boolean loancard){
-                  //int role_id,
-                  //Date date_added,
-                  //Role role) {
         this.firstName = first_name;
         this.lastName = last_name;
         this.email = email;
@@ -77,13 +66,7 @@ public class Person {
         this.postal_code = postal_code;
         this.city = city;
         this.social_security_no = social_security_no;
-        // this.active_borrowed_books = active_borrowed_books;
-        // this.total_borrowed_books = total_borrowed_books;
-        // this.password = password;
         this.loancard = loancard;
-        // this.role_id = role_id;
-        // this.date_added = date_added;
-        // this.role = role;
     }
 
     public Integer getId_persons() {
@@ -154,11 +137,6 @@ public class Person {
 
     public Boolean getLoancard() { return loancard; }
     public void setLoancard(Boolean loancard) { this.loancard = loancard; }
-
-    /*
-    public Date getDate_added() { return date_added; }
-    public void setDate_added(Date date_added) { this.date_added = date_added; }
-     */
 
     public boolean checkPassword(String password) {
         return true; //FIXME

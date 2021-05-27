@@ -52,11 +52,6 @@ public class Books {
     @Column(name="section")
     private String section = "";
 
-    /*
-    @Column(name="date_added")
-    private Date date_added;
-     */
-
     @NotNull
     @Column(name="isbn")
     private String isbn = "";
@@ -85,7 +80,6 @@ public class Books {
                  String total_amount_borrowed,
                  String shelf,
                  String section,
-                 //Date date_added,
                  String isbn,
                  String publisher,
                  String is_active) {
@@ -102,7 +96,6 @@ public class Books {
         this.total_amount_borrowed = total_amount_borrowed;
         this.shelf = shelf;
         this.section = section;
-       // this.date_added = date_added;
         this.isbn = isbn;
         this.publisher = publisher;
         this.is_active = is_active;
@@ -216,17 +209,6 @@ public class Books {
         this.section = section;
     }
 
-    /*
-    public Date getDate_added() {
-        return date_added;
-    }
-
-    public void setDate_added(Date date_added) {
-        this.date_added = date_added;
-    }
-     */
-
-
     public String getIsbn() {
         return isbn;
     }
@@ -252,20 +234,6 @@ public class Books {
     }
 
 
-
-    /*
-    @Override
-    public String toString(){
-        return String.format("Book[id=%d, Title='%s', description='%s', genre='%s', author='%s', " +
-                        "for_ages='%s', physical_amount='%s', e_book='%s', price='%s', physical_active_borrowed='%s', " +
-                        "e_active_borrowed='%s', total_amount_borrowed='%s', shelf='%s', section='%s', " +
-                        "date_added='%s', isbn='%s',  publisher='%s', is_active='%s', id='%s', name='%s',]",
-                id_books, title, description, genre, author, for_ages, physical_amount,
-                e_book, price, physical_active_borrowed, e_active_borrowed, total_amount_borrowed,
-                shelf, section, date_added, isbn, publisher, is_active);
-    }
-     */
-
     @Override
     public String toString() {
         return "Books{" +
@@ -283,7 +251,6 @@ public class Books {
                 ", total_amount_borrowed=" + total_amount_borrowed +
                 ", shelf=" + shelf +
                 ", section='" + section + '\'' +
-                //", date_added=" + date_added +
                 ", isbn='" + isbn + '\'' +
                 ", publisher='" + publisher + '\'' +
                 ", is_active=" + is_active +

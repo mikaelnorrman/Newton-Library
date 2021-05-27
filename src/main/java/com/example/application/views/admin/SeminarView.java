@@ -36,11 +36,7 @@ public class SeminarView extends Div {
     private TextField description = new TextField("Description");
     private TextField length = new TextField("Length");
     private TextField seats_booked = new TextField("Seats Booked");
-   // private TextField date_time = new TextField("Date Time");
-   // private TextField date_added = new TextField("Date Added");
     private TextField active = new TextField("Active");
-   // private TextField id = new TextField("Id");
-
 
     private Button cancel = new Button("Cancel");
     private Button save = new Button("Save");
