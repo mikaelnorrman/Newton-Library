@@ -55,8 +55,7 @@ public class AddPersonView extends VerticalLayout {
 
         grid.setHeight("400px");
         grid.setColumns("id_persons", "firstName", "lastName", "email", "phone", "street", "postal_code",
-                "city", "social_security_no", "active_borrowed_books", "total_borrowed_books", "password",
-                /*"date_added",*/ "loancard", "role_id");
+                "city", "social_security_no", "active_borrowed_books", "total_borrowed_books", /*"date_added",*/ "loancard", "role_id");
         grid.getColumnByKey("id_persons").setWidth("50px").setFlexGrow(0);
 
         //Hook logic

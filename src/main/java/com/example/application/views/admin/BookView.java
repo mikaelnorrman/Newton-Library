@@ -1,6 +1,7 @@
 package com.example.application.views.admin;
 
 import com.example.application.data.entity.Books;
+import com.example.application.data.entity.Person;
 import com.example.application.data.service.BookService;
 import com.vaadin.flow.component.AbstractField;
 import com.vaadin.flow.component.HasStyle;
@@ -17,11 +18,14 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.component.textfield.TextFieldVariant;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.data.binder.ValidationException;
+import com.vaadin.flow.data.provider.ListDataProvider;
+import com.vaadin.flow.data.renderer.NativeButtonRenderer;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.component.html.Div;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.vaadin.artur.helpers.CrudServiceDataProvider;
 
+import java.awt.print.Book;
 import java.util.Optional;
 
 @PageTitle("Books")
@@ -55,7 +59,7 @@ public class BookView extends Div {
 
     private BookService bookService;
 
-    public BookView(@Autowired BookService bookService){
+    public BookView(@Autowired BookService bookService) {
         setId("book-admin-view");
         this.bookService = bookService;
         // Configure Grid - This will show up in the Grid
@@ -68,6 +72,7 @@ public class BookView extends Div {
         grid.getColumnByKey("section").setAutoWidth(true);
         grid.getColumnByKey("shelf").setAutoWidth(true);
         grid.getColumnByKey("description").setWidth("150px").setFlexGrow(0);
+        grid.addComponentColumn(Book -> createLoanButton(grid, Book));
         grid.setDataProvider(new CrudServiceDataProvider<Books, Void>(bookService));
         grid.addThemeVariants(GridVariant.LUMO_NO_BORDER,
                 GridVariant.LUMO_NO_ROW_BORDERS, GridVariant.LUMO_ROW_STRIPES);
@@ -134,7 +139,7 @@ public class BookView extends Div {
         sidbarBooksEdit();
 
         FormLayout formLayout = new FormLayout();
-        AbstractField[] fields = new AbstractField[] {title, description,
+        AbstractField[] fields = new AbstractField[]{title, description,
                 genre, author, forAges, section, isbn, publisher};
         for (AbstractField field : fields) {
             ((HasStyle) field).addClassName("full-width");
@@ -291,8 +296,6 @@ public class BookView extends Div {
     }
 
 
-
-
     private void createButtonLayout(Div editorLayoutDiv) {
         HorizontalLayout buttonLayout = new HorizontalLayout();
         buttonLayout.setId("button-layout");
@@ -325,4 +328,19 @@ public class BookView extends Div {
         this.book = value;
         binder.readBean(this.book);
     }
+
+    private Button createLoanButton(Grid<Books> grid, Books item) {
+        Button button = new Button("Loan book", clickEvent -> {
+
+            ListDataProvider<Books> dataProvider = (ListDataProvider<Books>) grid
+                    .getDataProvider();
+            dataProvider.refreshAll();
+
+        });
+        button.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+
+
+        return button;
+    }
+
 }
