@@ -126,53 +126,50 @@ public class PersonEditor extends Editor {
     private void emailEdit() {
         email = new EmailField("Email");
         email.setPlaceholder("Enter a email");
+        email.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: johan.svensson@mail.se");
         email.setClearButtonVisible(true);
         email.setRequiredIndicatorVisible(true);
     }
 
     private void phoneEdit() {
         phone = new TextField("Phone");
+        phone.setPlaceholder("Enter your phone number");
+        phone.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: 08 13579");
         phone.setClearButtonVisible(true);
     }
 
     private void streetEdit() {
         street = new TextField("Street");
+        street.setPlaceholder("Street");
+        street.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: Stengatan 32");
         street.setClearButtonVisible(true);
     }
 
     private void postalCodeEdit() {
         postalCode = new TextField("Postal Code");
+        postalCode.setPlaceholder("Postal Code");
+        postalCode.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: 13589");
         postalCode.setClearButtonVisible(true);
     }
 
     private void cityEdit() {
         city = new TextField("City");
+        city.setPlaceholder("Enter a city");
+        city.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: Stockholm");
         city.setClearButtonVisible(true);
     }
 
     private void socialSecurityNoEdit() {
         social_security_no = new TextField("Social Security No");
+        social_security_no.setPlaceholder("Social Security No");
+        social_security_no.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: 19901015");
         social_security_no.setClearButtonVisible(true);
     }
-
-    /* //TODO tabort - activeBorrowedBooksEdit & totalBorrowedBooksEdit ??
-    private void activeBorrowedBooksEdit() {
-        active_borrowed_books = new TextField("Active Borrowed Books");
-        active_borrowed_books.setClearButtonVisible(true);
-        active_borrowed_books.setRequired(true);
-    }
-
-    private void totalBorrowedBooksEdit() {
-        total_borrowed_books = new TextField("Total Borrowed Books");
-        total_borrowed_books.setClearButtonVisible(true);
-        total_borrowed_books.setRequired(true);
-    }
-
-     */
 
     private void passwordEdit() {
         password = new PasswordField("Password");
         password.setPlaceholder("Enter password");
+        password.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: D45hide3");
         password.setClearButtonVisible(true);
         password.setRequiredIndicatorVisible(true);
     }
@@ -181,12 +178,15 @@ public class PersonEditor extends Editor {
     private void loancardEdit() {
         loancard = new Checkbox("Loancard");
         loancard.setValue(true);
+        loancard.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: Stockholm");
        // loancard.setClearButtonVisible(true);
         //loancard.setRequired(true);
     }
 
     private void roleIdEdit() {
         role_id = new TextField("Role Id");
+        role_id.setPlaceholder("Role Id");
+        role_id.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: \n1 = INACTIVE\n2 = ADMIN\n3 =SUPERADMIN\n4 = USER NO ACCESS\n5 = USER ");
         role_id.setClearButtonVisible(true);
         role_id.setRequiredIndicatorVisible(true);
         role_id.setRequired(true);
