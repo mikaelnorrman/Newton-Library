@@ -66,13 +66,6 @@ public class Books {
     @Column(name="is_active")
     private String is_active;
 
-    @NotNull
-    @Column(name="id")
-    private String id;
-
-    @Column(name="name")
-    private String name = "";
-
 
     public Books(){
     }
@@ -94,9 +87,7 @@ public class Books {
                  //Date date_added,
                  String isbn,
                  String publisher,
-                 String is_active,
-                 String id,
-                 String name) {
+                 String is_active) {
         this.title = title;
         this.description = description;
         this.genre = genre;
@@ -114,8 +105,6 @@ public class Books {
         this.isbn = isbn;
         this.publisher = publisher;
         this.is_active = is_active;
-        this.id = id;
-        this.name = name;
     }
 
     public Integer getId_books() {
@@ -261,21 +250,6 @@ public class Books {
         this.is_active = is_active;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
 
     /*
@@ -312,8 +286,6 @@ public class Books {
                 ", isbn='" + isbn + '\'' +
                 ", publisher='" + publisher + '\'' +
                 ", is_active=" + is_active +
-                ", id=" + id +
-                ", name='" + name + '\'' +
                 '}';
     }
 }

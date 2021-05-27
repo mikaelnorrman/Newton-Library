@@ -3,15 +3,15 @@ package com.example.application.editors;
 import com.example.application.data.entity.Seminars;
 import com.example.application.data.service.SeminarsRepository;
 import com.vaadin.flow.component.Key;
+import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.data.binder.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 
-
 public class SeminarEditor extends Editor {
-
 
     public static final String TITLE_IN_SET_ATTRIBUTE = "title";
     TextField name;
@@ -30,6 +30,14 @@ public class SeminarEditor extends Editor {
         this.seminarRepository = seminarsRepo;
         this.seminarsBinder = new Binder<>(Seminars.class);
 
+// --------------------------------------------------------------------------------------------------------
+        HorizontalLayout seminarEdit = new HorizontalLayout();
+        FormLayout seminarFormLayout = new FormLayout();
+        // Setting the desired responsive steps for the columns in the layout
+        seminarFormLayout.setResponsiveSteps(
+                new FormLayout.ResponsiveStep("25em", 1),
+                new FormLayout.ResponsiveStep("32em", 2),
+                new FormLayout.ResponsiveStep("40em", 3));
         //initierar textfields för inmatning
         nameEdit();
         precenterEdit();
@@ -41,10 +49,15 @@ public class SeminarEditor extends Editor {
         activeEdit();
         idEdit();
 
+        // TextField lägger till fälten att redigera datan i.
+        seminarFormLayout.add(name, presenter, description, length, seats_booked,
+                date_time, date_added, active, id);
 
-        //Actions Lägg till knapparna. + TextField lägger till fälten att redigera datan i.
-        add(name, presenter, description, length, seats_booked,
-                date_time, date_added, active, id, actions);
+        seminarEdit.add(actions);
+
+        add(seminarFormLayout, seminarEdit);
+
+// --------------------------------------------------------------------------------------------------------
 
         seminarsBinder.bindInstanceFields(this);
         setSpacing(true);

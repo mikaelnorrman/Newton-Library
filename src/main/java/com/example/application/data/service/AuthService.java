@@ -41,7 +41,7 @@ public class AuthService {
 
     //TODO - ta bort && user.isActive()
     public void authenticate(String email, String password) throws AuthException {
-        List<Person> personList = personRepository.findByEmailIgnoreCase(email);
+        List<Person> personList = personRepository.findByEmailStartsWithIgnoreCase(email);
         if (personList.size() != 1) {
             throw new AuthException();
         }
@@ -75,12 +75,12 @@ public class AuthService {
          */
         var opening = "Opening";
         var logout = "Logout";
-        var userAdmin = "User";
+        var userAdmin = "Users";
         var admin = "Admin";
         var bookAdmin = "Books";
         var addBooks = "Add Books";
         var loanedBooks = "Loaned Books";
-        var persons = "Person";
+        var persons = "Add Users";
         var seminars = "Seminars";
         var addSeminars = "Add Seminars";
 
@@ -93,10 +93,10 @@ public class AuthService {
             routes.add(new AuthorizedRoute(BOOKS,bookAdmin, BookView.class));
             routes.add(new AuthorizedRoute(ADD_BOOK_VIEW,addBooks, AddBookView.class));
             routes.add(new AuthorizedRoute(LOANED_BOOKS_VIEW,loanedBooks, LoanedBooksView.class));
-            routes.add(new AuthorizedRoute(PERSONS,persons, AddPersonView.class));
             routes.add(new AuthorizedRoute(SEMINARS,seminars, SeminarView.class));
             routes.add(new AuthorizedRoute(ADD_SEMINAR_VIEW,addSeminars, AddSeminarView.class));
             routes.add(new AuthorizedRoute(ADMIN, userAdmin, PersonView.class));
+            routes.add(new AuthorizedRoute(PERSONS,persons, AddPersonView.class));
             routes.add(new AuthorizedRoute(LOGOUT, logout, LogoutView.class));
 
         } else if (role.equals(Role.SUPERADMIN)) {

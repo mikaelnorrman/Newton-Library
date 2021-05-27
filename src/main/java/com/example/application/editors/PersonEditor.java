@@ -3,9 +3,11 @@ package com.example.application.editors;
 import com.example.application.data.entity.Person;
 import com.example.application.data.service.PersonRepository;
 import com.vaadin.flow.component.Key;
+import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.textfield.EmailField;
+import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.data.binder.ValidationException;
@@ -17,16 +19,18 @@ public class PersonEditor extends Editor {
     public static final String TITLE_IN_SET_ATTRIBUTE = "title";
     TextField first_name;
     TextField last_name;
-    TextField email;
+    EmailField email;
     TextField phone;
-    TextField steet;
+    TextField street;
     TextField postalCode;
     TextField city;
     TextField social_security_no;
+    /*
     TextField active_borrowed_books;
     TextField total_borrowed_books;
-    TextField password;
-    TextField date_added;
+
+     */
+    PasswordField password;
     TextField loancard;
     TextField role_id;
 
@@ -35,30 +39,42 @@ public class PersonEditor extends Editor {
         this.personRepository = personRepository;
         this.personBinder = new Binder<>(Person.class);
 
-        firstNameEdit();
-        last_name = new TextField("Last Name");
-        email = new TextField("Email");
-        phone = new TextField("Phone");
-        steet = new TextField("Street");
-        postalCode = new TextField("Postal Code");
-        city = new TextField("City");
-        social_security_no = new TextField("Social Security No");
-        active_borrowed_books = new TextField("Active Borrowed Books");
-        total_borrowed_books = new TextField("Total Borrowed Books");
-        password = new TextField("Password");
-        date_added = new TextField("Date Added");
-        loancard = new TextField("Loancard");
-        role_id = new TextField("Role Id");
 
+// --------------------------------------------------------------------------------------------------------
         HorizontalLayout personerEdit = new HorizontalLayout();
+        FormLayout personerFormLayout = new FormLayout();
+        // Setting the desired responsive steps for the columns in the layout
+        personerFormLayout.setResponsiveSteps(
+                new FormLayout.ResponsiveStep("25em", 1),
+                new FormLayout.ResponsiveStep("32em", 2),
+                new FormLayout.ResponsiveStep("40em", 3));
+        //initierar textfields för inmatning
+        firstNameEdit();
+        lastNameEdit();
+        emailEdit();
+        phoneEdit();
+        streetEdit();
+        postalCodeEdit();
+        cityEdit();
+        socialSecurityNoEdit();
+        /*
+        activeBorrowedBooksEdit();
+        totalBorrowedBooksEdit();
 
-        //TODO eventuellt skapa en FormLayout
+         */
+        passwordEdit();
+        loancardEdit();
+        roleIdEdit();
+        personerFormLayout.add(first_name, last_name,email,phone,street,
+                postalCode,city,social_security_no,
+                /*active_borrowed_books,total_borrowed_books,*/ password,
+                loancard,role_id );
 
         //Lägg till knappar
-        personerEdit.add(first_name, last_name,email,phone,steet,postalCode,city,social_security_no,
-                active_borrowed_books,total_borrowed_books,password,date_added,loancard,role_id, actions);
+        personerEdit.add(actions);
 
-        add(personerEdit);
+        add(personerFormLayout, personerEdit);
+// --------------------------------------------------------------------------------------------------------
 
 
         //TODO -> !!!
@@ -94,13 +110,90 @@ public class PersonEditor extends Editor {
         first_name.setRequired(true);
     }
 
+    private void lastNameEdit() {
+        last_name = new TextField("Last Name");
+        last_name.setPlaceholder("Enter last name");
+        last_name.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: Svensson");
+        last_name.setClearButtonVisible(true);
+        last_name.setErrorMessage("Your last name needs to be at least one character long");
+        last_name.setMinLength(1);
+    }
+
+    private void emailEdit() {
+        email = new EmailField("Email");
+        email.setPlaceholder("Enter a email");
+        email.setClearButtonVisible(true);
+        email.setRequiredIndicatorVisible(true);
+    }
+
+    private void phoneEdit() {
+        phone = new TextField("Phone");
+        phone.setClearButtonVisible(true);
+    }
+
+    private void streetEdit() {
+        street = new TextField("Street");
+        street.setClearButtonVisible(true);
+    }
+
+    private void postalCodeEdit() {
+        postalCode = new TextField("Postal Code");
+        postalCode.setClearButtonVisible(true);
+    }
+
+    private void cityEdit() {
+        city = new TextField("City");
+        city.setClearButtonVisible(true);
+    }
+
+    private void socialSecurityNoEdit() {
+        social_security_no = new TextField("Social Security No");
+        social_security_no.setClearButtonVisible(true);
+    }
+
+    /* //TODO tabort - activeBorrowedBooksEdit & totalBorrowedBooksEdit ??
+    private void activeBorrowedBooksEdit() {
+        active_borrowed_books = new TextField("Active Borrowed Books");
+        active_borrowed_books.setClearButtonVisible(true);
+        active_borrowed_books.setRequired(true);
+    }
+
+    private void totalBorrowedBooksEdit() {
+        total_borrowed_books = new TextField("Total Borrowed Books");
+        total_borrowed_books.setClearButtonVisible(true);
+        total_borrowed_books.setRequired(true);
+    }
+
+     */
+
+    private void passwordEdit() {
+        password = new PasswordField("Password");
+        password.setPlaceholder("Enter password");
+        password.setClearButtonVisible(true);
+        password.setRequiredIndicatorVisible(true);
+    }
+
+
+    private void loancardEdit() {
+        loancard = new TextField("Loancard");
+        loancard.setClearButtonVisible(true);
+        loancard.setRequired(true);
+    }
+
+    private void roleIdEdit() {
+        role_id = new TextField("Role Id");
+        role_id.setClearButtonVisible(true);
+        role_id.setRequiredIndicatorVisible(true);
+        role_id.setRequired(true);
+    }
+
 
 
     void saveCatcher(){
         try{
             personBinder.writeBean(persons);
             savePerson(persons);
-            Notification.show("YOu saved your person");
+            Notification.show("You saved your person");
         } catch (ValidationException throwables){
             throwables.printStackTrace();
         }

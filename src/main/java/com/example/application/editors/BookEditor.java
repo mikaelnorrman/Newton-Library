@@ -3,7 +3,9 @@ package com.example.application.editors;
 import com.example.application.data.entity.Books;
 import com.example.application.data.service.BooksRepository;
 import com.vaadin.flow.component.Key;
+import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.data.binder.ValidationException;
@@ -31,6 +33,14 @@ public class BookEditor extends Editor {
         this.booksRepository = booksRepo;
         this.booksBinder = new Binder<>(Books.class);
 
+// --------------------------------------------------------------------------------------------------------
+        HorizontalLayout bookEdit = new HorizontalLayout();
+        FormLayout bookFormLayout = new FormLayout();
+        // Setting the desired responsive steps for the columns in the layout
+        bookFormLayout.setResponsiveSteps(
+                new FormLayout.ResponsiveStep("25em", 1),
+                new FormLayout.ResponsiveStep("32em", 2),
+                new FormLayout.ResponsiveStep("40em", 3));
         //initierar textfields för inmatning
         titleEdit();
         descriptionEdit();
@@ -45,8 +55,14 @@ public class BookEditor extends Editor {
         publisherEdit();
 
         //Lägg till knappar
-        add(title,description,genre,author,forAges,physicalAmount,price,shelf,
-                section,isbn,publisher,actions);
+        bookFormLayout.add(title,description,genre,author,forAges,
+                physicalAmount,price,shelf,section,isbn,publisher);
+
+        //Lägg till knappar
+        bookEdit.add(actions);
+
+        add(bookFormLayout, bookEdit);
+// --------------------------------------------------------------------------------------------------------
 
         booksBinder.bindInstanceFields(this);
         setSpacing(true);
