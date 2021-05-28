@@ -1,17 +1,19 @@
 package com.example.application.views.admin;
 
 import com.example.application.data.entity.Person;
+import com.example.application.data.entity.Role;
 import com.example.application.data.service.PersonRepository;
 import com.example.application.editors.PersonEditor;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.grid.GridVariant;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.component.textfield.TextFieldVariant;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,12 +40,18 @@ public class AddPersonView extends VerticalLayout {
 
         this.filterFirstName = new TextField();
         this.filterFirstName.setPlaceholder("Filter by First Name");
+        this.filterFirstName.addThemeVariants(TextFieldVariant.LUMO_SMALL);
+        this.filterFirstName.setPrefixComponent(VaadinIcon.SEARCH.create());
 
         this.filterLastName = new TextField();
         this.filterLastName.setPlaceholder("Filter by Last Name");
+        this.filterLastName.addThemeVariants(TextFieldVariant.LUMO_SMALL);
+        this.filterLastName.setPrefixComponent(VaadinIcon.SEARCH.create());
 
         this.filterEmail = new TextField();
         this.filterEmail.setPlaceholder("Filter by Email");
+        this.filterEmail.addThemeVariants(TextFieldVariant.LUMO_SMALL);
+        this.filterEmail.setPrefixComponent(VaadinIcon.SEARCH.create());
 
         this.addPerson = new Button("New person", VaadinIcon.PLUS.create());
         this.back = new Button("Back", VaadinIcon.HOME.create());
@@ -58,6 +66,8 @@ public class AddPersonView extends VerticalLayout {
                 "city", "social_security_no", "active_borrowed_books", "total_borrowed_books", "loancard", "role_id");
         grid.getColumns().forEach(column -> column.setAutoWidth(true));
         grid.getColumnByKey("id_persons").setWidth("50px").setFlexGrow(0);
+        grid.addThemeVariants(GridVariant.LUMO_NO_BORDER,
+                GridVariant.LUMO_NO_ROW_BORDERS, GridVariant.LUMO_ROW_STRIPES);
 
         //Hook logic
         //Replace listing with filter
@@ -74,7 +84,7 @@ public class AddPersonView extends VerticalLayout {
         //instantiate end edit new staff
         addPerson.addClickListener (e -> editor.
                 editPerson(new Person("","","","","",
-                        "","","","",false)));
+                        "","","","",false, Role.USER)));
 
 
 

@@ -27,7 +27,6 @@ public class SeminarEditor extends Editor {
     DateTimePicker date_time;
     TextField date_added;
     TextField active;
-    TextField id;
 
 
     @Autowired
@@ -52,11 +51,11 @@ public class SeminarEditor extends Editor {
         dateTimeEdit();
         dateAddedEdit();
         activeEdit();
-        idEdit();
+
 
         // TextField lägger till fälten att redigera datan i.
         seminarFormLayout.add(name, presenter, description, length, seats_booked,
-                date_time, date_added, active, id);
+                date_time, date_added, active);
 
         seminarEdit.add(actions);
 
@@ -164,14 +163,6 @@ public class SeminarEditor extends Editor {
         active.setMaxLength(1);
     }
 
-    private void idEdit() {
-        id = new TextField ("Id");
-        id.setPlaceholder("Enter a id");
-        id.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: 15");
-        id.setClearButtonVisible(true);
-        id.setErrorMessage("You specify a id for there seminar");
-        id.setMinLength(1);
-    }
 
     void saveCatcher(){
         try{

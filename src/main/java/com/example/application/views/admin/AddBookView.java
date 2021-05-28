@@ -119,7 +119,6 @@ public class AddBookView extends VerticalLayout {
         grid.asSingleSelect().addValueChangeListener(e ->  editor.editBook(e.getValue()));
 
 
-        //TODO Ta bort id och name..
         //instantiate end edit new staff
         addBook.addClickListener (e -> editor.
                 editBook(new Books("","","","","",

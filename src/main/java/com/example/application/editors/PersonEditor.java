@@ -12,7 +12,6 @@ import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.data.binder.ValidationException;
-import com.vaadin.flow.data.converter.StringToBooleanConverter;
 import com.vaadin.flow.data.converter.StringToIntegerConverter;
 
 public class PersonEditor extends Editor {
@@ -26,14 +25,10 @@ public class PersonEditor extends Editor {
     TextField postalCode;
     TextField city;
     TextField social_security_no;
-    /*
-    TextField active_borrowed_books;
-    TextField total_borrowed_books;
-
-     */
     PasswordField password;
     Checkbox loancard;
-    TextField role_id;
+    TextField roleId;
+    //Checkbox roleId;
 
 
     public PersonEditor(PersonRepository personRepository) {
@@ -58,18 +53,11 @@ public class PersonEditor extends Editor {
         postalCodeEdit();
         cityEdit();
         socialSecurityNoEdit();
-        /*
-        activeBorrowedBooksEdit();
-        totalBorrowedBooksEdit();
-
-         */
         passwordEdit();
         loancardEdit();
         roleIdEdit();
         personerFormLayout.add(first_name, last_name,email,phone,street,
-                postalCode,city,social_security_no,
-                /*active_borrowed_books,total_borrowed_books,*/ password,
-                loancard,role_id );
+                postalCode,city,social_security_no, password, loancard,roleId );
 
         //Lägg till knappar
         personerEdit.add(actions);
@@ -84,8 +72,13 @@ public class PersonEditor extends Editor {
                 .bind(Person::getLoancard, Person::setLoancard);
          */
 
-        personBinder.forField(role_id).withConverter(new StringToIntegerConverter("Must be 1-5"))
+        //TODO -> !!! Lägg tillbaka ev???
+
+        personBinder.forField(roleId).withConverter(new StringToIntegerConverter("Must be 1-5"))
                 .bind(Person::getRole_id, Person::setRole_id);
+
+
+
         personBinder.bindInstanceFields(this);
         setSpacing(true);
 
@@ -177,19 +170,55 @@ public class PersonEditor extends Editor {
 
     private void loancardEdit() {
         loancard = new Checkbox("Loancard");
-        loancard.setValue(true);
-        loancard.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: Stockholm");
-       // loancard.setClearButtonVisible(true);
-        //loancard.setRequired(true);
+        loancard.setValue(false);
+        loancard.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Rutan är i fylld så har personen ett lånekort\nOm rutan är tom så har personen inte något lånekort!");
+        loancard.getElement().setText("Loancard: Checkt = Yes\nEmpty = No");
     }
 
     private void roleIdEdit() {
-        role_id = new TextField("Role Id");
-        role_id.setPlaceholder("Role Id");
-        role_id.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: \n1 = INACTIVE\n2 = ADMIN\n3 =SUPERADMIN\n4 = USER NO ACCESS\n5 = USER ");
-        role_id.setClearButtonVisible(true);
-        role_id.setRequiredIndicatorVisible(true);
-        role_id.setRequired(true);
+        /*
+        ComboBox<Person> comboBox = new ComboBox<>();
+        comboBox.setLabel("Department");
+        List<Person> roleList = getRole();
+
+// Choose which property from Department is the presentation value
+        comboBox.setItemLabelGenerator(Role::getRole);
+        comboBox.setItems(roleList);
+        add(comboBox);
+         */
+
+        /*
+        CheckboxGroup<String> checkboxGroup = new CheckboxGroup<>();
+        checkboxGroup.setLabel("Employee titles");
+        checkboxGroup.setItems("Account Manager", "Designer",
+                "Marketing Manager", "Developer");
+        checkboxGroup.addThemeVariants(CheckboxGroupVariant.LUMO_VERTICAL);
+
+        personBinder.forField(checkboxGroup)
+                .asRequired("Please choose employee titles")
+                .bind(Person::getRole_id, Person::setRole_id);
+
+        Button button = new Button("Submit", event -> {
+            if (personBinder.writeBeanIfValid(persons)) {
+                Notification.show("Submit successful", 2000,
+                        Notification.Position.MIDDLE);
+            }
+        });
+        add(checkboxGroup, button);
+        */
+
+
+
+        roleId = new TextField("Role Id");
+        roleId.setPlaceholder("Role Id");
+        roleId.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE,
+                "Example: \n1 = INACTIVE\n2 = ADMIN\n" +
+                "3 =SUPERADMIN\n4 = USER NO ACCESS\n5 = USER ");
+        roleId.setClearButtonVisible(true);
+        roleId.setRequiredIndicatorVisible(true);
+        roleId.setRequired(true);
+
+
     }
 
 

@@ -1,7 +1,6 @@
 package com.example.application.data.entity;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Table(name = "seminars", schema = "agile_library")
@@ -33,10 +32,6 @@ public class Seminars {
     @Column(name="active")
     private String active;
 
-    @NotNull
-    @Column(name="id")
-    private String id;
-
 
     public Seminars(){
     }
@@ -47,8 +42,8 @@ public class Seminars {
                     String length,
                     String seats_booked,
                     Date date_time,
-                    String active,
-                    String id) {
+                    String active
+                    ) {
         this.name = name;
         this.presenter = presenter;
         this.description = description;
@@ -56,7 +51,6 @@ public class Seminars {
         this.seats_booked = seats_booked;
         this.date_time = date_time;
         this.active = active;
-        this.id = id;
     }
 
     public Integer getId_seminar() {
@@ -120,14 +114,6 @@ public class Seminars {
         this.active = active;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
 
     @Override
     public String toString() {
@@ -140,7 +126,6 @@ public class Seminars {
                 ", seats_booked=" + seats_booked +
                 ", date_time=" + date_time +
                 ", active=" + active +
-                ", id=" + id +
                 '}';
     }
 }

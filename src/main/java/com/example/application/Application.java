@@ -1,5 +1,6 @@
 package com.example.application;
 
+import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.page.AppShellConfigurator;
 import com.vaadin.flow.server.PWA;
 import org.springframework.boot.SpringApplication;
@@ -15,11 +16,18 @@ import org.vaadin.artur.helpers.LaunchUtil;
  *
  */
 @SpringBootApplication(exclude = ErrorMvcAutoConfiguration.class)
-@PWA(name = "libsys", shortName = "libsys")
+@PWA(
+        name = "libsys",
+        shortName = "libsys",
+        offlineResources = {
+                "./styles/offline.css",
+                "./images/offline.png"
+        })
+@JsModule("./js/os-theme-switcher.js")
 public class Application extends SpringBootServletInitializer implements AppShellConfigurator {
 
     public static void main(String[] args) {
-        LaunchUtil.launchBrowserInDevelopmentMode(SpringApplication.run(Application.class, args));
+        LaunchUtil.launchBrowserInDevelopmentMode(SpringApplication.run( Application.class, args));
     }
 
 }

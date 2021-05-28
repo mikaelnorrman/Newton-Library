@@ -57,7 +57,9 @@ public class Person {
                   String city,
                   String social_security_no,
                   String password,
-        Boolean loancard){
+                  Boolean loancard,
+                  Role role)
+    {
         this.firstName = first_name;
         this.lastName = last_name;
         this.email = email;
@@ -67,6 +69,7 @@ public class Person {
         this.city = city;
         this.social_security_no = social_security_no;
         this.loancard = loancard;
+        this.role_id = role.getRole_id();
     }
 
     public Integer getId_persons() {

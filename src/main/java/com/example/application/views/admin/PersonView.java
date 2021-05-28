@@ -1,6 +1,7 @@
 package com.example.application.views.admin;
 
 import com.example.application.data.entity.Person;
+import com.example.application.data.entity.Role;
 import com.example.application.data.service.PersonService;
 import com.vaadin.flow.component.AbstractField;
 import com.vaadin.flow.component.HasStyle;
@@ -47,7 +48,7 @@ public class PersonView extends Div {
     private Binder<Person> binder;
 
     private Person person = new Person("", "", "", "",
-            "", "", "", "", "",false);
+            "", "", "", "", "",false, Role.USER);
 
     private PersonService personService;
 
@@ -93,7 +94,7 @@ public class PersonView extends Div {
             try {
                 if (this.person == null) {
                     this.person = new Person("", "", "", "",
-                            "", "", "", "", "", false);
+                            "", "", "", "", "", false, Role.USER);
                 }
                 binder.writeBean(this.person);
                 personService.update(this.person);
