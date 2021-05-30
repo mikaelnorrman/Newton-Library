@@ -1,8 +1,8 @@
 package com.example.application.views.search;
 
-import com.vaadin.flow.component.HasValue;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.GridVariant;
+import com.vaadin.flow.component.grid.editor.Editor;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -12,13 +12,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.ArrayList;
 
-public abstract class AbstractSearchBlock<S, T extends JpaRepository<S, Integer>> extends HorizontalLayout {
+public abstract class AbstractSearchBlock<S, T extends JpaRepository<S, Integer>> extends VerticalLayout {
 
     protected T repository;
     protected Grid<S> grid;
     protected ArrayList<TextField> filters = new ArrayList<>();
 
-    private VerticalLayout gridLayout = new VerticalLayout(), panelLayout = new VerticalLayout();
     private HorizontalLayout filterLayout = new HorizontalLayout();
     private H3 filterHead = new H3();
     private String filterTitle;
@@ -26,10 +25,7 @@ public abstract class AbstractSearchBlock<S, T extends JpaRepository<S, Integer>
     public AbstractSearchBlock(Class<S> entityClass, T repository) {
         this.repository = repository;
         this.grid = new Grid<>(entityClass);
-        gridLayout.add(filterLayout, grid);
-        this.add(gridLayout, panelLayout);
-        //this.addToPrimary(gridLayout);
-        //this.addToSecondary(panelLayout);
+        this.add(filterLayout, grid);
     }
 
     public void setColumns(String... propertyNames) {
@@ -59,11 +55,12 @@ public abstract class AbstractSearchBlock<S, T extends JpaRepository<S, Integer>
         filterHead.add(filterTitle);
         filterLayout.add(filterHead);
         filters.forEach(filterLayout::add);
-        //layout.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
-        //filterWrapper.add(layout);
+        filterLayout.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
     }
 
-    public void connectEditorToGrid(HasValue.ValueChangeListener listener) {}
+    public Editor<S> getGridEditor() {
+        return grid.getEditor();
+    }
 
     public String getFilterTitle() {
         return filterTitle;
