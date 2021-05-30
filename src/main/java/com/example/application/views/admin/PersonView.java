@@ -14,7 +14,6 @@ import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.splitlayout.SplitLayout;
-import com.vaadin.flow.component.textfield.EmailField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.component.textfield.TextFieldVariant;
 import com.vaadin.flow.data.binder.Binder;
@@ -66,7 +65,7 @@ public class PersonView extends Div {
         // when a row is selected or deselected, populate form
         grid.asSingleSelect().addValueChangeListener(event -> {
             if (event.getValue() != null) {
-                Optional<Person> personFromBackend = personService.get(event.getValue().getId_persons());
+                Optional<Person> personFromBackend = personService.get(event.getValue().getId_person());
                 // when a row is selected but the data is no longer available, refresh grid
                 if (personFromBackend.isPresent()) {
                     populateForm(personFromBackend.get());

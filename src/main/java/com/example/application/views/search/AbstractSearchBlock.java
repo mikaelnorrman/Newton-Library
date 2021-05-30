@@ -16,8 +16,8 @@ public abstract class AbstractSearchBlock<S, T extends JpaRepository<S, Integer>
 
     protected T repository;
     protected Grid<S> grid;
+    protected ArrayList<TextField> filters = new ArrayList<>();
 
-    private ArrayList<TextField> filters = new ArrayList<>();
     private VerticalLayout gridLayout = new VerticalLayout(), panelLayout = new VerticalLayout();
     private HorizontalLayout filterLayout = new HorizontalLayout();
     private H3 filterHead = new H3();

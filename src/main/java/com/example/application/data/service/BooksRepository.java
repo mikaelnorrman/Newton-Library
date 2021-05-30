@@ -21,4 +21,10 @@ public interface BooksRepository extends JpaRepository<Books, Integer> {
             "isbn REGEXP ?1", nativeQuery = true)
     List<Books> findByAuthorOrTitleOrGenreOrIsbn (String searchString);
 
+    @Query(value = "SELECT * FROM books WHERE " +
+            "IFNULL(title, '') LIKE ?1 AND " +
+            "IFNULL(author, '') LIKE ?2 AND " +
+            "IFNULL(genre, '') LIKE ?3 AND " +
+            "IFNULL(publisher, '') LIKE ?4", nativeQuery = true)
+    List<Books> findByTitleAndAuthorAndGenreAndPublisher(String title, String author, String genre, String publisher);
 }

@@ -18,19 +18,34 @@ public class BookSearchBlock extends AbstractSearchBlock<Books, BooksRepository>
 
     @Override
     protected void filterItems(String filterText, String choice) {
-        if (filterText == null || filterText.isEmpty()) {
-            grid.setItems(repository.findAll());
-        } else {
-            switch (choice) {
-                case TITLE -> grid.setItems(repository.findByTitleStartsWithIgnoreCase(filterText));
-                case GENRE -> grid.setItems(repository.findByGenreStartsWithIgnoreCase(filterText));
-                case AUTHOR -> grid.setItems(repository.findByAuthorStartsWithIgnoreCase(filterText));
-                case PUBLISHER -> grid.setItems(repository.findByPublisherStartsWithIgnoreCase(filterText));
-                case ISBN -> grid.setItems(repository.findByIsbnStartsWithIgnoreCase(filterText));
-                case MULTISEARCH -> grid.setItems(repository.findByAuthorOrTitleOrGenreOrIsbn(filterText));
-                default -> throw new NoSuchMethodError(
-                        "No repository method has been matched against argument of value '" + choice + "'");
+        if (choice.equals(MULTISEARCH)) {
+            if (filterText == null || filterText.isEmpty()) {
+                grid.setItems(repository.findAll());
+            } else {
+                grid.setItems(repository.findByAuthorOrTitleOrGenreOrIsbn(filterText));
             }
+        } else if (choice.equals(ISBN)) {
+            if (filterText == null || filterText.isEmpty()) {
+                grid.setItems(repository.findAll());
+            } else {
+                grid.setItems(repository.findByIsbnStartsWithIgnoreCase(filterText));
+            }
+        } else {
+            String[] searchArgs = {"%", "%", "%", "%"};
+            filters.forEach(textField -> {
+                String searchString = textField.getValue();
+                if ( ! searchString.isEmpty() ) {
+                    switch (textField.getLabel()) {
+                        case TITLE -> searchArgs[0] = "%" + searchString + "%";
+                        case AUTHOR -> searchArgs[1] = "%" + searchString + "%";
+                        case GENRE -> searchArgs[2] = "%" + searchString + "%";
+                        case PUBLISHER -> searchArgs[3] = "%" + searchString + "%";
+                    }
+                }
+            });
+            grid.setItems(
+                    repository.findByTitleAndAuthorAndGenreAndPublisher(searchArgs[0], searchArgs[1], searchArgs[2], searchArgs[3])
+            );
         }
     }
 

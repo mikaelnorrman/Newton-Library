@@ -5,7 +5,6 @@ import com.example.application.data.service.PersonRepository;
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.data.binder.ValidationException;
@@ -19,7 +18,7 @@ public class PersonEditor extends Editor {
     TextField last_name;
     TextField email;
     TextField phone;
-    TextField steet;
+    TextField street;
     TextField postalCode;
     TextField city;
     TextField social_security_no;
@@ -39,7 +38,7 @@ public class PersonEditor extends Editor {
         last_name = new TextField("Last Name");
         email = new TextField("Email");
         phone = new TextField("Phone");
-        steet = new TextField("Street");
+        street = new TextField("Street");
         postalCode = new TextField("Postal Code");
         city = new TextField("City");
         social_security_no = new TextField("Social Security No");
@@ -55,7 +54,7 @@ public class PersonEditor extends Editor {
         //TODO eventuellt skapa en FormLayout
 
         //Lägg till knappar
-        personerEdit.add(first_name, last_name,email,phone,steet,postalCode,city,social_security_no,
+        personerEdit.add(first_name, last_name,email,phone, street,postalCode,city,social_security_no,
                 active_borrowed_books,total_borrowed_books,password,date_added,loancard,role_id, actions);
 
         add(personerEdit);
@@ -122,9 +121,9 @@ public class PersonEditor extends Editor {
             setVisible(false);
             return;
         }
-        final boolean persisted = person.getId_persons() != null;
+        final boolean persisted = person.getId_person() != null;
         if (persisted){
-            persons = personRepository.findById(person.getId_persons()).get();
+            persons = personRepository.findById(person.getId_person()).get();
         } else {
             persons = person;
         }

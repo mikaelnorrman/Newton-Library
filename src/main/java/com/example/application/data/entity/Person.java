@@ -1,7 +1,5 @@
 package com.example.application.data.entity;
 
-import io.swagger.models.auth.In;
-
 import javax.persistence.*;
 import javax.annotation.Nullable;
 
@@ -14,7 +12,7 @@ public class Person {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_persons;
+    private Integer id_person;
 
     private String firstName;
 
@@ -86,12 +84,12 @@ public class Person {
         // this.role = role;
     }
 
-    public Integer getId_persons() {
-        return id_persons;
+    public Integer getId_person() {
+        return id_person;
     }
 
-    public void setId_persons(Integer id_persons) {
-        this.id_persons = id_persons;
+    public void setId_person(Integer id_persons) {
+        this.id_person = id_persons;
     }
 
     public Role getRole() throws NoSuchElementException {
