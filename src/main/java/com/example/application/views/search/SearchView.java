@@ -47,9 +47,9 @@ public class SearchView extends Div {
 
 
         grid.setHeight("400px");
-        grid.setColumns("id_books", "title", "description","genre", "author", "for_ages",
-                "physical_amount", "e_book", "price", "physical_active_borrowed", "e_active_borrowed",
-                "total_amount_borrowed", "shelf", "section", "date_added", "isbn", "publisher", "is_active");
+        grid.setColumns("idBooks", "title", "description","genre", "author", "ages",
+                "physicalAmount", "eBook", "price", "physicalActiveBorrowed", "eActiveBorrowed",
+                "totalAmountBorrowed", "shelf", "section", "dateAdded", "isbn", "publisher", "isActive");
         grid.getColumnByKey("id_books").setWidth("50px").setFlexGrow(0);
 
         //Hook logic
