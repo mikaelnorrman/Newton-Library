@@ -23,7 +23,7 @@ public class VisitorBookSearchView extends Div {
         visitorSearch = new BookSearchBlock(Books.class, repository);
         visitorSearch.setFilterTitle("Filter by...");
         visitorSearch.addFilters(BookSearchBlock.MULTISEARCH, BookSearchBlock.TITLE, BookSearchBlock.AUTHOR, BookSearchBlock.GENRE, BookSearchBlock.ISBN);
-        visitorSearch.setColumns("title", "author", "genre", "for_ages", "section", "shelf");
+        visitorSearch.setColumns("title", "author", "genre", "ages", "section", "shelf");
         this.add(visitorSearch);
     }
 }

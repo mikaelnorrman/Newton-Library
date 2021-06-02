@@ -6,7 +6,6 @@ import com.example.application.views.admin.*;
 import com.example.application.views.home.OpeningView;
 import com.example.application.views.logout.LogoutView;
 import com.example.application.views.main.MainViewLayout;
-import com.example.application.views.search.VisitorBookSearchView;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.router.RouteConfiguration;
 import com.vaadin.flow.server.VaadinSession;

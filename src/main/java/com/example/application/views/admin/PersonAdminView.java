@@ -62,7 +62,7 @@ public class PersonAdminView extends Div {
         // when a row is selected or deselected, populate form
         grid.asSingleSelect().addValueChangeListener(event -> {
             if (event.getValue() != null) {
-                Optional<Person> personFromBackend = personService.get(event.getValue().getId_person());
+                Optional<Person> personFromBackend = personService.get(event.getValue().getId_persons());
                 // when a row is selected but the data is no longer available, refresh grid
                 if (personFromBackend.isPresent()) {
                     populateForm(personFromBackend.get());
