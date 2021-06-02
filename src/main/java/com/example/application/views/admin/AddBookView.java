@@ -81,9 +81,9 @@ public class AddBookView extends VerticalLayout {
         actions.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
 
         grid.setHeight("400px");
-        grid.setColumns("id", "title", "description", "genre", "author", "ages", "physicalAmount",
-                "eBook", "price", "physicalActiveBorrowed", "eActiveBorrowed", "totalAmountBorrowed",
-                "shelf", "section", "isbn", "publisher", "isActive");
+        grid.setColumns("id", "title", "description", "genre", "author", "ages",
+                "physicalAmount", "eBook", "price", "physicalActiveBorrowed", "eActiveBorrowed",
+                "totalAmountBorrowed", "shelf", "section", "isbn", "publisher", "isActive");
         grid.getColumnByKey("title").setAutoWidth(true);
         grid.getColumnByKey("genre").setAutoWidth(true);
         grid.getColumnByKey("author").setAutoWidth(true);

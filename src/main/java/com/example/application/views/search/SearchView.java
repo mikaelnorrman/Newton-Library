@@ -7,6 +7,7 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.grid.GridVariant;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H4;
 import com.vaadin.flow.component.icon.VaadinIcon;
@@ -47,10 +48,28 @@ public class SearchView extends Div {
 
 
         grid.setHeight("400px");
-        grid.setColumns("idBooks", "title", "description","genre", "author", "ages",
+        grid.setColumns("id", "title", "description","genre", "author", "ages",
                 "physicalAmount", "eBook", "price", "physicalActiveBorrowed", "eActiveBorrowed",
-                "totalAmountBorrowed", "shelf", "section", "dateAdded", "isbn", "publisher", "isActive");
-        grid.getColumnByKey("id_books").setWidth("50px").setFlexGrow(0);
+                "totalAmountBorrowed", "shelf", "section", "isbn", "publisher", "isActive");
+        grid.getColumnByKey("id").setWidth("50px").setFlexGrow(0);
+        grid.getColumnByKey("title").setAutoWidth(true);
+        grid.getColumnByKey("genre").setAutoWidth(true);
+        grid.getColumnByKey("author").setAutoWidth(true);
+        grid.getColumnByKey("ages").setAutoWidth(true);
+        grid.getColumnByKey("physicalAmount").setAutoWidth(true);
+        grid.getColumnByKey("physicalActiveBorrowed").setAutoWidth(true);
+        grid.getColumnByKey("eActiveBorrowed").setAutoWidth(true);
+        grid.getColumnByKey("totalAmountBorrowed").setAutoWidth(true);
+        grid.getColumnByKey("shelf").setAutoWidth(true);
+        grid.getColumnByKey("section").setAutoWidth(true);
+        grid.getColumnByKey("isbn").setAutoWidth(true);
+        grid.getColumnByKey("publisher").setAutoWidth(true);
+        grid.getColumnByKey("isActive").setAutoWidth(true);
+        grid.getColumnByKey("id").setWidth("50px").setFlexGrow(0);
+        grid.getColumnByKey("description").setWidth("150px").setFlexGrow(0);
+        grid.addThemeVariants(GridVariant.LUMO_NO_BORDER,
+                GridVariant.LUMO_NO_ROW_BORDERS, GridVariant.LUMO_ROW_STRIPES);
+
 
         //Hook logic
         title.setValueChangeMode(ValueChangeMode.EAGER);
