@@ -1,7 +1,6 @@
 package com.example.application.views.login;
 
 import com.example.application.data.service.AuthService;
-import com.example.application.views.search.VisitorBookSearchView;
 import com.vaadin.flow.component.Composite;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.dependency.CssImport;
