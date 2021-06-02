@@ -56,7 +56,7 @@ public class PersonView extends Div {
         this.personService = personService;
         // Configure Grid
         grid = new Grid<>(Person.class);
-        grid.setColumns("firstName", "lastName", "email", "phone", "street", "postal_code", "city", "social_security_no");
+        grid.setColumns("firstName", "lastName", "email", "phone", "street", "postalCode", "city", "socialSecurityNo");
         grid.getColumns().forEach(column -> column.setAutoWidth(true));
         grid.setDataProvider(new CrudServiceDataProvider<Person, Void>(personService));
         grid.addThemeVariants(GridVariant.LUMO_NO_BORDER,
@@ -66,7 +66,7 @@ public class PersonView extends Div {
         // when a row is selected or deselected, populate form
         grid.asSingleSelect().addValueChangeListener(event -> {
             if (event.getValue() != null) {
-                Optional<Person> personFromBackend = personService.get(event.getValue().getId_persons());
+                Optional<Person> personFromBackend = personService.get(event.getValue().getIdPersons());
                 // when a row is selected but the data is no longer available, refresh grid
                 if (personFromBackend.isPresent()) {
                     populateForm(personFromBackend.get());

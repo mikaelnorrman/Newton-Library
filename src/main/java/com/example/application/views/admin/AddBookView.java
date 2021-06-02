@@ -81,22 +81,22 @@ public class AddBookView extends VerticalLayout {
         actions.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
 
         grid.setHeight("400px");
-        grid.setColumns("id", "title", "description", "genre", "author", "ages", "physical_amount",
-                "e_book", "price", "physical_active_borrowed", "e_active_borrowed", "total_amount_borrowed",
-                "shelf", "section", "isbn", "publisher", "is_active");
+        grid.setColumns("id", "title", "description", "genre", "author", "ages", "physicalAmount",
+                "eBook", "price", "physicalActiveBorrowed", "eActiveBorrowed", "totalAmountBorrowed",
+                "shelf", "section", "isbn", "publisher", "isActive");
         grid.getColumnByKey("title").setAutoWidth(true);
         grid.getColumnByKey("genre").setAutoWidth(true);
         grid.getColumnByKey("author").setAutoWidth(true);
         grid.getColumnByKey("ages").setAutoWidth(true);
-        grid.getColumnByKey("physical_amount").setAutoWidth(true);
-        grid.getColumnByKey("physical_active_borrowed").setAutoWidth(true);
-        grid.getColumnByKey("e_active_borrowed").setAutoWidth(true);
-        grid.getColumnByKey("total_amount_borrowed").setAutoWidth(true);
+        grid.getColumnByKey("physicalAmount").setAutoWidth(true);
+        grid.getColumnByKey("physicalActiveBorrowed").setAutoWidth(true);
+        grid.getColumnByKey("eActiveBorrowed").setAutoWidth(true);
+        grid.getColumnByKey("totalAmountBorrowed").setAutoWidth(true);
         grid.getColumnByKey("shelf").setAutoWidth(true);
         grid.getColumnByKey("section").setAutoWidth(true);
         grid.getColumnByKey("isbn").setAutoWidth(true);
         grid.getColumnByKey("publisher").setAutoWidth(true);
-        grid.getColumnByKey("is_active").setAutoWidth(true);
+        grid.getColumnByKey("isActive").setAutoWidth(true);
         grid.getColumnByKey("id").setWidth("50px").setFlexGrow(0);
         grid.getColumnByKey("description").setWidth("150px").setFlexGrow(0);
         grid.addThemeVariants(GridVariant.LUMO_NO_BORDER,

@@ -67,7 +67,7 @@ public class SeminarEditor extends Editor {
 
         seminarsBinder.forField(date_time).withConverter(
                 new LocalDateTimeToDateConverter(ZoneId.systemDefault()))
-                .bind(Seminars::getDate_time, Seminars::setDate_time);
+                .bind(Seminars::getDateTime, Seminars::setDateTime);
 
         /*
         seminarsBinder.forField(date_time).withConverter(new StringToIntegerConverter("TESTAR")).

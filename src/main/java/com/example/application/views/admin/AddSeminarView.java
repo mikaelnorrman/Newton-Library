@@ -60,7 +60,7 @@ public class AddSeminarView extends VerticalLayout {
         actions.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
 
         grid.setHeight("400px");
-        grid.setColumns("id_seminar", "name", "presenter", "description", "length", "seats_booked", "date_time",
+        grid.setColumns("id_seminar", "name", "presenter", "description", "length", "seatsBooked", "dateTime",
                  "active");
         grid.getColumnByKey("id_seminar").setWidth("50px").setFlexGrow(0);
         grid.addThemeVariants(GridVariant.LUMO_NO_BORDER,

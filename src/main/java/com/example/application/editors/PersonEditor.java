@@ -75,7 +75,7 @@ public class PersonEditor extends Editor {
         //TODO -> !!! Lägg tillbaka ev???
 
         personBinder.forField(roleId).withConverter(new StringToIntegerConverter("Must be 1-5"))
-                .bind(Person::getRole_id, Person::setRole_id);
+                .bind(Person::getRoleId, Person::setRoleId);
 
 
 
@@ -249,9 +249,9 @@ public class PersonEditor extends Editor {
             setVisible(false);
             return;
         }
-        final boolean persisted = person.getId_persons() != null;
+        final boolean persisted = person.getIdPersons() != null;
         if (persisted){
-            persons = personRepository.findById(person.getId_persons()).get();
+            persons = personRepository.findById(person.getIdPersons()).get();
         } else {
             persons = person;
         }

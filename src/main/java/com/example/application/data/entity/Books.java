@@ -28,23 +28,23 @@ public class Books {
     private String ages = "";
 
     @Column(name="physical_amount")
-    private String physical_amount;
+    private String physicalAmount;
 
     @Column(name="e_book")
-    private String e_book;
+    private String eBook;
 
     @NotNull
     @Column(name="price")
     private String price;
 
     @Column(name="physical_active_borrowed")
-    private String physical_active_borrowed;
+    private String physicalActiveBorrowed;
 
     @Column(name="e_active_borrowed")
-    private String e_active_borrowed;
+    private String eActiveBorrowed;
 
     @Column(name="total_amount_borrowed")
-    private String total_amount_borrowed;
+    private String totalAmountBorrowed;
 
     @Column(name="shelf")
     private String shelf;
@@ -60,7 +60,7 @@ public class Books {
     private String publisher = "";
 
     @Column(name="is_active")
-    private String is_active;
+    private String isActive;
 
 
     public Books(){
@@ -72,33 +72,33 @@ public class Books {
                  String genre,
                  String author,
                  String for_ages,
-                 String physical_amount,
-                 String e_book,
+                 String physicalAmount,
+                 String eBook,
                  String price,
-                 String physical_active_borrowed,
-                 String e_active_borrowed,
-                 String total_amount_borrowed,
+                 String physicalActiveBorrowed,
+                 String eActiveBorrowed,
+                 String totalAmountBorrowed,
                  String shelf,
                  String section,
                  String isbn,
                  String publisher,
-                 String is_active) {
+                 String isActive) {
         this.title = title;
         this.description = description;
         this.genre = genre;
         this.author = author;
         this.ages = for_ages;
-        this.physical_amount = physical_amount;
-        this.e_book = e_book;
+        this.physicalAmount = physicalAmount;
+        this.eBook = eBook;
         this.price = price;
-        this.physical_active_borrowed = physical_active_borrowed;
-        this.e_active_borrowed = e_active_borrowed;
-        this.total_amount_borrowed = total_amount_borrowed;
+        this.physicalActiveBorrowed = physicalActiveBorrowed;
+        this.eActiveBorrowed = eActiveBorrowed;
+        this.totalAmountBorrowed = totalAmountBorrowed;
         this.shelf = shelf;
         this.section = section;
         this.isbn = isbn;
         this.publisher = publisher;
-        this.is_active = is_active;
+        this.isActive = isActive;
     }
 
     public Integer getId() {
@@ -145,20 +145,20 @@ public class Books {
         this.ages = ages;
     }
 
-    public String getPhysical_amount() {
-        return physical_amount;
+    public String getPhysicalAmount() {
+        return physicalAmount;
     }
 
-    public void setPhysical_amount(String physical_amount) {
-        this.physical_amount = physical_amount;
+    public void setPhysicalAmount(String physicalAmount) {
+        this.physicalAmount = physicalAmount;
     }
 
-    public String getE_book() {
-        return e_book;
+    public String geteBook() {
+        return eBook;
     }
 
-    public void setE_book(String e_book) {
-        this.e_book = e_book;
+    public void seteBook(String eBook) {
+        this.eBook = eBook;
     }
 
     public String getPrice() {
@@ -169,28 +169,28 @@ public class Books {
         this.price = price;
     }
 
-    public String getPhysical_active_borrowed() {
-        return physical_active_borrowed;
+    public String getPhysicalActiveBorrowed() {
+        return physicalActiveBorrowed;
     }
 
-    public void setPhysical_active_borrowed(String physical_active_borrowed) {
-        this.physical_active_borrowed = physical_active_borrowed;
+    public void setPhysicalActiveBorrowed(String physicalActiveBorrowed) {
+        this.physicalActiveBorrowed = physicalActiveBorrowed;
     }
 
-    public String getE_active_borrowed() {
-        return e_active_borrowed;
+    public String geteActiveBorrowed() {
+        return eActiveBorrowed;
     }
 
-    public void setE_active_borrowed(String e_active_borrowed) {
-        this.e_active_borrowed = e_active_borrowed;
+    public void seteActiveBorrowed(String eActiveBorrowed) {
+        this.eActiveBorrowed = eActiveBorrowed;
     }
 
-    public String getTotal_amount_borrowed() {
-        return total_amount_borrowed;
+    public String getTotalAmountBorrowed() {
+        return totalAmountBorrowed;
     }
 
-    public void setTotal_amount_borrowed(String total_amount_borrowed) {
-        this.total_amount_borrowed = total_amount_borrowed;
+    public void setTotalAmountBorrowed(String totalAmountBorrowed) {
+        this.totalAmountBorrowed = totalAmountBorrowed;
     }
 
     public String getShelf() {
@@ -225,12 +225,12 @@ public class Books {
         this.publisher = publisher;
     }
 
-    public String getIs_active() {
-        return is_active;
+    public String getIsActive() {
+        return isActive;
     }
 
-    public void setIs_active(String is_active) {
-        this.is_active = is_active;
+    public void setIsActive(String isActive) {
+        this.isActive = isActive;
     }
 
 
@@ -243,17 +243,17 @@ public class Books {
                 ", genre='" + genre + '\'' +
                 ", author='" + author + '\'' +
                 ", for_ages='" + ages + '\'' +
-                ", physical_amount=" + physical_amount +
-                ", e_book=" + e_book +
+                ", physical_amount=" + physicalAmount +
+                ", e_book=" + eBook +
                 ", price=" + price +
-                ", physical_active_borrowed=" + physical_active_borrowed +
-                ", e_active_borrowed=" + e_active_borrowed +
-                ", total_amount_borrowed=" + total_amount_borrowed +
+                ", physical_active_borrowed=" + physicalActiveBorrowed +
+                ", e_active_borrowed=" + eActiveBorrowed +
+                ", total_amount_borrowed=" + totalAmountBorrowed +
                 ", shelf=" + shelf +
                 ", section='" + section + '\'' +
                 ", isbn='" + isbn + '\'' +
                 ", publisher='" + publisher + '\'' +
-                ", is_active=" + is_active +
+                ", is_active=" + isActive +
                 '}';
     }
 }

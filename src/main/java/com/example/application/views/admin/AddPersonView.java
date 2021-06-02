@@ -62,10 +62,10 @@ public class AddPersonView extends VerticalLayout {
         actions.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
 
         grid.setHeight("400px");
-        grid.setColumns("id_persons", "firstName", "lastName", "email", "phone", "street", "postal_code",
-                "city", "social_security_no", "active_borrowed_books", "total_borrowed_books", "loancard", "role_id");
+        grid.setColumns("idPersons", "firstName", "lastName", "email", "phone", "street", "postalCode",
+                "city", "socialSecurityNo", "activeBorrowedBooks", "totalBorrowedBooks", "loancard", "roleId");
         grid.getColumns().forEach(column -> column.setAutoWidth(true));
-        grid.getColumnByKey("id_persons").setWidth("50px").setFlexGrow(0);
+        grid.getColumnByKey("idPersons").setWidth("50px").setFlexGrow(0);
         grid.addThemeVariants(GridVariant.LUMO_NO_BORDER,
                 GridVariant.LUMO_NO_ROW_BORDERS, GridVariant.LUMO_ROW_STRIPES);
 
