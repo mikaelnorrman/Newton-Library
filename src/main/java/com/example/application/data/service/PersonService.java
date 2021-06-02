@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 import org.vaadin.artur.helpers.CrudService;
 
+//Kan tas bort?
 @Service
 public class PersonService extends CrudService <Person, Integer> {
 
