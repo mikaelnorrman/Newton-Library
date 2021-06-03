@@ -333,7 +333,6 @@ public class BookView extends Div {
     private Button createLoanButton(Grid<Books> grid, Books book) {
         Button button = new Button("Loan book", clickEvent -> {
 
-        l
 
         });
         button.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
