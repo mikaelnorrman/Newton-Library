@@ -330,12 +330,10 @@ public class BookView extends Div {
         binder.readBean(this.book);
     }
 
-    private Button createLoanButton(Grid<Books> grid, Books item) {
+    private Button createLoanButton(Grid<Books> grid, Books book) {
         Button button = new Button("Loan book", clickEvent -> {
 
-            ListDataProvider<Books> dataProvider = (ListDataProvider<Books>) grid
-                    .getDataProvider();
-            dataProvider.refreshAll();
+        l
 
         });
         button.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
@@ -343,5 +341,6 @@ public class BookView extends Div {
 
         return button;
     }
+
 
 }
