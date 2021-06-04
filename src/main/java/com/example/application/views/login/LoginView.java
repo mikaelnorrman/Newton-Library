@@ -30,12 +30,14 @@ public class LoginView extends Composite<LoginOverlay> {
         } catch (AuthService.AuthException e) {
             e.printStackTrace();
             Notification.show("Wrong credentials.");
+            loginOverlay.setError(true);
         }
         });
 
+
         LoginI18n i18n = LoginI18n.createDefault();
         i18n.getForm().setForgotPassword("Search books");
-        i18n.setAdditionalInformation("You can search for books in Libsys library her!");
+        i18n.setAdditionalInformation("You can search for books in Libsys library here!");
         loginOverlay.setI18n(i18n);
         loginOverlay.addForgotPasswordListener(e -> {
             loginOverlay.close();

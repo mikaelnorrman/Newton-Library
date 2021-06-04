@@ -52,6 +52,7 @@ public class AuthService {
             createRoutes(person.getRole());
         } else {
             throw new AuthException();
+
         }
     }
 

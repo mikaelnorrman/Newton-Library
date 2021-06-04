@@ -1,9 +1,11 @@
 package com.example.application.editors;
 
 import com.example.application.data.entity.Books;
+import com.example.application.data.entity.LoanedBooks;
 import com.example.application.data.entity.Person;
 import com.example.application.data.entity.Seminars;
 import com.example.application.data.service.BooksRepository;
+import com.example.application.data.service.LoanedBooksRepository;
 import com.example.application.data.service.PersonRepository;
 import com.example.application.data.service.SeminarsRepository;
 import com.vaadin.flow.component.KeyNotifier;
@@ -22,10 +24,12 @@ public class Editor extends VerticalLayout implements KeyNotifier {
     protected BooksRepository booksRepository;
     protected SeminarsRepository seminarRepository;
     protected PersonRepository personRepository;
+    protected LoanedBooksRepository loanedBooksRepository;
 
     protected Books books;
     protected Seminars seminars;
     protected Person persons;
+    protected LoanedBooks loanedBooks;
 
 
     Button save = new Button("Save", VaadinIcon.PLUS.create());
@@ -36,6 +40,8 @@ public class Editor extends VerticalLayout implements KeyNotifier {
     Binder<Books> booksBinder;
     Binder<Seminars> seminarsBinder;
     Binder<Person> personBinder;
+    Binder<LoanedBooks> loanedBooksBinder;
+
 
     protected ChangeHandler changeHandler;
 

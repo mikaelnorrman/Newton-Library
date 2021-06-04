@@ -8,6 +8,7 @@ import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.component.timepicker.TimePicker;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.data.binder.ValidationException;
 import com.vaadin.flow.data.converter.LocalDateTimeToDateConverter;
@@ -19,13 +20,14 @@ import java.time.ZoneId;
 public class SeminarEditor extends Editor {
 
     public static final String TITLE_IN_SET_ATTRIBUTE = "title";
+    public static final String NUMBERS_ONLY = "Numbers only. 0,1,2,3,4,5,6,7,8,9";
     TextField name;
     TextField presenter;
     TextField description;
     TextField length;
     TextField seats_booked;
     DateTimePicker date_time;
-    TextField date_added;
+    //TextField date_added;
     TextField active;
 
 
@@ -49,13 +51,13 @@ public class SeminarEditor extends Editor {
         lenghtEdit();
         seatsBookedEdit();
         dateTimeEdit();
-        dateAddedEdit();
+        //dateAddedEdit();
         activeEdit();
 
 
         // TextField lägger till fälten att redigera datan i.
         seminarFormLayout.add(name, presenter, description, length, seats_booked,
-                date_time, date_added, active);
+                date_time, /*date_added,*/ active);
 
         seminarEdit.add(actions);
 
@@ -69,10 +71,13 @@ public class SeminarEditor extends Editor {
                 new LocalDateTimeToDateConverter(ZoneId.systemDefault()))
                 .bind(Seminars::getDateTime, Seminars::setDateTime);
 
-        /*
-        seminarsBinder.forField(date_time).withConverter(new StringToIntegerConverter("TESTAR")).
+
+        /* // TODO -> Fixa
+        seminarsBinder.forField(length).withConverter(
+                new TimePicker()).
                 bind(Seminars::getLength,Seminars::setLength);
-        */
+         */
+
 
 
         seminarsBinder.bindInstanceFields(this);
@@ -123,17 +128,22 @@ public class SeminarEditor extends Editor {
         length = new TextField ("Length");
         length.setPlaceholder("Enter a lenght");
         length.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: 01:30:00");
+        length.setPattern("\\d{2}\\:\\d{2}\\:\\d{2}");
+        length.setErrorMessage(NUMBERS_ONLY);
         length.setClearButtonVisible(true);
-        length.setErrorMessage("Your seminar lenght needs to be in -> hours : minutes : seconds");
+        length.setErrorMessage(NUMBERS_ONLY + "\n And : \nYour seminar lenght needs to be in -> hours : minutes : seconds");
         length.setMinLength(8);
-    }
 
+
+    }
+//TODO kolla upp patterns
     private void seatsBookedEdit() {
         seats_booked = new TextField ("Seats Booked");
         seats_booked.setPlaceholder("Enter a seats booked");
-        seats_booked.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: 15");
+        seats_booked.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, " " + "Example: 15" + NUMBERS_ONLY);
         seats_booked.setClearButtonVisible(true);
-        seats_booked.setErrorMessage("Your specify if there is seats booked");
+        //seats_booked.setPattern("\\d{1,2,3}");
+        seats_booked.setErrorMessage("Your specify if there is seats booked" + NUMBERS_ONLY);
         seats_booked.setMinLength(1);
     }
 
@@ -141,22 +151,15 @@ public class SeminarEditor extends Editor {
         date_time = new DateTimePicker("Date Time");
         LocalDateTime now = LocalDateTime.now();
         date_time.setValue(now);
+        date_time.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "You need to pick a date and a time for the seminar");
         date_time.setErrorMessage("Your time needs tobe date and time");
     }
 
-    private void dateAddedEdit() {
-        date_added = new TextField ("Date Added");
-        date_added.setPlaceholder("Enter a date");
-        date_added.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: 2021-05-01 15:00:00");
-        date_added.setClearButtonVisible(true);
-        date_added.setErrorMessage("Your date needs tobe both date and time");
-        date_added.setMinLength(15);
-    }
 
     private void activeEdit() {
         active = new TextField ("Active");
         active.setPlaceholder("Enter active");
-        active.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: 1 or 0");
+        active.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: 1 or 0\n0 = Not Avtive\n1 = Active");
         active.setClearButtonVisible(true);
         active.setErrorMessage("Your can only select 1 or 0");
         active.setMinLength(1);

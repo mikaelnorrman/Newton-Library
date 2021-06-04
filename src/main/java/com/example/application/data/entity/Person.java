@@ -1,6 +1,8 @@
 package com.example.application.data.entity;
 
 
+import org.apache.commons.codec.digest.DigestUtils;
+
 import javax.persistence.*;
 import javax.annotation.Nullable;
 
@@ -82,6 +84,7 @@ public class Person {
         this.postalCode = postal_code;
         this.city = city;
         this.socialSecurityNo = socialSecurityNo;
+        this.password = password;
         this.loancard = loancard;
         this.roleId = role.getRole_id();
     }
@@ -101,6 +104,7 @@ public class Person {
         return role;
     }
 
+    //TODO -> kolla om de skall vara NotNUll??
     public void setRole(@Nullable Role role) {
         if ( role == null ) {
             determineRole();
@@ -156,7 +160,10 @@ public class Person {
     public void setLoancard(Boolean loancard) { this.loancard = loancard; }
 
     public boolean checkPassword(String password) {
-        return true; //FIXME
+        //return true;
+        return DigestUtils.sha1Hex(password).equals(this.password);
+
+        //FIXME
         //TODO: Implementera lösenordskontroll.
     }
 
