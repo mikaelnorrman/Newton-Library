@@ -233,6 +233,10 @@ public class Books {
         this.isActive = isActive;
     }
 
+    public String getPhysicalAvailableBooks() {
+        return "" + (Integer.parseInt(physicalAmount) - Integer.parseInt(physicalActiveBorrowed));
+    }
+
 
     @Override
     public String toString() {
