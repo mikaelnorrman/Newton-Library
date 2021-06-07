@@ -176,7 +176,7 @@ public class BookView extends Div {
     private void titleSidebarEditor() {
         title.setLabel("Book title");
         title.setPlaceholder("Enter book title");
-        title.getElement().setAttribute("title", "Example: Alkemisten");
+        title.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: Alkemisten");
         title.setClearButtonVisible(true);
         title.setErrorMessage("Your title needs to be at least one character long");
         title.setMinLength(1);
@@ -343,7 +343,8 @@ public class BookView extends Div {
             item.getTitle();
             item.getId();
             loanedBookEditor.saveLoaned(new LoanedBooks(idOfBooks, idPersons));
-            Notification loanedNotification = new Notification(" You loaned the book \n" + item.getTitle());
+
+            Notification loanedNotification = new Notification("You loaned the book \n" + item.getTitle());
             loanedNotification.setDuration(3000);
             loanedNotification.setPosition(Notification.Position.MIDDLE);
             loanedNotification.open();
