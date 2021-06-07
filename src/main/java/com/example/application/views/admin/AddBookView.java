@@ -5,6 +5,7 @@ import com.example.application.data.service.BooksRepository;
 import com.example.application.editors.BookEditor;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.GridVariant;
@@ -72,7 +73,10 @@ public class AddBookView extends VerticalLayout {
 
 
         this.addBook = new Button("New book", VaadinIcon.PLUS.create());
+        this.addBook.addThemeVariants(ButtonVariant.LUMO_SMALL);
+
         this.back = new Button("Back", VaadinIcon.HOME.create());
+        this.back.addThemeVariants(ButtonVariant.LUMO_SMALL);
 
 
         //Build layout

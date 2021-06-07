@@ -269,6 +269,8 @@ public class BookView extends Div {
 
     private void shelfSidebarEditor() {
         shelf.setLabel("Shelf");
+        shelf.setPlaceholder("Enter a shelf");
+        shelf.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: 5");
         shelf.setClearButtonVisible(true);
         shelf.addThemeVariants(TextFieldVariant.LUMO_SMALL);
     }
@@ -287,7 +289,7 @@ public class BookView extends Div {
     private void isbnSidebarEditor() {
         isbn.setLabel("ISBN");
         isbn.setPlaceholder("Enter a isbn number");
-        isbn.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: ");
+        isbn.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: ISBN står för International Standard Book Number och är ett 13‑siffrigt identifikationsnummer för böcker.");
         isbn.setPattern("^[0-9]");
         isbn.setErrorMessage(NUMBERS_ONLY);
         isbn.setClearButtonVisible(true);

@@ -11,6 +11,7 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.textfield.EmailField;
 import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.component.textfield.TextFieldVariant;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.data.binder.ValidationException;
 import com.vaadin.flow.data.converter.StringToIntegerConverter;
@@ -106,6 +107,7 @@ public class PersonEditor extends Editor {
         first_name.setErrorMessage("Your first name needs to be at least one character long");
         first_name.setMinLength(1);
         first_name.setRequired(true);
+        first_name.addThemeVariants(TextFieldVariant.LUMO_SMALL);
     }
 
     private void lastNameEdit() {
@@ -115,6 +117,7 @@ public class PersonEditor extends Editor {
         last_name.setClearButtonVisible(true);
         last_name.setErrorMessage("Your last name needs to be at least one character long");
         last_name.setMinLength(1);
+        last_name.addThemeVariants(TextFieldVariant.LUMO_SMALL);
     }
 
     private void emailEdit() {
@@ -123,6 +126,7 @@ public class PersonEditor extends Editor {
         email.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: johan.svensson@mail.se");
         email.setClearButtonVisible(true);
         email.setRequiredIndicatorVisible(true);
+        email.addThemeVariants(TextFieldVariant.LUMO_SMALL);
     }
 
     private void phoneEdit() {
@@ -130,6 +134,7 @@ public class PersonEditor extends Editor {
         phone.setPlaceholder("Enter your phone number");
         phone.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: 08 13579");
         phone.setClearButtonVisible(true);
+        phone.addThemeVariants(TextFieldVariant.LUMO_SMALL);
     }
 
     private void streetEdit() {
@@ -137,6 +142,7 @@ public class PersonEditor extends Editor {
         street.setPlaceholder("Street");
         street.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: Stengatan 32");
         street.setClearButtonVisible(true);
+        street.addThemeVariants(TextFieldVariant.LUMO_SMALL);
     }
 
     private void postalCodeEdit() {
@@ -144,6 +150,7 @@ public class PersonEditor extends Editor {
         postalCode.setPlaceholder("Postal Code");
         postalCode.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: 13589");
         postalCode.setClearButtonVisible(true);
+        postalCode.addThemeVariants(TextFieldVariant.LUMO_SMALL);
     }
 
     private void cityEdit() {
@@ -151,6 +158,7 @@ public class PersonEditor extends Editor {
         city.setPlaceholder("Enter a city");
         city.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: Stockholm");
         city.setClearButtonVisible(true);
+        city.addThemeVariants(TextFieldVariant.LUMO_SMALL);
     }
 
     private void socialSecurityNoEdit() {
@@ -158,6 +166,7 @@ public class PersonEditor extends Editor {
         social_security_no.setPlaceholder("Social Security No");
         social_security_no.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: 19901015");
         social_security_no.setClearButtonVisible(true);
+        social_security_no.addThemeVariants(TextFieldVariant.LUMO_SMALL);
     }
 
     private void passwordEdit() {
@@ -166,6 +175,7 @@ public class PersonEditor extends Editor {
         password.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: D45hide3");
         password.setClearButtonVisible(true);
         password.setRequiredIndicatorVisible(true);
+        password.addThemeVariants(TextFieldVariant.LUMO_SMALL);
     }
 
 
@@ -218,6 +228,7 @@ public class PersonEditor extends Editor {
         roleId.setClearButtonVisible(true);
         roleId.setRequiredIndicatorVisible(true);
         roleId.setRequired(true);
+        roleId.addThemeVariants(TextFieldVariant.LUMO_SMALL);
 
 
     }

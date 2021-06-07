@@ -9,7 +9,7 @@ import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.notification.NotificationVariant;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.textfield.TextField;
-import com.vaadin.flow.component.timepicker.TimePicker;
+import com.vaadin.flow.component.textfield.TextFieldVariant;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.data.binder.ValidationException;
 import com.vaadin.flow.data.converter.LocalDateTimeToDateConverter;
@@ -105,6 +105,7 @@ public class SeminarEditor extends Editor {
         name.setErrorMessage("Your seminar name needs to be at least one character long");
         name.setMinLength(1);
         name.setRequired(true);
+        name.addThemeVariants(TextFieldVariant.LUMO_SMALL);
     }
 
     private void precenterEdit() {
@@ -114,6 +115,7 @@ public class SeminarEditor extends Editor {
         presenter.setClearButtonVisible(true);
         presenter.setErrorMessage("Your description needs to be at least one character long");
         presenter.setMinLength(1);
+        presenter.addThemeVariants(TextFieldVariant.LUMO_SMALL);
     }
 
     private void descriptionEdit() {
@@ -123,6 +125,7 @@ public class SeminarEditor extends Editor {
         description.setClearButtonVisible(true);
         description.setErrorMessage("Your description needs to be at least one character long");
         description.setMinLength(1);
+        description.addThemeVariants(TextFieldVariant.LUMO_SMALL);
     }
 
     private void lenghtEdit() {
@@ -134,6 +137,7 @@ public class SeminarEditor extends Editor {
         length.setClearButtonVisible(true);
         length.setErrorMessage(NUMBERS_ONLY + "\n And : \nYour seminar lenght needs to be in -> hours : minutes : seconds");
         length.setMinLength(8);
+        length.addThemeVariants(TextFieldVariant.LUMO_SMALL);
 
 
     }
@@ -146,6 +150,7 @@ public class SeminarEditor extends Editor {
         //seats_booked.setPattern("\\d{1,2,3}");
         seats_booked.setErrorMessage("Your specify if there is seats booked" + NUMBERS_ONLY);
         seats_booked.setMinLength(1);
+        seats_booked.addThemeVariants(TextFieldVariant.LUMO_SMALL);
     }
 
     private void dateTimeEdit() {
@@ -165,6 +170,7 @@ public class SeminarEditor extends Editor {
         active.setErrorMessage("Your can only select 1 or 0");
         active.setMinLength(1);
         active.setMaxLength(1);
+        active.addThemeVariants(TextFieldVariant.LUMO_SMALL);
     }
 
 

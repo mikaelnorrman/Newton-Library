@@ -8,6 +8,7 @@ import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.notification.NotificationVariant;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.component.textfield.TextFieldVariant;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.data.binder.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -91,6 +92,7 @@ public class BookEditor extends Editor {
         title.setErrorMessage("Your title needs to be at least one character long");
         title.setMinLength(1);
         title.setRequired(true);
+        title.addThemeVariants(TextFieldVariant.LUMO_SMALL);
     }
 
     private void descriptionEdit() {
@@ -101,6 +103,7 @@ public class BookEditor extends Editor {
         description.setClearButtonVisible(true);
         description.setErrorMessage("Your description needs to be at least one character long");
         description.setMinLength(1);
+        description.addThemeVariants(TextFieldVariant.LUMO_SMALL);
     }
 
     private void genreEdit() {
@@ -112,6 +115,7 @@ public class BookEditor extends Editor {
         genre.setClearButtonVisible(true);
         genre.setErrorMessage("Your genre needs to be at least one character long");
         genre.setMinLength(1);
+        genre.addThemeVariants(TextFieldVariant.LUMO_SMALL);
     }
 
     private void authorEdit() {
@@ -123,6 +127,7 @@ public class BookEditor extends Editor {
         author.setClearButtonVisible(true);
         author.setErrorMessage("Your book author needs to be at least one character long");
         author.setMinLength(1);
+        author.addThemeVariants(TextFieldVariant.LUMO_SMALL);
     }
 
     private void forAgeEdit() {
@@ -137,13 +142,14 @@ public class BookEditor extends Editor {
         forAges.setErrorMessage(NUMBERS_ONLY + "\nThe book age you enter needs to be an age range between two ages\nExample: 0-3, 3-6 or 15-99 etc" );
         forAges.setMinLength(1);
         forAges.setMaxLength(12);
+        forAges.addThemeVariants(TextFieldVariant.LUMO_SMALL);
     }
 
     private void isbnEdit() {
         isbn = new TextField();
         isbn.setLabel("ISBN");
         isbn.setPlaceholder("Enter a isbn number");
-        isbn.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: ");
+        isbn.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: ISBN står för International Standard Book Number och är ett 13‑siffrigt identifikationsnummer för böcker.");
         isbn.setPattern("[0-9]+");
         isbn.setErrorMessage(NUMBERS_ONLY);
         isbn.setClearButtonVisible(true);
@@ -151,13 +157,16 @@ public class BookEditor extends Editor {
         isbn.setMinLength(10);
         isbn.setMaxLength(12);
         isbn.setRequired(true);
+        isbn.addThemeVariants(TextFieldVariant.LUMO_SMALL);
     }
 
     private void amountOfBooks() {
         physicalAmount = new TextField();
         physicalAmount.setLabel("Physical Amount");
         physicalAmount.setPlaceholder("Enter a amount");
+        physicalAmount.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: 15");
         physicalAmount.setClearButtonVisible(true);
+        physicalAmount.addThemeVariants(TextFieldVariant.LUMO_SMALL);
     }
 
     private void priceEdit() {
@@ -175,13 +184,16 @@ public class BookEditor extends Editor {
             }
         });
         price.setRequired(true);
+        price.addThemeVariants(TextFieldVariant.LUMO_SMALL);
     }
 
     private void shelfEdit() {
         shelf = new TextField();
         shelf.setLabel("Shelf");
         shelf.setPlaceholder("Enter a shelf");
+        shelf.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: 5");
         shelf.setClearButtonVisible(true);
+        shelf.addThemeVariants(TextFieldVariant.LUMO_SMALL);
     }
 
     private void sectionEdit() {
@@ -193,6 +205,7 @@ public class BookEditor extends Editor {
         section.setClearButtonVisible(true);
         section.setErrorMessage("Your book section needs to be at least one character long");
         section.setMinLength(1);
+        section.addThemeVariants(TextFieldVariant.LUMO_SMALL);
     }
 
     private void publisherEdit() {
@@ -203,6 +216,7 @@ public class BookEditor extends Editor {
         publisher.setClearButtonVisible(true);
         publisher.setErrorMessage("");
         publisher.setMinLength(1);
+        publisher.addThemeVariants(TextFieldVariant.LUMO_SMALL);
     }
 
 

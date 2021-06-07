@@ -6,6 +6,7 @@ import com.example.application.data.service.PersonRepository;
 import com.example.application.editors.PersonEditor;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.GridVariant;
@@ -54,7 +55,10 @@ public class AddPersonView extends VerticalLayout {
         this.filterEmail.setPrefixComponent(VaadinIcon.SEARCH.create());
 
         this.addPerson = new Button("New person", VaadinIcon.PLUS.create());
+        this.addPerson.addThemeVariants(ButtonVariant.LUMO_SMALL);
+
         this.back = new Button("Back", VaadinIcon.HOME.create());
+        this.back.addThemeVariants(ButtonVariant.LUMO_SMALL);
 
         //Build layout
         var actions = new HorizontalLayout(filterFirstName, filterLastName, filterEmail, addPerson, back);
