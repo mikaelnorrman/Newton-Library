@@ -4,7 +4,7 @@ import java.sql.*;
 
 public abstract class ConnectorMySQL implements Connector {
 
-    public Connection connection;
+    private Connection connection;
 
     public ConnectorMySQL() {
         try {
@@ -28,9 +28,9 @@ public abstract class ConnectorMySQL implements Connector {
         Boolean bool = false;
         int boolVal;
         String sql = "Call checkLoan(?,?,?);";
-        try (CallableStatement stmt = connection.prepareCall(sql)){
+        try (CallableStatement stmt = connection.prepareCall(sql)) {
             stmt.setInt(1, usersID);
-            stmt.setInt(2, usersID);
+            stmt.setInt(2, bookID);
             stmt.registerOutParameter(3, Types.BOOLEAN);
             boolVal = stmt.getInt(3);
 

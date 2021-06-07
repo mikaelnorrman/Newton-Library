@@ -25,6 +25,7 @@ public class AuthService {
     public static final String ADMIN = "admin";
     public static final String SEMINARS = "seminar";
     public static final String BOOKS = "books";
+    public static final String USER_BOOKS = "userBooks";
     public static final String ADD_BOOK_VIEW = "addBookView";
     public static final String ADD_SEMINAR_VIEW = "addSeminarView";
     public static final String PERSONS = "persons";
@@ -80,6 +81,7 @@ public class AuthService {
         var userAdmin = "Users";
         var admin = "Admin";
         var bookAdmin = "Books";
+        var userBook = "UserBooks";
         var addBooks = "Add Books";
         var loanedBooks = "Loaned Books";
         var persons = "Add Users";
@@ -90,7 +92,7 @@ public class AuthService {
         if (role.equals(Role.USER)) {
             routes.add(new AuthorizedRoute(OPENING, opening, OpeningView.class));
             routes.add(new AuthorizedRoute(SEARCH, search, SearchView.class));
-            routes.add(new AuthorizedRoute(BOOKS,bookAdmin, BookView.class));
+           // routes.add(new AuthorizedRoute(USER_BOOKS,userBook, UserBookView.class));
             routes.add(new AuthorizedRoute(LOGOUT, logout, LogoutView.class));
 
         } else if (role.equals(Role.ADMIN)) {
