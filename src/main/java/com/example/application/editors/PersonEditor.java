@@ -213,7 +213,7 @@ public class PersonEditor extends Editor {
         roleId.setPlaceholder("Role Id");
         roleId.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE,
                 "Example: \n1 = INACTIVE\n2 = ADMIN\n" +
-                "3 =SUPERADMIN\n4 = USER NO ACCESS\n5 = USER ");
+                "3 = SUPERADMIN\n4 = USER NO ACCESS\n5 = USER ");
         roleId.setClearButtonVisible(true);
         roleId.setRequiredIndicatorVisible(true);
         roleId.setRequired(true);

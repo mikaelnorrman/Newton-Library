@@ -339,10 +339,22 @@ public class BookView extends Div {
     private Button createLoanButton(Grid<Books> grid, Books item) {
         Button loanedButton = new Button("Loan book",  editor  -> {
             Integer idPersons = VaadinSession.getCurrent().getAttribute(Person.class).getIdPersons();// hämta ut den inloggade personens id.
-            Integer idOfBooks = item.getId();
-            item.getTitle();
-            item.getId();
-            loanedBookEditor.saveLoaned(new LoanedBooks(idOfBooks, idPersons));
+            if (VaadinSession.getCurrent().getAttribute(Person.class).getLoancard() == true) {
+
+                Integer idOfBooks = item.getId();
+                item.getTitle();
+                item.getId();
+
+                loanedBookEditor.saveLoaned(new LoanedBooks(idOfBooks, idPersons));
+            } else {
+                Notification loanedNotificationFail = new Notification("You cant loaned the book \nYou need to get a loaned card" + item.getTitle());
+                loanedNotificationFail.setDuration(3000);
+                loanedNotificationFail.setPosition(Notification.Position.MIDDLE);
+                loanedNotificationFail.open();
+                return;
+            }
+
+
 
             Notification loanedNotification = new Notification("You loaned the book \n" + item.getTitle());
             loanedNotification.setDuration(3000);
