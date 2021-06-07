@@ -26,4 +26,5 @@ public interface Connector {
     void callDeleteUser(int userID) throws SQLException;
     void callUpdateSeminar(int seminarID, String name, String presenter, String description, Time lenght, Date dateTime,
                            boolean active) throws SQLException;
+    void callcheckLoan(int usersID, int bookID) throws SQLException;
 }

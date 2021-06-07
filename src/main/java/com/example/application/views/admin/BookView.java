@@ -1,5 +1,6 @@
 package com.example.application.views.admin;
 
+import com.example.application.Connector.ConnectorMySQL;
 import com.example.application.data.entity.Books;
 import com.example.application.data.entity.LoanedBooks;
 import com.example.application.data.entity.Person;
@@ -34,6 +35,7 @@ import java.util.Optional;
 @CssImport("./styles/views/admin/admin-view.css")
 public class BookView extends Div {
 
+    ConnectorMySQL connectorMySQL;
     final LoanedBookEditor loanedBookEditor;
     public static final String TITLE_IN_SET_ATTRIBUTE = "Title";
     public static final String NUMBERS_ONLY = "Numbers only. 0,1,2,3,4,5,6,7,8,9";
