@@ -1,8 +1,11 @@
 package com.example.application.views.admin;
 
 import com.example.application.data.entity.Books;
+import com.example.application.data.entity.LoanedBooks;
 import com.example.application.data.entity.Person;
 import com.example.application.data.service.BookService;
+import com.example.application.data.service.LoanedBooksRepository;
+import com.example.application.editors.LoanedBookEditor;
 import com.vaadin.flow.component.AbstractField;
 import com.vaadin.flow.component.HasStyle;
 import com.vaadin.flow.component.button.Button;
@@ -18,20 +21,19 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.component.textfield.TextFieldVariant;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.data.binder.ValidationException;
-import com.vaadin.flow.data.provider.ListDataProvider;
-import com.vaadin.flow.data.renderer.NativeButtonRenderer;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.server.VaadinSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.vaadin.artur.helpers.CrudServiceDataProvider;
 
-import java.awt.print.Book;
 import java.util.Optional;
 
 @PageTitle("Books")
 @CssImport("./styles/views/admin/admin-view.css")
 public class BookView extends Div {
 
+    final LoanedBookEditor loanedBookEditor;
     public static final String TITLE_IN_SET_ATTRIBUTE = "Title";
     public static final String NUMBERS_ONLY = "Numbers only. 0,1,2,3,4,5,6,7,8,9";
     private Grid<Books> grid;
@@ -49,17 +51,20 @@ public class BookView extends Div {
     private TextField isbn = new TextField();
     private TextField publisher = new TextField();
 
-
     private Button cancel = new Button("Cancel");
     private Button save = new Button("Save");
 
     private Binder<Books> binder;
 
     private Books book = new Books();
+    private LoanedBooks loanedbooks = new LoanedBooks();
 
     private BookService bookService;
 
-    public BookView(@Autowired BookService bookService) {
+    @Autowired
+    public BookView(BookService bookService, LoanedBooksRepository loanedBooksRepository) {
+        this.loanedBookEditor = new LoanedBookEditor(loanedBooksRepository);
+
         setId("book-admin-view");
         this.bookService = bookService;
         // Configure Grid - This will show up in the Grid
@@ -119,6 +124,7 @@ public class BookView extends Div {
             }
         });
 
+
         SplitLayout splitLayout = new SplitLayout();
         splitLayout.setSizeFull();
 
@@ -170,7 +176,7 @@ public class BookView extends Div {
     private void titleSidebarEditor() {
         title.setLabel("Book title");
         title.setPlaceholder("Enter book title");
-        title.getElement().setAttribute("title", "Example: Alkemisten");
+        title.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: Alkemisten");
         title.setClearButtonVisible(true);
         title.setErrorMessage("Your title needs to be at least one character long");
         title.setMinLength(1);
@@ -215,7 +221,7 @@ public class BookView extends Div {
         forAges.setLabel("For Ages");
         forAges.setPlaceholder("Enter a age");
         forAges.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: 0-3 or 15-99");
-        forAges.setPattern("^[0-9]"); // Lägg till - bindestreck
+        forAges.setPattern("\\d{1,2}\\-\\d{1,3}");
         forAges.setErrorMessage(NUMBERS_ONLY);
         forAges.setClearButtonVisible(true);
         forAges.setErrorMessage("Your book age needs to be at least one number long");
@@ -296,7 +302,7 @@ public class BookView extends Div {
     }
 
 
-
+// ----------------------------------------------------------------------------------------------------
     private void createButtonLayout(Div editorLayoutDiv) {
         HorizontalLayout buttonLayout = new HorizontalLayout();
         buttonLayout.setId("button-layout");
@@ -331,17 +337,24 @@ public class BookView extends Div {
     }
 
     private Button createLoanButton(Grid<Books> grid, Books item) {
-        Button button = new Button("Loan book", clickEvent -> {
+        Button loanedButton = new Button("Loan book",  editor  -> {
+            Integer idPersons = VaadinSession.getCurrent().getAttribute(Person.class).getIdPersons();// hämta ut den inloggade personens id.
+            Integer idOfBooks = item.getId();
+            item.getTitle();
+            item.getId();
+            loanedBookEditor.saveLoaned(new LoanedBooks(idOfBooks, idPersons));
 
-            ListDataProvider<Books> dataProvider = (ListDataProvider<Books>) grid
-                    .getDataProvider();
-            dataProvider.refreshAll();
-
+            Notification loanedNotification = new Notification("You loaned the book \n" + item.getTitle());
+            loanedNotification.setDuration(3000);
+            loanedNotification.setPosition(Notification.Position.MIDDLE);
+            loanedNotification.open();
         });
-        button.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
 
-
-        return button;
+        loanedButton.setDisableOnClick(true);
+        loanedButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY, ButtonVariant.LUMO_SMALL);
+        return loanedButton;
     }
+
+
 
 }

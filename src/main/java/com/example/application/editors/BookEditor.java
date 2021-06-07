@@ -130,11 +130,26 @@ public class BookEditor extends Editor {
         forAges.setLabel("For Ages");
         forAges.setPlaceholder("Enter a age");
         forAges.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: 0-3 or 15-99");
-        forAges.setPattern("^[0-9]"); // Lägg till - bindestreck
+        forAges.setPattern("\\d{1,2}\\-\\d{1,3}");
         forAges.setErrorMessage(NUMBERS_ONLY);
         forAges.setClearButtonVisible(true);
-        forAges.setErrorMessage("Your book age needs to be at least one number long");
+        forAges.setErrorMessage(NUMBERS_ONLY + "\nThe book age you enter needs to be an age range between two ages\nExample: 0-3, 3-6 or 15-99 etc" );
         forAges.setMinLength(1);
+        forAges.setMaxLength(12);
+    }
+
+    private void isbnEdit() {
+        isbn = new TextField();
+        isbn.setLabel("ISBN");
+        isbn.setPlaceholder("Enter a isbn number");
+        isbn.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: ");
+        isbn.setPattern("[0-9]+");
+        isbn.setErrorMessage(NUMBERS_ONLY);
+        isbn.setClearButtonVisible(true);
+        isbn.setErrorMessage("Your book isbn number needs to be ten character long");
+        isbn.setMinLength(10);
+        isbn.setMaxLength(12);
+        isbn.setRequired(true);
     }
 
     private void amountOfBooks() {
@@ -177,20 +192,6 @@ public class BookEditor extends Editor {
         section.setClearButtonVisible(true);
         section.setErrorMessage("Your book section needs to be at least one character long");
         section.setMinLength(1);
-    }
-
-    private void isbnEdit() {
-        isbn = new TextField();
-        isbn.setLabel("ISBN");
-        isbn.setPlaceholder("Enter a isbn number");
-        isbn.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: ");
-        isbn.setPattern("^[0-9]");
-        isbn.setErrorMessage(NUMBERS_ONLY);
-        isbn.setClearButtonVisible(true);
-        isbn.setErrorMessage("Your book isbn number needs to be ten character long");
-        isbn.setMinLength(10);
-        isbn.setMaxLength(12);
-        isbn.setRequired(true);
     }
 
     private void publisherEdit() {
