@@ -15,6 +15,9 @@ import org.vaadin.artur.helpers.CrudServiceDataProvider;
 @CssImport("./styles/views/admin/admin-view.css")
 public class LoanedBooksView extends VerticalLayout {
 
+    private Grid<LoanedBooks> grid;
+    private LoanedBooksService loanedBooksService;
+
     public LoanedBooksView(LoanedBooksService loanedBooksService, LoanedBooksRepository loanedBooksRepository) {
         this.loanedBooksService = loanedBooksService;
         grid = new Grid<>(LoanedBooks.class);
