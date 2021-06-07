@@ -6,6 +6,7 @@ import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.datetimepicker.DateTimePicker;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.notification.NotificationVariant;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.component.timepicker.TimePicker;
@@ -171,10 +172,18 @@ public class SeminarEditor extends Editor {
         try{
             seminarsBinder.writeBean(seminars);
             saveSeminar(seminars);
-            Notification.show("You saved your seminar");
+            saveNotification();
         } catch (ValidationException throwables){
             throwables.printStackTrace();
         }
+    }
+
+    private void saveNotification() {
+        Notification savePersonNotification = new Notification("You saved your seminar");
+        savePersonNotification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
+        savePersonNotification.setDuration(4000);
+        savePersonNotification.setPosition(Notification.Position.MIDDLE);
+        savePersonNotification.open();
     }
 
     void deleteSeminar(Seminars seminars){

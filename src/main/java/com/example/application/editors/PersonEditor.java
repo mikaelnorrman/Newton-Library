@@ -6,6 +6,7 @@ import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.notification.NotificationVariant;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.textfield.EmailField;
 import com.vaadin.flow.component.textfield.PasswordField;
@@ -227,10 +228,18 @@ public class PersonEditor extends Editor {
         try{
             personBinder.writeBean(persons);
             savePerson(persons);
-            Notification.show("You saved your person");
+            saveNotification();
         } catch (ValidationException throwables){
             throwables.printStackTrace();
         }
+    }
+
+    private void saveNotification() {
+        Notification savePersonNotification = new Notification("You saved your person");
+        savePersonNotification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
+        savePersonNotification.setDuration(4000);
+        savePersonNotification.setPosition(Notification.Position.MIDDLE);
+        savePersonNotification.open();
     }
 
 

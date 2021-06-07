@@ -16,6 +16,7 @@ import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.GridVariant;
 import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.notification.NotificationVariant;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.splitlayout.SplitLayout;
 import com.vaadin.flow.component.textfield.TextField;
@@ -344,9 +345,11 @@ public class BookView extends Div {
         boolean checkLoancard = VaadinSession.getCurrent().getAttribute(Person.class).getLoancard() == true; // koll så att användaren har ett lånekort.
 
         Button loanedButton = new Button("Loan book",  editor  -> {
-            Integer idPersons = VaadinSession.getCurrent().getAttribute(Person.class).getIdPersons();// hämta ut den inloggade personens id.
-            if (checkLoancard) {
+            Integer idPersons = VaadinSession.getCurrent().getAttribute(Person.class).getIdPersons();       // hämta ut inloggade personens id.
+            String firstNamePersons = VaadinSession.getCurrent().getAttribute(Person.class).getFirstName(); // hämta ut inloggade personens fistName.
+            String lastNamePersons = VaadinSession.getCurrent().getAttribute(Person.class).getLastName();   // hämta ut inloggade personens lastName.
 
+            if (checkLoancard) {
                 try {
                     if (!connectorMySQL.callcheck_loan(idPersons,item.getId())) {
 
@@ -362,16 +365,18 @@ public class BookView extends Div {
                 }
 
             } else {
-                    Notification loanedNotificationFail = new Notification(idPersons +
-                            "You cant loan the book " + item.getTitle() + "\nYou need to get a loaned card");
-                    loanedNotificationFail.setDuration(3000);
+                    Notification loanedNotificationFail = new Notification(firstNamePersons + " " + lastNamePersons +
+                            "\nYou cant loan the book " + item.getTitle() + "\nYou need to get a loaned card");
+                    loanedNotificationFail.addThemeVariants(NotificationVariant.LUMO_ERROR);
+                    loanedNotificationFail.setDuration(5000);
                     loanedNotificationFail.setPosition(Notification.Position.MIDDLE);
                     loanedNotificationFail.open();
                     return;
                 }
 
             Notification loanedNotification = new Notification("You loaned the book \n" + item.getTitle());
-            loanedNotification.setDuration(3000);
+            loanedNotification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
+            loanedNotification.setDuration(5000);
             loanedNotification.setPosition(Notification.Position.MIDDLE);
             loanedNotification.open();
         });
