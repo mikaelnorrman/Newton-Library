@@ -29,9 +29,11 @@ public class LoanedBooks {
     public LoanedBooks(
 
             Integer books_id_books,
-            Integer users_id_users) {
+            Integer users_id_users,
+            Integer expired) {
         this.books_id_books = books_id_books;
         this.users_id_users = users_id_users;
+        this.expired = expired;
     }
 
 

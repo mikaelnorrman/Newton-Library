@@ -27,6 +27,7 @@ import com.vaadin.flow.server.VaadinSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.vaadin.artur.helpers.CrudServiceDataProvider;
 
+import java.sql.SQLException;
 import java.util.Optional;
 
 @PageTitle("Books")
@@ -97,6 +98,7 @@ public class BookView extends Div {
                 clearForm();
             }
         });
+
 
         // Configure Form
         binder = new Binder<>(Books.class);
@@ -337,24 +339,34 @@ public class BookView extends Div {
     }
 
     private Button createLoanButton(Grid<Books> grid, Books item) {
+        boolean checkLoancard = VaadinSession.getCurrent().getAttribute(Person.class).getLoancard() == true; // koll så att användaren har ett lånekort.
+
         Button loanedButton = new Button("Loan book",  editor  -> {
             Integer idPersons = VaadinSession.getCurrent().getAttribute(Person.class).getIdPersons();// hämta ut den inloggade personens id.
-            if (VaadinSession.getCurrent().getAttribute(Person.class).getLoancard() == true) {
+            if (checkLoancard) {
 
-                Integer idOfBooks = item.getId();
-                item.getTitle();
-                item.getId();
+                try {
+                    if (!connectorMySQL.callcheck_loan(idPersons,item.getId())) {
 
-                loanedBookEditor.saveLoaned(new LoanedBooks(idOfBooks, idPersons));
+                        Integer idOfBooks = item.getId();
+                        item.getTitle();
+                        item.getId();
+
+
+                        loanedBookEditor.saveLoaned(new LoanedBooks(idOfBooks, idPersons, 0));
+                    }
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+
             } else {
-                Notification loanedNotificationFail = new Notification("You cant loaned the book \nYou need to get a loaned card" + item.getTitle());
-                loanedNotificationFail.setDuration(3000);
-                loanedNotificationFail.setPosition(Notification.Position.MIDDLE);
-                loanedNotificationFail.open();
-                return;
-            }
-
-
+                    Notification loanedNotificationFail = new Notification(idPersons +
+                            "You cant loan the book " + item.getTitle() + "\nYou need to get a loaned card");
+                    loanedNotificationFail.setDuration(3000);
+                    loanedNotificationFail.setPosition(Notification.Position.MIDDLE);
+                    loanedNotificationFail.open();
+                    return;
+                }
 
             Notification loanedNotification = new Notification("You loaned the book \n" + item.getTitle());
             loanedNotification.setDuration(3000);
