@@ -96,6 +96,7 @@ public class LoanedBooks {
     public String toString() {
         return "LoanedBooks{" +
                 "id=" + id +
+                ", title='" + title +
                 ", loaned='" + loaned + '\'' +
                 ", expired=" + expired +
                 ", books_id_books=" + books_id_books +
