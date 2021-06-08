@@ -362,6 +362,12 @@ public class BookView extends Div {
             errorLoanedBookNotification(item);
         });
 
+        Button noCardButton = new Button ("Loan Book", editor -> {
+            loanedCardNotification(item, firstNamePersons, lastNamePersons);
+
+        });
+
+
         if (checkLoancard) {
             try {
                 if (!connectorMySQL.callcheck_loan(idPersons,item.getId()))
@@ -376,11 +382,10 @@ public class BookView extends Div {
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
-        }  else {
-            loanedCardNotification(item, firstNamePersons, lastNamePersons);
-
+        } else {
+            loanButton.addThemeVariants(ButtonVariant.LUMO_CONTRAST, ButtonVariant.LUMO_SMALL);
         }
-        return loanButton;
+        return noCardButton;
     }
 
     private void loanedCardNotification(Books item, String firstNamePersons, String lastNamePersons) {
