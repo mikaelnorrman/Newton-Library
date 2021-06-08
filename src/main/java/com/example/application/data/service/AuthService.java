@@ -93,6 +93,7 @@ public class AuthService {
             routes.add(new AuthorizedRoute(OPENING, opening, OpeningView.class));
             routes.add(new AuthorizedRoute(BOOKS,bookAdmin, BookView.class));
             routes.add(new AuthorizedRoute(SEMINARS,seminars, SeminarView.class));
+            routes.add(new AuthorizedRoute(LOANED_BOOKS_VIEW,loanedBooks, LoanedBooksView.class));
             routes.add(new AuthorizedRoute(LOGOUT, logout, LogoutView.class));
 
         } else if (role.equals(Role.ADMIN)) {
