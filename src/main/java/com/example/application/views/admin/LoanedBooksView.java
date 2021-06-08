@@ -8,10 +8,8 @@ import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.GridVariant;
 import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.server.VaadinSession;
-import org.vaadin.artur.helpers.CrudServiceDataProvider;
 
 @PageTitle("Loaned Books")
 @CssImport("./styles/views/admin/admin-view.css")
