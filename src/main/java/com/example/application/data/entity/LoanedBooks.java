@@ -11,6 +11,9 @@ public class LoanedBooks {
     @Column(name = "id_loaned")
     private Integer id;
 
+    @Column(name = "title")
+    private String title;
+
     @Column(name = "loaned")
     private String loaned;
 
@@ -20,8 +23,11 @@ public class LoanedBooks {
     @Column(name = "books_id_books")
     private Integer books_id_books;
 
+    @Column(name = "due_date")
+    private String dueDate;
+
     @Column(name = "users_id_users")
-    private Integer users_id_users;
+    private Integer userID;
 
     public LoanedBooks(){
     }
@@ -31,8 +37,9 @@ public class LoanedBooks {
             Integer books_id_books,
             Integer users_id_users,
             Integer expired) {
+
         this.books_id_books = books_id_books;
-        this.users_id_users = users_id_users;
+        this.userID = users_id_users;
         this.expired = expired;
     }
 
@@ -72,12 +79,18 @@ public class LoanedBooks {
     }
 
     public Integer getUsers_id_users() {
-        return users_id_users;
+        return userID;
     }
 
     public void setUsers_id_users(Integer users_id_users) {
-        this.users_id_users = users_id_users;
+        this.userID = users_id_users;
     }
+
+    public String getTitle(){return this.title;}
+
+    public String getDueDate (){return  this.dueDate;}
+
+    public void setDueDate (){this.dueDate = dueDate;}
 
     @Override
     public String toString() {
@@ -86,7 +99,8 @@ public class LoanedBooks {
                 ", loaned='" + loaned + '\'' +
                 ", expired=" + expired +
                 ", books_id_books=" + books_id_books +
-                ", users_id_users=" + users_id_users +
+                ", users_id_users=" + userID +
+                ", dueDate='" + dueDate +
                 '}';
     }
 }

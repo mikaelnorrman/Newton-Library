@@ -17,29 +17,27 @@ public class LoanedBooksView extends VerticalLayout {
 
     private Grid<LoanedBooks> grid;
     private LoanedBooksService loanedBooksService;
+    private final LoanedBooksRepository repository;
 
     public LoanedBooksView(LoanedBooksService loanedBooksService, LoanedBooksRepository loanedBooksRepository) {
         this.loanedBooksService = loanedBooksService;
-        grid = new Grid<>(LoanedBooks.class);
-        grid.setColumns("id", "loaned", "expired", "users_id_users");
-        grid.getColumns().forEach(column -> column.setAutoWidth(true));
-        grid.setDataProvider(new CrudServiceDataProvider<LoanedBooks,Void>(loanedBooksService));
+        this.repository = loanedBooksRepository;
+        this.grid = new Grid<>(LoanedBooks.class);
+
+        add(grid);
+        grid.setColumns("title", "loaned", "dueDate", "expired");
+        grid.getColumnByKey("title").setAutoWidth(true);
+        grid.getColumnByKey("loaned").setAutoWidth(true);
+        grid.getColumnByKey("expired").setAutoWidth(true);
+        grid.getColumnByKey("dueDate").setAutoWidth(true);
         grid.addThemeVariants(GridVariant.LUMO_NO_BORDER,
                 GridVariant.LUMO_NO_ROW_BORDERS, GridVariant.LUMO_ROW_STRIPES);
         grid.setHeightFull();
+        grid.setVisible(true);
+        listBooks(VaadinSession.getCurrent().getAttribute(Person.class).getIdPersons());
+    }
 
-
-        setId("loaned-books-view");
-        addClassName("loaned-books-view");
-        setSizeFull();
-
-        TextArea textArea = new TextArea();
-        textArea.setWidth("400px");
-
-
-        textArea.setValue("""
-               Här kommer vi se alla lånade böcker""");
-        add(textArea);
-
+    void listBooks(Integer id){
+        grid.setItems(repository.findByUserID(id));
     }
 }
