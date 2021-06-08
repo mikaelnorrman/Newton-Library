@@ -43,10 +43,10 @@ public class Person {
     private String socialSecurityNo;
 
     @Column(name="active_borrowed_books")
-    private Integer activeBorrowedBooks;
+    private String activeBorrowedBooks;
 
     @Column(name="total_borrowed_books")
-    private Integer totalBorrowedBooks;
+    private String totalBorrowedBooks;
 
     @Column(name="password")
     private String password;
@@ -72,9 +72,9 @@ public class Person {
                   String postal_code,
                   String city,
                   String socialSecurityNo,
-                  Integer activeBorrowedBooks,
-                  Integer totalBorrowedBooks,
                   String password,
+                  String activeBorrowedBooks,
+                  String totalBorrowedBooks,
                   Boolean loancard,
                   Role role)
     {
@@ -86,11 +86,11 @@ public class Person {
         this.postalCode = postal_code;
         this.city = city;
         this.socialSecurityNo = socialSecurityNo;
-        this.activeBorrowedBooks = activeBorrowedBooks;
-        this.totalBorrowedBooks = totalBorrowedBooks;
         this.password = password;
         this.loancard = loancard;
         this.roleId = role.getRole_id();
+        this.activeBorrowedBooks = activeBorrowedBooks;
+        this.totalBorrowedBooks = totalBorrowedBooks;
     }
 
     public Integer getIdPersons() {
@@ -151,11 +151,11 @@ public class Person {
     public String getSocialSecurityNo() { return socialSecurityNo; }
     public void setSocialSecurityNo(String socialSecurityNo) { this.socialSecurityNo = socialSecurityNo; }
 
-    public Integer getActiveBorrowedBooks() { return activeBorrowedBooks; }
-    public void setActiveBorrowedBooks(Integer activeBorrowedBooks) { this.activeBorrowedBooks = activeBorrowedBooks; }
+    public String getActiveBorrowedBooks() { return activeBorrowedBooks; }
+    public void setActiveBorrowedBooks(String activeBorrowedBooks) { this.activeBorrowedBooks = activeBorrowedBooks; }
 
-    public Integer getTotalBorrowedBooks() { return totalBorrowedBooks; }
-    public void setTotalBorrowedBooks(Integer totalBorrowedBooks) { this.totalBorrowedBooks = totalBorrowedBooks; }
+    public String getTotalBorrowedBooks() { return totalBorrowedBooks; }
+    public void setTotalBorrowedBooks(String totalBorrowedBooks) { this.totalBorrowedBooks = totalBorrowedBooks; }
 
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }
@@ -166,7 +166,6 @@ public class Person {
     public boolean checkPassword(String password) {
         //return true;
         return DigestUtils.sha1Hex(password).equals(this.password);
-
     }
 
 

@@ -88,7 +88,7 @@ public class AddPersonView extends VerticalLayout {
         //instantiate end edit new staff
         addPerson.addClickListener (e -> editor.
                 editPerson(new Person("","","","","",
-                        "","","",0,0,"",false, Role.USER)));
+                        "","","","","0","0",false, Role.USER)));
 
 
 
