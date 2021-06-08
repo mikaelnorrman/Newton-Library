@@ -51,6 +51,11 @@ public class BookSearchBlock extends AbstractSearchBlock<Books, BooksRepository>
         }
     }
 
+    @Override
+    public void refreshGrid() {
+        filterItems("", TITLE);
+    }
+
     public void itemDetails() {
         grid.setItemDetailsRenderer(TemplateRenderer.<Books>of(
                 "<div class='custom-details' style='border: 2px solid #1676f3; border-radius: 5px;"

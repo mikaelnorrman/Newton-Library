@@ -4,47 +4,52 @@ import com.example.application.data.entity.Books;
 import com.example.application.data.service.BooksRepository;
 import com.example.application.editors.BookEditor;
 import com.example.application.views.search.BookSearchBlock;
-import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.CssImport;
-import com.vaadin.flow.component.grid.Grid;
-import com.vaadin.flow.component.grid.GridVariant;
 import com.vaadin.flow.component.icon.VaadinIcon;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.textfield.TextField;
-import com.vaadin.flow.component.textfield.TextFieldVariant;
-import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.StringUtils;
 
 @PageTitle("Add BookView")
 @CssImport("./styles/views/admin/admin-view.css")
 public class AddBookView extends VerticalLayout {
-/*
-    private final BookSearchBlock visitorSearch;
+/**/
+    private final BookSearchBlock searchBlock;
     final BookEditor editor;
     private final Button addBook;
 
     @Autowired
     public AddBookView(BooksRepository repository) {
-        visitorSearch = new BookSearchBlock(Books.class, repository);
+        searchBlock = new BookSearchBlock(Books.class, repository);
+        this.editor = new BookEditor(repository);
 
-        visitorSearch.setFilterTitle("Filter by...");
-        visitorSearch.addFilters(BookSearchBlock.TITLE, BookSearchBlock.AUTHOR, BookSearchBlock.GENRE,BookSearchBlock.PUBLISHER,  BookSearchBlock.ISBN);
+        searchBlock.setFilterTitle("Filter by...");
+        searchBlock.addFilters(BookSearchBlock.TITLE, BookSearchBlock.AUTHOR, BookSearchBlock.GENRE,BookSearchBlock.PUBLISHER,  BookSearchBlock.ISBN);
 
-        visitorSearch.setColumns("id", "title", "description", "genre", "author", "ages",
+        searchBlock.setColumns("id", "title", "description", "genre", "author", "ages",
                 "physicalAmount", "eBook", "price", "physicalActiveBorrowed", "eActiveBorrowed",
                 "totalAmountBorrowed", "shelf", "section", "isbn", "publisher", "isActive");
-        visitorSearch.getGrid().getColumnByKey("id").setWidth("50px").setFlexGrow(0);
-        visitorSearch.getGrid().getColumnByKey("description").setWidth("150px").setFlexGrow(0);
+        searchBlock.getGrid().getColumnByKey("id").setWidth("50px").setFlexGrow(0);
+        searchBlock.getGrid().getColumnByKey("description").setWidth("150px").setFlexGrow(0);
 
         this.addBook = new Button("New book", VaadinIcon.PLUS.create());
+        searchBlock.getFilterLayout().add(addBook);
+        addBook.addClickListener (e -> editor.
+                editBook(new Books("","","","","",
+                        "","","", "","",
+                        "","","","","",
+                        "")));
 
-        this.add(visitorSearch);
+        this.add(searchBlock, editor);
+
+        searchBlock.getGrid().asSingleSelect().addValueChangeListener(e ->  editor.editBook(e.getValue()));
+        editor.setChangeHandler(() -> {
+            editor.setVisible(false);
+            searchBlock.refreshGrid();
+        });
     }
-/**/
+/* * /
     private final BooksRepository repository;
     final BookEditor editor;
     final Grid<Books> grid;
