@@ -51,7 +51,7 @@ public class BookSearchBlock extends AbstractSearchBlock<Books, BooksRepository>
         }
     }
 
-    protected void itemDetails() {
+    public void itemDetails() {
         grid.setItemDetailsRenderer(TemplateRenderer.<Books>of(
                 "<div class='custom-details' style='border: 2px solid #1676f3; border-radius: 5px;"
                     + " padding: 10px 15px; width: 100%; box-sizing: border-box;'>"

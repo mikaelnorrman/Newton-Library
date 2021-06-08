@@ -2,7 +2,6 @@ package com.example.application.views.search;
 
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.GridVariant;
-import com.vaadin.flow.component.grid.editor.Editor;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -49,17 +48,13 @@ public abstract class AbstractSearchBlock<S, T extends JpaRepository<S, Integer>
     protected abstract void filterItems(String filterText, String choice);
 
     public void buildFilters() {
-        filterLayout.removeAll();
+        //filterLayout.removeAll();
         if (filters.isEmpty()) return;
 
         filterHead.add(filterTitle);
         filterLayout.add(filterHead);
         filters.forEach(filterLayout::add);
         filterLayout.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
-    }
-
-    public Editor<S> getGridEditor() {
-        return grid.getEditor();
     }
 
     public String getFilterTitle() {
@@ -70,4 +65,11 @@ public abstract class AbstractSearchBlock<S, T extends JpaRepository<S, Integer>
         this.filterTitle = filterTitle;
     }
 
+    public Grid<S> getGrid() {
+        return this.grid;
+    }
+
+    public HorizontalLayout getFilterLayout() {
+        return this.filterLayout;
+    }
 }

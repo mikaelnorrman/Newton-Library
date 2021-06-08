@@ -3,6 +3,7 @@ package com.example.application.views.admin;
 import com.example.application.data.entity.Books;
 import com.example.application.data.service.BooksRepository;
 import com.example.application.editors.BookEditor;
+import com.example.application.views.search.BookSearchBlock;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.CssImport;
@@ -21,7 +22,29 @@ import org.springframework.util.StringUtils;
 @PageTitle("Add BookView")
 @CssImport("./styles/views/admin/admin-view.css")
 public class AddBookView extends VerticalLayout {
+/*
+    private final BookSearchBlock visitorSearch;
+    final BookEditor editor;
+    private final Button addBook;
 
+    @Autowired
+    public AddBookView(BooksRepository repository) {
+        visitorSearch = new BookSearchBlock(Books.class, repository);
+
+        visitorSearch.setFilterTitle("Filter by...");
+        visitorSearch.addFilters(BookSearchBlock.TITLE, BookSearchBlock.AUTHOR, BookSearchBlock.GENRE,BookSearchBlock.PUBLISHER,  BookSearchBlock.ISBN);
+
+        visitorSearch.setColumns("id", "title", "description", "genre", "author", "ages",
+                "physicalAmount", "eBook", "price", "physicalActiveBorrowed", "eActiveBorrowed",
+                "totalAmountBorrowed", "shelf", "section", "isbn", "publisher", "isActive");
+        visitorSearch.getGrid().getColumnByKey("id").setWidth("50px").setFlexGrow(0);
+        visitorSearch.getGrid().getColumnByKey("description").setWidth("150px").setFlexGrow(0);
+
+        this.addBook = new Button("New book", VaadinIcon.PLUS.create());
+
+        this.add(visitorSearch);
+    }
+/**/
     private final BooksRepository repository;
     final BookEditor editor;
     final Grid<Books> grid;
@@ -162,4 +185,6 @@ public class AddBookView extends VerticalLayout {
             }
         }
     }
+
+ /**/
 }
