@@ -76,7 +76,7 @@ public class AuthService {
         /**
          * HÄr sätter vi namnen på flikarna i menyen.
          */
-        var opening = "Opening";
+        var opening = "Open hours";
         var logout = "Logout";
         var userAdmin = "Users";
         var admin = "Admin";
