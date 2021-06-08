@@ -11,7 +11,6 @@ import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.dependency.JsModule;
-import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
@@ -55,8 +54,8 @@ public class MainViewLayout extends AppLayout {
         layout.add(new DrawerToggle());
         viewTitle = new H1();
         layout.add(viewTitle);
-        layout.add(new H3(VaadinSession.getCurrent().getAttribute(Person.class).getFirstName()));
-        layout.add(new H3(VaadinSession.getCurrent().getAttribute(Person.class).getLastName()));
+        layout.add(new H1(VaadinSession.getCurrent().getAttribute(Person.class).getFirstName()));
+        layout.add(new H1(VaadinSession.getCurrent().getAttribute(Person.class).getLastName()));
         layout.add(new Image("images/user.svg", "Avatar"));
         return layout;
     }
