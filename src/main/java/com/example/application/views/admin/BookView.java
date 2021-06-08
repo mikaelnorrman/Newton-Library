@@ -36,7 +36,7 @@ import java.util.Optional;
 @CssImport("./styles/views/admin/admin-view.css")
 public class BookView extends Div {
 
-    ConnectorMySQL connectorMySQL;
+    ConnectorMySQL connectorMySQL = new ConnectorMySQL();
     final LoanedBookEditor loanedBookEditor;
     public static final String TITLE_IN_SET_ATTRIBUTE = "Title";
     public static final String NUMBERS_ONLY = "Numbers only. 0,1,2,3,4,5,6,7,8,9";
@@ -353,41 +353,44 @@ public class BookView extends Div {
 
             if (checkLoancard) {
                 try {
-                    if (!connectorMySQL.callcheck_loan(idPersons,item.getId())) {
-
+                    if (!connectorMySQL.callcheck_loan(idPersons,item.getId()))
+                    {
                         Integer idOfBooks = item.getId();
                         item.getTitle();
                         item.getId();
 
-
                         loanedBookEditor.saveLoaned(new LoanedBooks(idOfBooks, idPersons, 0));
-                    }
-                } catch (SQLException throwables) {
+
+                        Notification loanedNotification = new Notification("You loaned the book \n" + item.getTitle());
+                        loanedNotification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
+                        loanedNotification.setDuration(4500);
+                        loanedNotification.setPosition(Notification.Position.MIDDLE);
+                        loanedNotification.open();
+                    } else {
+                        Notification noNotification = new Notification("You already loaned the book \n" + item.getTitle());
+                        noNotification.addThemeVariants(NotificationVariant.LUMO_ERROR);
+                        noNotification.setDuration(4500);
+                        noNotification.setPosition(Notification.Position.MIDDLE);
+                        noNotification.open(); }
+                    } catch (SQLException throwables) {
                     throwables.printStackTrace();
                 }
 
             } else {
-                    Notification loanedNotificationFail = new Notification(firstNamePersons + " " + lastNamePersons +
+                Notification loanedNotificationFail = new Notification(firstNamePersons + " " + lastNamePersons +
                             "\nYou cant loan the book " + item.getTitle() + "\nYou need to get a loaned card");
-                    loanedNotificationFail.addThemeVariants(NotificationVariant.LUMO_ERROR);
-                    loanedNotificationFail.setDuration(5000);
-                    loanedNotificationFail.setPosition(Notification.Position.MIDDLE);
-                    loanedNotificationFail.open();
-                    return;
-                }
+                loanedNotificationFail.addThemeVariants(NotificationVariant.LUMO_ERROR);
+                loanedNotificationFail.setDuration(4500);
+                loanedNotificationFail.setPosition(Notification.Position.MIDDLE);
+                loanedNotificationFail.open();
+                return;
+            }
 
-            Notification loanedNotification = new Notification("You loaned the book \n" + item.getTitle());
-            loanedNotification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
-            loanedNotification.setDuration(5000);
-            loanedNotification.setPosition(Notification.Position.MIDDLE);
-            loanedNotification.open();
         });
 
         loanedButton.setDisableOnClick(true);
         loanedButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY, ButtonVariant.LUMO_SMALL);
         return loanedButton;
     }
-
-
 
 }

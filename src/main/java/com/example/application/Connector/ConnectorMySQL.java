@@ -2,9 +2,10 @@ package com.example.application.Connector;
 
 import java.sql.*;
 
-public abstract class ConnectorMySQL implements Connector {
+public class ConnectorMySQL implements Connector {
 
     private Connection connection;
+
 
     public ConnectorMySQL() {
         try {
@@ -32,6 +33,7 @@ public abstract class ConnectorMySQL implements Connector {
             stmt.setInt(1, usersID);
             stmt.setInt(2, bookID);
             stmt.registerOutParameter(3, Types.BOOLEAN);
+            stmt.execute();
             boolVal = stmt.getInt(3);
 
         }
