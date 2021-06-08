@@ -29,10 +29,11 @@ public class SeminarView extends Div {
         this.seminarsRepository = seminarsRepository;
 
         add(grid);
-        grid.setColumns("name", "presenter", "description", "length");
+        grid.setColumns("name", "presenter", "description", "length", "dateTime");
         grid.getColumnByKey("name").setAutoWidth(true);
         grid.getColumnByKey("presenter").setAutoWidth(true);
         grid.getColumnByKey("length").setAutoWidth(true);
+        grid.getColumnByKey("dateTime").setAutoWidth(true);
         grid.getColumnByKey("description").setWidth("150px").setFlexGrow(0);
         //grid.getColumns().forEach(column -> column.setAutoWidth(true));
         //grid.setDataProvider(new CrudServiceDataProvider<Seminars, Void>(seminarService));

@@ -65,7 +65,8 @@ public class MainViewLayout extends AppLayout {
         layout.setSizeFull();
         layout.setPadding(false);
         layout.setSpacing(false);
-        layout.getThemeList().set("spacing-s", true);
+        //layout.getThemeList().set("spacing-s", true);
+        layout.getThemeList().set("dark", true);
         layout.setAlignItems(FlexComponent.Alignment.STRETCH);
         HorizontalLayout logoLayout = new HorizontalLayout();
         logoLayout.setId("logo");
