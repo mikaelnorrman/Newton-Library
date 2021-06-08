@@ -346,45 +346,51 @@ public class BookView extends Div {
 
     private Button createLoanButton(Grid<Books> grid, Books item) {
         boolean checkLoancard = VaadinSession.getCurrent().getAttribute(Person.class).getLoancard() == true; // koll så att användaren har ett lånekort.
+        Integer idPersons = VaadinSession.getCurrent().getAttribute(Person.class).getIdPersons();       // hämta ut inloggade personens id.
+        String firstNamePersons = VaadinSession.getCurrent().getAttribute(Person.class).getFirstName(); // hämta ut inloggade personens fistName.
+        String lastNamePersons = VaadinSession.getCurrent().getAttribute(Person.class).getLastName();   // hämta ut inloggade personens lastName.
 
-        Button loanedButton = new Button("Loan book",  editor  -> {
-            Integer idPersons = VaadinSession.getCurrent().getAttribute(Person.class).getIdPersons();       // hämta ut inloggade personens id.
-            String firstNamePersons = VaadinSession.getCurrent().getAttribute(Person.class).getFirstName(); // hämta ut inloggade personens fistName.
-            String lastNamePersons = VaadinSession.getCurrent().getAttribute(Person.class).getLastName();   // hämta ut inloggade personens lastName.
-
-            if (checkLoancard) {
-                try {
-                    if (!connectorMySQL.callcheck_loan(idPersons,item.getId()))
-                    {
-                        Integer idOfBooks = item.getId();
-                        item.getTitle();
-                        item.getId();
-
-                        loanedBookEditor.saveLoaned(new LoanedBooks(idOfBooks, idPersons, 0));
-
-                        successLoanedBookNotification(item);
-
-                    } else {
-
-                        errorLoanedBookNotification(item);
-                    }
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
-            } else {
-                loanedCardNotification(item, firstNamePersons, lastNamePersons);
-                return;
-            }
+        Button loanButton = new Button("Loan book",  editor  -> {
+            Integer idOfBooks = item.getId();
+            item.getTitle();
+            item.getId();
+            loanedBookEditor.saveLoaned(new LoanedBooks(idOfBooks, idPersons, 0));
+            successLoanedBookNotification(item);
         });
 
-        loanedButton.setDisableOnClick(true);
-        loanedButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY, ButtonVariant.LUMO_SMALL);
-        return loanedButton;
+        Button loanedButton = new Button ("Book loaned", editor -> {
+            errorLoanedBookNotification(item);
+        });
+
+        Button noCardButton = new Button ("Loan Book", editor -> {
+            loanedCardNotification(item, firstNamePersons, lastNamePersons);
+
+        });
+
+
+        if (checkLoancard) {
+            try {
+                if (!connectorMySQL.callcheck_loan(idPersons,item.getId()))
+                {
+                    loanButton.setDisableOnClick(true);
+                    loanButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY, ButtonVariant.LUMO_SMALL);
+                    return loanButton;
+                } else {
+                    loanedButton.addThemeVariants(ButtonVariant.LUMO_ERROR, ButtonVariant.LUMO_SMALL);
+                    return loanedButton;
+                }
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        } else {
+            loanButton.addThemeVariants(ButtonVariant.LUMO_CONTRAST, ButtonVariant.LUMO_SMALL);
+        }
+        return noCardButton;
     }
 
     private void loanedCardNotification(Books item, String firstNamePersons, String lastNamePersons) {
         Notification loanedCardNotificationFail = new Notification(firstNamePersons + " " + lastNamePersons +
-                "\nYou cant loan the book " + item.getTitle() + "\nYou need to get a loaned card");
+                "\nYou cant loan the book " + item.getTitle() + "\nYou need to get a loan card");
         loanedCardNotificationFail.addThemeVariants(NotificationVariant.LUMO_ERROR);
         loanedCardNotificationFail.setDuration(DURATION_NOTIFICATION);
         loanedCardNotificationFail.setPosition(Notification.Position.MIDDLE);
