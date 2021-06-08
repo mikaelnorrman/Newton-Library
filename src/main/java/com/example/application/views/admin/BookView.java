@@ -36,6 +36,7 @@ import java.util.Optional;
 @CssImport("./styles/views/admin/admin-view.css")
 public class BookView extends Div {
 
+    public static final int DURATION_NOTIFICATION = 4500;
     ConnectorMySQL connectorMySQL = new ConnectorMySQL();
     final LoanedBookEditor loanedBookEditor;
     public static final String TITLE_IN_SET_ATTRIBUTE = "Title";
@@ -361,36 +362,49 @@ public class BookView extends Div {
 
                         loanedBookEditor.saveLoaned(new LoanedBooks(idOfBooks, idPersons, 0));
 
-                        Notification loanedNotification = new Notification("You loaned the book \n" + item.getTitle());
-                        loanedNotification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
-                        loanedNotification.setDuration(4500);
-                        loanedNotification.setPosition(Notification.Position.MIDDLE);
-                        loanedNotification.open();
+                        successLoanedBookNotification(item);
+
                     } else {
-                        Notification noNotification = new Notification("You already loaned the book \n" + item.getTitle());
-                        noNotification.addThemeVariants(NotificationVariant.LUMO_ERROR);
-                        noNotification.setDuration(4500);
-                        noNotification.setPosition(Notification.Position.MIDDLE);
-                        noNotification.open(); }
-                    } catch (SQLException throwables) {
+
+                        errorLoanedBookNotification(item);
+                    }
+                } catch (SQLException throwables) {
                     throwables.printStackTrace();
                 }
-
             } else {
-                Notification loanedNotificationFail = new Notification(firstNamePersons + " " + lastNamePersons +
-                            "\nYou cant loan the book " + item.getTitle() + "\nYou need to get a loaned card");
-                loanedNotificationFail.addThemeVariants(NotificationVariant.LUMO_ERROR);
-                loanedNotificationFail.setDuration(4500);
-                loanedNotificationFail.setPosition(Notification.Position.MIDDLE);
-                loanedNotificationFail.open();
+                loanedCardNotification(item, firstNamePersons, lastNamePersons);
                 return;
             }
-
         });
 
         loanedButton.setDisableOnClick(true);
         loanedButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY, ButtonVariant.LUMO_SMALL);
         return loanedButton;
+    }
+
+    private void loanedCardNotification(Books item, String firstNamePersons, String lastNamePersons) {
+        Notification loanedCardNotificationFail = new Notification(firstNamePersons + " " + lastNamePersons +
+                "\nYou cant loan the book " + item.getTitle() + "\nYou need to get a loaned card");
+        loanedCardNotificationFail.addThemeVariants(NotificationVariant.LUMO_ERROR);
+        loanedCardNotificationFail.setDuration(DURATION_NOTIFICATION);
+        loanedCardNotificationFail.setPosition(Notification.Position.MIDDLE);
+        loanedCardNotificationFail.open();
+    }
+
+    private void errorLoanedBookNotification(Books item) {
+        Notification errorLoanedBookNotification = new Notification("You already loaned the book \n" + item.getTitle());
+        errorLoanedBookNotification.addThemeVariants(NotificationVariant.LUMO_ERROR);
+        errorLoanedBookNotification.setDuration(DURATION_NOTIFICATION);
+        errorLoanedBookNotification.setPosition(Notification.Position.MIDDLE);
+        errorLoanedBookNotification.open();
+    }
+
+    private void successLoanedBookNotification (Books item) {
+        Notification successLoanedBookNotification = new Notification("You loaned the book \n" + item.getTitle());
+        successLoanedBookNotification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
+        successLoanedBookNotification.setDuration(DURATION_NOTIFICATION);
+        successLoanedBookNotification.setPosition(Notification.Position.MIDDLE);
+        successLoanedBookNotification.open();
     }
 
 }
