@@ -100,7 +100,7 @@ public class SearchView extends Div {
         publisher.setValueChangeMode(ValueChangeMode.EAGER);
         publisher.addValueChangeListener(e->listBooks(e.getValue(), 4));
 
-        back.addClickListener(e -> UI.getCurrent().navigate(""));
+        back.addClickListener(e -> UI.getCurrent().navigate("opening"));
 
         listBooks(null,1);
     }
