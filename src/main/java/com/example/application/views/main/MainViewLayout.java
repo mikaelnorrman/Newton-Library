@@ -1,7 +1,5 @@
 package com.example.application.views.main;
 
-import java.util.Optional;
-
 import com.example.application.data.entity.Person;
 import com.example.application.data.service.AuthService;
 import com.example.application.views.login.LoginView;
@@ -11,8 +9,8 @@ import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.dependency.JsModule;
-import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.H1;
+import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -22,6 +20,8 @@ import com.vaadin.flow.component.tabs.TabsVariant;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.server.VaadinSession;
+
+import java.util.Optional;
 
 /**
  * The main view is a top-level placeholder for other views.
@@ -70,9 +70,9 @@ public class MainViewLayout extends AppLayout {
         layout.setAlignItems(FlexComponent.Alignment.STRETCH);
         HorizontalLayout logoLayout = new HorizontalLayout();
         logoLayout.setId("logo");
-        logoLayout.setAlignItems(FlexComponent.Alignment.CENTER);
         logoLayout.add(new Image("images/logo.png", "Libsys logo"));
         logoLayout.add(new H1("Libsys - Office Space"));
+        logoLayout.setAlignItems(FlexComponent.Alignment.CENTER);
         layout.add(logoLayout, menu);
         return layout;
     }
