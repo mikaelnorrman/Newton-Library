@@ -8,7 +8,6 @@ import com.example.application.data.service.BookService;
 import com.example.application.data.service.BooksRepository;
 import com.example.application.data.service.LoanedBooksRepository;
 import com.example.application.editors.LoanedBookEditor;
-import com.example.application.views.search.AbstractSearchBlock;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.dependency.CssImport;
@@ -17,6 +16,7 @@ import com.vaadin.flow.component.grid.GridVariant;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.notification.NotificationVariant;
+import com.vaadin.flow.data.renderer.TemplateRenderer;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.server.VaadinSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,22 +49,21 @@ public class BookView extends Div {
         grid = new Grid<>(Books.class);
 
         add(grid);
-        grid.setColumns("title", "genre", "description", "author", "section", "shelf");
+        grid.setColumns("title", "genre", "author", "section", "shelf");
         //grid.getColumns().forEach(column -> column.setAutoWidth(true));
         grid.getColumnByKey("title").setAutoWidth(true);
         grid.getColumnByKey("genre").setAutoWidth(true);
         grid.getColumnByKey("author").setAutoWidth(true);
         grid.getColumnByKey("section").setAutoWidth(true);
         grid.getColumnByKey("shelf").setAutoWidth(true);
-        grid.getColumnByKey("description").setWidth("150px").setFlexGrow(0);
+        //grid.getColumnByKey("description").setWidth("150px").setFlexGrow(0);
         grid.addComponentColumn(Book -> createLoanButton(grid, Book));
         grid.setDataProvider(new CrudServiceDataProvider<Books, Void>(bookService));
         grid.addThemeVariants(GridVariant.LUMO_NO_BORDER,
                 GridVariant.LUMO_NO_ROW_BORDERS, GridVariant.LUMO_ROW_STRIPES);
         grid.setHeightFull();
         grid.setVisible(true);
-        grid.item
-
+        itemDetails();
     }
 
 
@@ -138,6 +137,34 @@ public class BookView extends Div {
         successLoanedBookNotification.setDuration(DURATION_NOTIFICATION);
         successLoanedBookNotification.setPosition(Notification.Position.MIDDLE);
         successLoanedBookNotification.open();
+    }
+    private void itemDetails() {
+        grid.setItemDetailsRenderer(TemplateRenderer.<Books>of(
+                "<div class='custom-details' style='border: 2px solid #1676f3; border-radius: 5px;"
+                        + " padding: 10px 15px; width: 100%; box-sizing: border-box;'>"
+                        + "<div>"
+                        + "<H3 style='margin: 0 0 0.25em;'>[[item.title]]</H3>"
+                        + "<H4 style='margin: 0 0 0.75em; font-style: italic; font-weight: 400;'>[[item.author]]</H4>"
+                        + "<p style='margin: 0 0 0.75em;'>[[item.description]]</p>"
+                        + "<div style='display: flex; flex-flow: row wrap; /*justify-content: space-between;*/'>"
+                        + "<span style='margin-right: 1.75em; min-width: 150px;'>Publisher: <b>[[item.publisher]]</b></span>"
+                        + "<span style='margin-right: 1.75em; min-width: 150px;'>ISBN: <b>[[item.isbn]]</b></span>"
+                        + "<span style='margin-right: 1.75em; min-width: 150px;'>Books available: <b>[[item.available]]</b></span>"
+                        + "</div>"
+                        + "</div>"
+                        + "</div>")
+                .withProperty("title", Books::getTitle)
+                .withProperty("author", Books::getAuthor)
+                .withProperty("description", Books::getDescription)
+                .withProperty("publisher", Books::getPublisher)
+                .withProperty("isbn", Books::getIsbn)
+                .withProperty("available", Books::getPhysicalAvailableBooks)
+                .withEventHandler("handleClick", books -> {
+                    grid.getDataProvider().refreshItem(books);
+                }));
+
+        grid.setDetailsVisibleOnClick(true);
+        //grid.addColumn(new NativeButtonRenderer<>("Details", item -> grid.setDetailsVisible(item, !grid.isDetailsVisible(item))));
     }
 
 }
