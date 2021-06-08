@@ -1,6 +1,8 @@
 package com.example.application.data.entity;
 
 
+import org.apache.commons.codec.digest.DigestUtils;
+
 import javax.persistence.*;
 import javax.annotation.Nullable;
 
@@ -13,33 +15,47 @@ public class Person {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_persons;
+    @Column(name="id_persons")
+    private Integer idPersons;
 
+    @Column(name="first_name")
     private String firstName;
 
+    @Column(name="last_name")
     private String lastName;
 
+    @Column(name="email")
     private String email;
 
+    @Column(name="phone")
     private String phone;
 
+    @Column(name="street")
     private String street;
 
-    private String postal_code;
+    @Column(name="postal_code")
+    private String postalCode;
 
+    @Column(name="city")
     private String city;
 
-    private String social_security_no;
+    @Column(name="social_security_no")
+    private String socialSecurityNo;
 
-    private String active_borrowed_books;
+    @Column(name="active_borrowed_books")
+    private String activeBorrowedBooks;
 
-    private String total_borrowed_books;
+    @Column(name="total_borrowed_books")
+    private String totalBorrowedBooks;
 
+    @Column(name="password")
     private String password;
 
+    @Column(name="loancard")
     private Boolean loancard;
 
-    private int role_id;
+    @Column(name="role_id")
+    private int roleId;
 
 
     @Transient
@@ -55,7 +71,7 @@ public class Person {
                   String street,
                   String postal_code,
                   String city,
-                  String social_security_no,
+                  String socialSecurityNo,
                   String password,
                   Boolean loancard,
                   Role role)
@@ -65,19 +81,20 @@ public class Person {
         this.email = email;
         this.phone = phone;
         this.street = street;
-        this.postal_code = postal_code;
+        this.postalCode = postal_code;
         this.city = city;
-        this.social_security_no = social_security_no;
+        this.socialSecurityNo = socialSecurityNo;
+        this.password = password;
         this.loancard = loancard;
-        this.role_id = role.getRole_id();
+        this.roleId = role.getRole_id();
     }
 
-    public Integer getId_persons() {
-        return id_persons;
+    public Integer getIdPersons() {
+        return idPersons;
     }
 
-    public void setId_persons(Integer id_persons) {
-        this.id_persons = id_persons;
+    public void setIdPersons(Integer idPersons) {
+        this.idPersons = idPersons;
     }
 
     public Role getRole() throws NoSuchElementException {
@@ -87,6 +104,7 @@ public class Person {
         return role;
     }
 
+    //TODO -> kolla om de skall vara NotNUll??
     public void setRole(@Nullable Role role) {
         if ( role == null ) {
             determineRole();
@@ -96,12 +114,12 @@ public class Person {
     }
 
     private void determineRole() throws NoSuchElementException {
-        this.role = Stream.of(Role.values()).filter(r -> r.getRole_id() == this.role_id).findFirst().get();
+        this.role = Stream.of(Role.values()).filter(r -> r.getRole_id() == this.roleId).findFirst().get();
     }
 
-    public int getRole_id() { return role_id; }
-    public void setRole_id(int id_user_role) throws NoSuchElementException {
-        this.role_id = id_user_role;
+    public int getRoleId() { return roleId; }
+    public void setRoleId(int id_user_role) throws NoSuchElementException {
+        this.roleId = id_user_role;
         determineRole();
     }
 
@@ -120,20 +138,20 @@ public class Person {
     public String getStreet() { return street; }
     public void setStreet(String street) { this.street = street; }
 
-    public String getPostal_code() { return postal_code; }
-    public void setPostal_code(String postal_code) { this.postal_code = postal_code; }
+    public String getPostalCode() { return postalCode; }
+    public void setPostalCode(String postalCode) { this.postalCode = postalCode; }
 
     public String getCity() { return city; }
     public void setCity(String city) { this.city = city; }
 
-    public String getSocial_security_no() { return social_security_no; }
-    public void setSocial_security_no(String social_security_no) { this.social_security_no = social_security_no; }
+    public String getSocialSecurityNo() { return socialSecurityNo; }
+    public void setSocialSecurityNo(String socialSecurityNo) { this.socialSecurityNo = socialSecurityNo; }
 
-    public String getActive_borrowed_books() { return active_borrowed_books; }
-    public void setActive_borrowed_books(String active_borrowed_books) { this.active_borrowed_books = active_borrowed_books; }
+    public String getActiveBorrowedBooks() { return activeBorrowedBooks; }
+    public void setActiveBorrowedBooks(String activeBorrowedBooks) { this.activeBorrowedBooks = activeBorrowedBooks; }
 
-    public String getTotal_borrowed_books() { return total_borrowed_books; }
-    public void setTotal_borrowed_books(String total_borrowed_books) { this.total_borrowed_books = total_borrowed_books; }
+    public String getTotalBorrowedBooks() { return totalBorrowedBooks; }
+    public void setTotalBorrowedBooks(String totalBorrowedBooks) { this.totalBorrowedBooks = totalBorrowedBooks; }
 
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }
@@ -142,7 +160,10 @@ public class Person {
     public void setLoancard(Boolean loancard) { this.loancard = loancard; }
 
     public boolean checkPassword(String password) {
-        return true; //FIXME
+        //return true;
+        return DigestUtils.sha1Hex(password).equals(this.password);
+
+        //FIXME
         //TODO: Implementera lösenordskontroll.
     }
 

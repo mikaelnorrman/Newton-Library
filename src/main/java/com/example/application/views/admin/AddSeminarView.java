@@ -5,6 +5,7 @@ import com.example.application.data.service.SeminarsRepository;
 import com.example.application.editors.SeminarEditor;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.GridVariant;
@@ -52,7 +53,10 @@ public class AddSeminarView extends VerticalLayout {
         this.filterPresenter.setPrefixComponent(VaadinIcon.SEARCH.create());
 
         this.addSeminar = new Button("New seminar", VaadinIcon.PLUS.create());
+        this.addSeminar.addThemeVariants(ButtonVariant.LUMO_SMALL);
+
         this.back = new Button("Back", VaadinIcon.HOME.create());
+        this.back.addThemeVariants(ButtonVariant.LUMO_SMALL);
 
         //Build layout
         var actions = new HorizontalLayout(filterName, filterPresenter, addSeminar, back);
@@ -60,7 +64,7 @@ public class AddSeminarView extends VerticalLayout {
         actions.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
 
         grid.setHeight("400px");
-        grid.setColumns("id_seminar", "name", "presenter", "description", "length", "seats_booked", "date_time",
+        grid.setColumns("id_seminar", "name", "presenter", "description", "length", "seatsBooked", "dateTime",
                  "active");
         grid.getColumnByKey("id_seminar").setWidth("50px").setFlexGrow(0);
         grid.addThemeVariants(GridVariant.LUMO_NO_BORDER,

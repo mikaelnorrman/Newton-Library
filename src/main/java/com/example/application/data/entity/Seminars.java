@@ -24,10 +24,10 @@ public class Seminars {
     private String length;
 
     @Column(name="seats_booked")
-    private String seats_booked;
+    private String seatsBooked;
 
     @Column(name="date_time")
-    private Date date_time;
+    private Date dateTime;
 
     @Column(name="active")
     private String active;
@@ -40,16 +40,16 @@ public class Seminars {
                     String presenter,
                     String description,
                     String length,
-                    String seats_booked,
-                    Date date_time,
+                    String seatsBooked,
+                    Date dateTime,
                     String active
                     ) {
         this.name = name;
         this.presenter = presenter;
         this.description = description;
         this.length = length;
-        this.seats_booked = seats_booked;
-        this.date_time = date_time;
+        this.seatsBooked = seatsBooked;
+        this.dateTime = dateTime;
         this.active = active;
     }
 
@@ -89,20 +89,20 @@ public class Seminars {
         this.length = length;
     }
 
-    public String getSeats_booked() {
-        return seats_booked;
+    public String getSeatsBooked() {
+        return seatsBooked;
     }
 
-    public void setSeats_booked(String seats_booked) {
-        this.seats_booked = seats_booked;
+    public void setSeatsBooked(String seatsBooked) {
+        this.seatsBooked = seatsBooked;
     }
 
-    public Date getDate_time() {
-        return date_time;
+    public Date getDateTime() {
+        return dateTime;
     }
 
-    public void setDate_time(Date date_time) {
-        this.date_time = date_time;
+    public void setDateTime(Date dateTime) {
+        this.dateTime = dateTime;
     }
 
 
@@ -123,8 +123,8 @@ public class Seminars {
                 ", presenter='" + presenter + '\'' +
                 ", description='" + description + '\'' +
                 ", length=" + length +
-                ", seats_booked=" + seats_booked +
-                ", date_time=" + date_time +
+                ", seats_booked=" + seatsBooked +
+                ", date_time=" + dateTime +
                 ", active=" + active +
                 '}';
     }

@@ -1,16 +1,15 @@
 package com.example.application.Connector;
 
-import com.example.application.data.entity.Books;
-import org.joda.time.DateTime;
-
-import java.sql.Date;
 import java.sql.SQLException;
-import java.sql.Time;
-import java.util.Optional;
+
 
 public interface Connector {
 
+    public Boolean callcheck_loan(Integer usersID, Integer bookID) throws SQLException;
+
+    /*
     Optional <Books> getBook(String firstName);
+
 
     void callAddBook(String title, String description, String genre, String author, String for_ages,
                      String physical_amount, String e_book, String price, String shelf, String section,
@@ -26,4 +25,7 @@ public interface Connector {
     void callDeleteUser(int userID) throws SQLException;
     void callUpdateSeminar(int seminarID, String name, String presenter, String description, Time lenght, Date dateTime,
                            boolean active) throws SQLException;
+    void callcheckLoan(int usersID, int bookID) throws SQLException;
+
+     */
 }

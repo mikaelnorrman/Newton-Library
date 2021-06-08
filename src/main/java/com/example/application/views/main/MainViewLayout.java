@@ -4,12 +4,14 @@ import java.util.Optional;
 
 import com.example.application.data.entity.Person;
 import com.example.application.data.service.AuthService;
+import com.example.application.views.login.LoginView;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.ComponentUtil;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.dependency.JsModule;
+import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
@@ -48,11 +50,13 @@ public class MainViewLayout extends AppLayout {
         layout.setId("header");
         layout.getThemeList().set("dark", true);
         layout.setWidthFull();
-        layout.setSpacing(false);
+        layout.setSpacing(true);
         layout.setAlignItems(FlexComponent.Alignment.CENTER);
         layout.add(new DrawerToggle());
         viewTitle = new H1();
         layout.add(viewTitle);
+        layout.add(new H3(VaadinSession.getCurrent().getAttribute(Person.class).getFirstName()));
+        layout.add(new H3(VaadinSession.getCurrent().getAttribute(Person.class).getLastName()));
         layout.add(new Image("images/user.svg", "Avatar"));
         return layout;
     }
@@ -84,6 +88,7 @@ public class MainViewLayout extends AppLayout {
 
     private Component[] createMenuItems() {
         var user = VaadinSession.getCurrent().getAttribute(Person.class);
+        if (user == null) return new Component[]{createTab("Log in", LoginView.class)};
         return authService.getAuthorizedRoutes(user.getRole()).stream()
                 .map(r -> createTab(r.name(), r.view()))
                 .toArray(Component[]::new);
