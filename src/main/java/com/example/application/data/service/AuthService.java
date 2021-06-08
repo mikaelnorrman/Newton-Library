@@ -113,7 +113,6 @@ public class AuthService {
             routes.add(new AuthorizedRoute(LOANED_BOOKS_VIEW,loanedBooks, LoanedBooksView.class));
             routes.add(new AuthorizedRoute(SEMINARS,seminars, SeminarView.class));
             routes.add(new AuthorizedRoute(ADD_SEMINAR_VIEW,addSeminars, AddSeminarView.class));
-            routes.add(new AuthorizedRoute(ADMIN, userAdmin, PersonView.class));
             routes.add(new AuthorizedRoute(PERSONS,persons, AddPersonView.class));
             routes.add(new AuthorizedRoute(LOGOUT, logout, LogoutView.class));
         }

@@ -5,8 +5,10 @@ import com.example.application.data.entity.Books;
 import com.example.application.data.entity.LoanedBooks;
 import com.example.application.data.entity.Person;
 import com.example.application.data.service.BookService;
+import com.example.application.data.service.BooksRepository;
 import com.example.application.data.service.LoanedBooksRepository;
 import com.example.application.editors.LoanedBookEditor;
+import com.example.application.views.search.AbstractSearchBlock;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.dependency.CssImport;
@@ -38,7 +40,7 @@ public class BookView extends Div {
     private BookService bookService;
 
     @Autowired
-    public BookView(BookService bookService, LoanedBooksRepository loanedBooksRepository) {
+    public BookView(BookService bookService, LoanedBooksRepository loanedBooksRepository, BooksRepository booksRepository) {
         this.loanedBookEditor = new LoanedBookEditor(loanedBooksRepository);
         setSizeFull();
         setId("book-admin-view");
@@ -61,6 +63,7 @@ public class BookView extends Div {
                 GridVariant.LUMO_NO_ROW_BORDERS, GridVariant.LUMO_ROW_STRIPES);
         grid.setHeightFull();
         grid.setVisible(true);
+        grid.item
 
     }
 
