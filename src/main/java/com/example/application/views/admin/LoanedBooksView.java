@@ -53,6 +53,11 @@ public class LoanedBooksView extends Div {
         grid.setItems(repository.findByUserID(id));
     }
 
+    void findExpiredBooks(Integer id){
+        grid.setItems(repository.findByUserID(id));
+    }
+
+
     void listAllBooks(){
         grid.setItems(repository.findAll());
     }

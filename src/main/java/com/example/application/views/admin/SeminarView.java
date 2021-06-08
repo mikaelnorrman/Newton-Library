@@ -1,6 +1,5 @@
 package com.example.application.views.admin;
 
-import com.example.application.data.entity.Books;
 import com.example.application.data.entity.Seminars;
 import com.example.application.data.service.SeminarService;
 import com.example.application.data.service.SeminarsRepository;
@@ -32,12 +31,12 @@ public class SeminarView extends Div {
         this.seminarsRepository = seminarsRepository;
 
         add(grid);
-        grid.setColumns("name", "presenter", "description", "length", "dateTime");
+        grid.setColumns("name", "presenter", "length", "dateTime");
         grid.getColumnByKey("name").setAutoWidth(true);
         grid.getColumnByKey("presenter").setAutoWidth(true);
         grid.getColumnByKey("length").setAutoWidth(true);
         grid.getColumnByKey("dateTime").setAutoWidth(true);
-        grid.getColumnByKey("description").setWidth("150px").setFlexGrow(0);
+        //grid.getColumnByKey("description").setWidth("150px").setFlexGrow(0);
         //grid.getColumns().forEach(column -> column.setAutoWidth(true));
         //grid.setDataProvider(new CrudServiceDataProvider<Seminars, Void>(seminarService));
         grid.addThemeVariants(GridVariant.LUMO_NO_BORDER,
@@ -45,7 +44,7 @@ public class SeminarView extends Div {
         grid.setHeightFull();
         grid.setItems();
         grid.setVisible(true);
-        //listSeminars();
+        listSeminars();
         itemDetailsSeminars();
 
     }
@@ -54,7 +53,7 @@ public class SeminarView extends Div {
     }
 
     private void itemDetailsSeminars() {
-        grid.setItemDetailsRenderer(TemplateRenderer.<Books>of(
+        grid.setItemDetailsRenderer(TemplateRenderer.<Seminars>of(
                 "<div class='custom-details' style='border: 2px solid #1676f3; border-radius: 5px;"
                         + " padding: 10px 15px; width: 100%; box-sizing: border-box;'>"
                         + "<div>"

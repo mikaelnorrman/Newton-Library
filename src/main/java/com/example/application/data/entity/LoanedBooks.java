@@ -18,7 +18,7 @@ public class LoanedBooks {
     private String loaned;
 
     @Column(name = "expired")
-    private Integer expired;
+    private Boolean expired;
 
     @Column(name = "books_id_books")
     private Integer books_id_books;
@@ -37,7 +37,7 @@ public class LoanedBooks {
             Integer books_id_books,
             Integer users_id_users,
             String title,
-            Integer expired) {
+            Boolean expired) {
 
         this.books_id_books = books_id_books;
         this.userID = users_id_users;
@@ -64,11 +64,11 @@ public class LoanedBooks {
         this.loaned = loaned;
     }
 
-    public int getExpired() {
+    public boolean getExpired() {
         return expired;
     }
 
-    public void setExpired(int expired) {
+    public void setExpired(boolean expired) {
         this.expired = expired;
     }
 
