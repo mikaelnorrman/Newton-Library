@@ -10,7 +10,6 @@ import com.vaadin.flow.component.grid.GridVariant;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.server.VaadinSession;
-import org.h2.engine.Role;
 
 import java.sql.SQLException;
 
