@@ -73,6 +73,8 @@ public class Person {
                   String city,
                   String socialSecurityNo,
                   String password,
+                  String activeBorrowedBooks,
+                  String totalBorrowedBooks,
                   Boolean loancard,
                   Role role)
     {
@@ -87,6 +89,8 @@ public class Person {
         this.password = password;
         this.loancard = loancard;
         this.roleId = role.getRole_id();
+        this.activeBorrowedBooks = activeBorrowedBooks;
+        this.totalBorrowedBooks = totalBorrowedBooks;
     }
 
     public Integer getIdPersons() {
@@ -162,9 +166,6 @@ public class Person {
     public boolean checkPassword(String password) {
         //return true;
         return DigestUtils.sha1Hex(password).equals(this.password);
-
-        //FIXME
-        //TODO: Implementera lösenordskontroll.
     }
 
 

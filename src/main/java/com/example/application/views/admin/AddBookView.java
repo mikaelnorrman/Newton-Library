@@ -126,9 +126,9 @@ public class AddBookView extends VerticalLayout {
         //instantiate end edit new staff
         addBook.addClickListener (e -> editor.
                 editBook(new Books("","","","","",
-                        "","","", "","",
-                        "","","","","",
-                        "")));
+                        "","0","", "0","0",
+                        "0","","","","",
+                        "1")));
 
 
 
