@@ -352,9 +352,10 @@ public class BookView extends Div {
 
         Button loanButton = new Button("Loan book",  editor  -> {
             Integer idOfBooks = item.getId();
+            String titleOfBook = item.getTitle();
             item.getTitle();
             item.getId();
-            loanedBookEditor.saveLoaned(new LoanedBooks(idOfBooks, idPersons, 0));
+            loanedBookEditor.saveLoaned(new LoanedBooks(idOfBooks, idPersons,titleOfBook, 0));
             successLoanedBookNotification(item);
         });
 

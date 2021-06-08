@@ -36,10 +36,12 @@ public class LoanedBooks {
 
             Integer books_id_books,
             Integer users_id_users,
+            String title,
             Integer expired) {
 
         this.books_id_books = books_id_books;
         this.userID = users_id_users;
+        this.title = title;
         this.expired = expired;
     }
 
