@@ -2,7 +2,8 @@ package com.example.application.views.search;
 
 import com.example.application.data.entity.Books;
 import com.example.application.data.service.BooksRepository;
-import com.vaadin.flow.data.renderer.NativeButtonRenderer;
+import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.data.renderer.TemplateRenderer;
 
 public class BookSearchBlock extends AbstractSearchBlock<Books, BooksRepository> {
@@ -28,7 +29,8 @@ public class BookSearchBlock extends AbstractSearchBlock<Books, BooksRepository>
             }
         } else if (choice.equals(ISBN)) {
             if (filterText == null || filterText.isEmpty()) {
-                grid.setItems(repository.findAll());
+                //grid.setItems(repository.findAll());
+                filterItems("", TITLE);
             } else {
                 grid.setItems(repository.findByIsbnStartsWithIgnoreCase(filterText));
             }
@@ -37,7 +39,7 @@ public class BookSearchBlock extends AbstractSearchBlock<Books, BooksRepository>
             filters.forEach(textField -> {
                 String searchString = textField.getValue();
                 if ( ! searchString.isEmpty() ) {
-                    switch (textField.getLabel()) {
+                    switch (textField.getPlaceholder()) {
                         case TITLE -> searchArgs[0] = "%" + searchString + "%";
                         case AUTHOR -> searchArgs[1] = "%" + searchString + "%";
                         case GENRE -> searchArgs[2] = "%" + searchString + "%";
@@ -51,10 +53,15 @@ public class BookSearchBlock extends AbstractSearchBlock<Books, BooksRepository>
         }
     }
 
-    protected void itemDetails() {
+    @Override
+    public void refreshGrid() {
+        filterItems("", TITLE);
+    }
+
+    public void showItemDetailsButton() {
         grid.setItemDetailsRenderer(TemplateRenderer.<Books>of(
-                "<div class='custom-details' style='border: 2px solid #1676f3; border-radius: 5px;"
-                    + " padding: 10px 15px; width: 100%; box-sizing: border-box;'>"
+                "<div class='custom-details' style='border: 1px solid #cccccc; border-radius: 5px; background-color: white;"
+                    + " box-shadow: 0 2px 4px 2px rgba(0,128,255,0.1); padding: 10px 15px; width: 100%; box-sizing: border-box;'>"
                         + "<div>"
                         + "<H3 style='margin: 0 0 0.25em;'>[[item.title]]</H3>"
                         + "<H4 style='margin: 0 0 0.75em; font-style: italic; font-weight: 400;'>[[item.author]]</H4>"
@@ -77,8 +84,12 @@ public class BookSearchBlock extends AbstractSearchBlock<Books, BooksRepository>
                 }));
 
         grid.setDetailsVisibleOnClick(false);
-        grid.addColumn(new NativeButtonRenderer<>("Details", item -> grid
-                .setDetailsVisible(item, !grid.isDetailsVisible(item))));
+        grid.addComponentColumn(book -> {
+                    Button btn = new Button("View details");
+                    btn.addThemeVariants(ButtonVariant.LUMO_SMALL);
+                    btn.addClickListener(e -> grid.setDetailsVisible(book, !grid.isDetailsVisible(book)));
+                    return btn;
+        });
     }
 
 }

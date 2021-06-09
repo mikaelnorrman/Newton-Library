@@ -46,9 +46,6 @@ public class MainViewLayout extends AppLayout {
 
     private Component createHeaderContent() {
         HorizontalLayout layout = new HorizontalLayout();
-        H1 activeFirstName = new H1(VaadinSession.getCurrent().getAttribute(Person.class).getFirstName());
-        H1 activeLastName = new H1(VaadinSession.getCurrent().getAttribute(Person.class).getLastName());
-
         layout.setId("header");
         layout.getThemeList().set("dark", true);
         layout.setWidthFull();
@@ -56,9 +53,14 @@ public class MainViewLayout extends AppLayout {
         layout.setAlignItems(FlexComponent.Alignment.CENTER);
         layout.add(new DrawerToggle());
         viewTitle = new H1();
-        layout.add(viewTitle, activeFirstName, activeLastName);
-        activeFirstName.getStyle().set("margin-left","auto");
-        layout.add(new Image("images/user.svg", "Avatar"));
+        layout.add(viewTitle);
+        if (VaadinSession.getCurrent().getAttribute(Person.class) != null) {
+            H1 activeFirstName = new H1(VaadinSession.getCurrent().getAttribute(Person.class).getFirstName());
+            H1 activeLastName = new H1(VaadinSession.getCurrent().getAttribute(Person.class).getLastName());
+            layout.add(activeFirstName, activeLastName);
+            activeFirstName.getStyle().set("margin-left","auto");
+            layout.add(new Image("images/user.svg", "Avatar"));
+        }
         return layout;
     }
 

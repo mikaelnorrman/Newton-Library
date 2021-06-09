@@ -3,6 +3,7 @@ package com.example.application.views.admin;
 import com.example.application.data.entity.Books;
 import com.example.application.data.service.BooksRepository;
 import com.example.application.editors.BookEditor;
+import com.example.application.views.search.BookSearchBlock;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
@@ -17,12 +18,46 @@ import com.vaadin.flow.component.textfield.TextFieldVariant;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.StringUtils;
 
 @PageTitle("Add BookView")
 @CssImport("./styles/views/admin/admin-view.css")
 public class AddBookView extends VerticalLayout {
+/* * /
+    private final BookSearchBlock searchBlock;
+    final BookEditor editor;
+    private final Button addBook;
 
+    @Autowired
+    public AddBookView(BooksRepository repository) {
+        searchBlock = new BookSearchBlock(Books.class, repository);
+        this.editor = new BookEditor(repository);
+
+        searchBlock.setFilterTitle("Filter by...");
+        searchBlock.addFilters(BookSearchBlock.TITLE, BookSearchBlock.AUTHOR, BookSearchBlock.GENRE,BookSearchBlock.PUBLISHER,  BookSearchBlock.ISBN);
+
+        searchBlock.setColumns("id", "title", "description", "genre", "author", "ages",
+                "physicalAmount", "eBook", "price", "physicalActiveBorrowed", "eActiveBorrowed",
+                "totalAmountBorrowed", "shelf", "section", "isbn", "publisher", "isActive");
+        searchBlock.setColumnWidth("id", "50px");
+        searchBlock.setColumnWidth("description", "150px");
+
+        this.addBook = new Button("New book", VaadinIcon.PLUS.create());
+        searchBlock.getFilterLayout().add(addBook);
+        addBook.addClickListener (e -> editor.
+                editBook(new Books("","","","","",
+                        "","","", "","",
+                        "","","","","",
+                        "")));
+
+        this.add(searchBlock, editor);
+
+        searchBlock.getGrid().asSingleSelect().addValueChangeListener(e ->  editor.editBook(e.getValue()));
+        editor.setChangeHandler(() -> {
+            editor.setVisible(false);
+            searchBlock.refreshGrid();
+        });
+    }
+/* */
     private final BooksRepository repository;
     final BookEditor editor;
     final Grid<Books> grid;
@@ -150,7 +185,7 @@ public class AddBookView extends VerticalLayout {
     }
 
     void listBook(String filterText, int choice) {
-        if (StringUtils.isEmpty(filterText)) {
+        if (filterText == null || filterText.isEmpty()) {
             grid.setItems(repository.findAll());
         } else {
             if (choice == 1) {
@@ -166,4 +201,6 @@ public class AddBookView extends VerticalLayout {
             }
         }
     }
+
+ /**/
 }
