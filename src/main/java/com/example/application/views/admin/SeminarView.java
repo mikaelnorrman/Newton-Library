@@ -106,7 +106,7 @@ public class SeminarView extends Div {
                 attendButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY, ButtonVariant.LUMO_SMALL);
                 return attendButton;
             } else {
-                attendingButton.addThemeVariants(ButtonVariant.LUMO_ERROR, ButtonVariant.LUMO_SMALL);
+                attendingButton.addThemeVariants(ButtonVariant.LUMO_SUCCESS, ButtonVariant.LUMO_SMALL);
                 return attendingButton;
             }
         } catch (SQLException throwables) {
