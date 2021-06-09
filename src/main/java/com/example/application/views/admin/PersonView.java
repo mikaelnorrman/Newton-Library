@@ -47,7 +47,7 @@ public class PersonView extends Div {
     private Binder<Person> binder;
 
     private Person person = new Person("", "", "", "",
-            "", "", "", "", "",false, Role.USER);
+            "", "", "", "", "","0","0",false, Role.USER);
 
     private PersonService personService;
 
@@ -93,7 +93,7 @@ public class PersonView extends Div {
             try {
                 if (this.person == null) {
                     this.person = new Person("", "", "", "",
-                            "", "", "", "", "", false, Role.USER);
+                            "", "", "", "", "","0","0", false, Role.USER);
                 }
                 binder.writeBean(this.person);
                 personService.update(this.person);

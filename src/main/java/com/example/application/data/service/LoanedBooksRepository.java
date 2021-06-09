@@ -7,8 +7,9 @@ import java.util.List;
 
 public interface LoanedBooksRepository extends JpaRepository<LoanedBooks, Integer> {
 
-    //List<LoanedBooks>findByUsersStartsWithIgnoreCase (Integer user);
-    //List<LoanedBooks>findExpiredBooks (Integer expired);
+    List<LoanedBooks>findByUserId (Integer userId);
+    List<LoanedBooks>findAll();
+    //List<LoanedBooks>findExpiredBooks (Integer userID, Integer expired);
 
 
 

@@ -11,6 +11,9 @@ public class LoanedBooks {
     @Column(name = "id_loaned")
     private Integer id;
 
+    @Column(name = "title")
+    private String title;
+
     @Column(name = "loaned")
     private String loaned;
 
@@ -20,8 +23,17 @@ public class LoanedBooks {
     @Column(name = "books_id_books")
     private Integer books_id_books;
 
+    @Column(name = "due_date")
+    private String dueDate;
+
     @Column(name = "users_id_users")
-    private Integer users_id_users;
+    private Integer userId;
+
+    @Column(name= "first_name")
+    private String firstName;
+
+    @Column(name= "last_name")
+    private String lastName;
 
     public LoanedBooks(){
     }
@@ -29,9 +41,18 @@ public class LoanedBooks {
     public LoanedBooks(
 
             Integer books_id_books,
-            Integer users_id_users) {
+            Integer users_id_users,
+            String title,
+            Integer expired,
+            String firstName,
+            String lastName) {
+
         this.books_id_books = books_id_books;
-        this.users_id_users = users_id_users;
+        this.userId = users_id_users;
+        this.title = title;
+        this.expired = expired;
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
 
@@ -70,21 +91,40 @@ public class LoanedBooks {
     }
 
     public Integer getUsers_id_users() {
-        return users_id_users;
+        return userId;
     }
 
     public void setUsers_id_users(Integer users_id_users) {
-        this.users_id_users = users_id_users;
+        this.userId = users_id_users;
     }
+
+    public String getTitle(){return this.title;}
+
+    public String getDueDate (){return  this.dueDate;}
+
+    public void setDueDate (){this.dueDate = dueDate;}
+
+    public String getFirstName() { return firstName; }
+
+    public void setFirstName(String firstName) { this.firstName = firstName; }
+
+    public String getLastName() { return lastName; }
+
+    public void setLastName(String lastName) { this.lastName = lastName; }
+
 
     @Override
     public String toString() {
         return "LoanedBooks{" +
                 "id=" + id +
+                ", title='" + title +
                 ", loaned='" + loaned + '\'' +
                 ", expired=" + expired +
                 ", books_id_books=" + books_id_books +
-                ", users_id_users=" + users_id_users +
+                ", users_id_users='" + userId +
+                ", dueDate='" + dueDate +
+                ", firstName='" + firstName +
+                ", lastName='" + lastName +
                 '}';
     }
 }

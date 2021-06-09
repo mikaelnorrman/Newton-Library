@@ -4,6 +4,7 @@ import com.example.application.data.entity.Books;
 import com.example.application.data.service.BooksRepository;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.grid.Grid;
@@ -14,6 +15,7 @@ import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.component.textfield.TextFieldVariant;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
@@ -35,11 +37,28 @@ public class SearchView extends Div {
     public SearchView (BooksRepository repository){
         this.repository = repository;
         this.grid = new Grid<>(Books.class);
-        this.title = new TextField("Title");
-        this.genre = new TextField("Genre");
-        this.author = new TextField("Author");
-        this.publisher = new TextField("Publisher");
+        this.title = new TextField();
+        this.title.setPlaceholder("Filter by title");
+        this.title.addThemeVariants(TextFieldVariant.LUMO_SMALL);
+        this.title.setPrefixComponent(VaadinIcon.SEARCH.create());
+
+        this.genre = new TextField();
+        this.genre.setPlaceholder("Filter by genre");
+        this.genre.addThemeVariants(TextFieldVariant.LUMO_SMALL);
+        this.genre.setPrefixComponent(VaadinIcon.SEARCH.create());
+
+        this.author = new TextField();
+        this.author.setPlaceholder("Filter by author");
+        this.author.addThemeVariants(TextFieldVariant.LUMO_SMALL);
+        this.author.setPrefixComponent(VaadinIcon.SEARCH.create());
+
+        this.publisher = new TextField();
+        this.publisher.setPlaceholder("Filter by publisher");
+        this.publisher.addThemeVariants(TextFieldVariant.LUMO_SMALL);
+        this.publisher.setPrefixComponent(VaadinIcon.SEARCH.create());
+
         this.back = new Button("Back", VaadinIcon.HOME.create());
+        this.back.addThemeVariants(ButtonVariant.LUMO_SMALL);
 
         //bygg layout
         HorizontalLayout actions = new HorizontalLayout(new H4("Filter books by..."), title,genre,author,publisher,back);
@@ -81,7 +100,7 @@ public class SearchView extends Div {
         publisher.setValueChangeMode(ValueChangeMode.EAGER);
         publisher.addValueChangeListener(e->listBooks(e.getValue(), 4));
 
-        back.addClickListener(e -> UI.getCurrent().navigate(""));
+        back.addClickListener(e -> UI.getCurrent().navigate("opening"));
 
         listBooks(null,1);
     }

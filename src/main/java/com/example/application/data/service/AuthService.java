@@ -25,6 +25,7 @@ public class AuthService {
     public static final String ADMIN = "admin";
     public static final String SEMINARS = "seminar";
     public static final String BOOKS = "books";
+    public static final String USER_BOOKS = "userBooks";
     public static final String ADD_BOOK_VIEW = "addBookView";
     public static final String ADD_SEMINAR_VIEW = "addSeminarView";
     public static final String PERSONS = "persons";
@@ -75,11 +76,12 @@ public class AuthService {
         /**
          * HÄr sätter vi namnen på flikarna i menyen.
          */
-        var opening = "Opening";
+        var opening = "Open hours";
         var logout = "Logout";
         var userAdmin = "Users";
         var admin = "Admin";
         var bookAdmin = "Books";
+        var userBook = "UserBooks";
         var addBooks = "Add Books";
         var loanedBooks = "Loaned Books";
         var persons = "Add Users";
@@ -89,10 +91,21 @@ public class AuthService {
 
         if (role.equals(Role.USER)) {
             routes.add(new AuthorizedRoute(OPENING, opening, OpeningView.class));
-            routes.add(new AuthorizedRoute(SEARCH, search, SearchView.class));
+            routes.add(new AuthorizedRoute(BOOKS,bookAdmin, BookView.class));
+            routes.add(new AuthorizedRoute(SEMINARS,seminars, SeminarView.class));
+            routes.add(new AuthorizedRoute(LOANED_BOOKS_VIEW,loanedBooks, LoanedBooksView.class));
             routes.add(new AuthorizedRoute(LOGOUT, logout, LogoutView.class));
 
         } else if (role.equals(Role.ADMIN)) {
+            routes.add(new AuthorizedRoute(OPENING, opening, OpeningView.class));
+            routes.add(new AuthorizedRoute(SEARCH, search, SearchView.class));
+            routes.add(new AuthorizedRoute(ADD_BOOK_VIEW,addBooks, AddBookView.class));
+            routes.add(new AuthorizedRoute(LOANED_BOOKS_VIEW,loanedBooks, LoanedBooksView.class));
+            routes.add(new AuthorizedRoute(ADD_SEMINAR_VIEW,addSeminars, AddSeminarView.class));
+            routes.add(new AuthorizedRoute(PERSONS,persons, AddPersonView.class));
+            routes.add(new AuthorizedRoute(LOGOUT, logout, LogoutView.class));
+
+        } else if (role.equals(Role.SUPERADMIN)) {
             routes.add(new AuthorizedRoute(OPENING, opening, OpeningView.class));
             routes.add(new AuthorizedRoute(SEARCH, search, SearchView.class));
             routes.add(new AuthorizedRoute(BOOKS,bookAdmin, BookView.class));
@@ -100,13 +113,7 @@ public class AuthService {
             routes.add(new AuthorizedRoute(LOANED_BOOKS_VIEW,loanedBooks, LoanedBooksView.class));
             routes.add(new AuthorizedRoute(SEMINARS,seminars, SeminarView.class));
             routes.add(new AuthorizedRoute(ADD_SEMINAR_VIEW,addSeminars, AddSeminarView.class));
-            routes.add(new AuthorizedRoute(ADMIN, userAdmin, PersonView.class));
             routes.add(new AuthorizedRoute(PERSONS,persons, AddPersonView.class));
-            routes.add(new AuthorizedRoute(LOGOUT, logout, LogoutView.class));
-
-        } else if (role.equals(Role.SUPERADMIN)) {
-            routes.add(new AuthorizedRoute(OPENING, opening, OpeningView.class));
-            routes.add(new AuthorizedRoute(ADMIN, admin, PersonView.class));
             routes.add(new AuthorizedRoute(LOGOUT, logout, LogoutView.class));
         }
 
