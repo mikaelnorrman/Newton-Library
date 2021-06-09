@@ -30,6 +30,7 @@ public class AuthService {
     public static final String ADD_SEMINAR_VIEW = "addSeminarView";
     public static final String PERSONS = "persons";
     public static final String LOANED_BOOKS_VIEW = "loanedBooks";
+    public static final String ATTENDING_SEMINARS_VIEW = "attendingSeminars";
 
     public record AuthorizedRoute(String route, String name, Class<? extends Component> view) { }
 
@@ -84,6 +85,7 @@ public class AuthService {
         var userBook = "UserBooks";
         var addBooks = "Add Books";
         var loanedBooks = "Loaned Books";
+        var attendingSeminars = "Attending Seminars";
         var persons = "Add Users";
         var seminars = "Seminars";
         var search = "Search";
@@ -94,12 +96,14 @@ public class AuthService {
             routes.add(new AuthorizedRoute(BOOKS,bookAdmin, BookView.class));
             routes.add(new AuthorizedRoute(SEMINARS,seminars, SeminarView.class));
             routes.add(new AuthorizedRoute(LOANED_BOOKS_VIEW,loanedBooks, LoanedBooksView.class));
+            routes.add(new AuthorizedRoute(ATTENDING_SEMINARS_VIEW,attendingSeminars, AttendingSeminarsView.class));
             routes.add(new AuthorizedRoute(LOGOUT, logout, LogoutView.class));
 
         } else if (role.equals(Role.ADMIN)) {
             routes.add(new AuthorizedRoute(OPENING, opening, OpeningView.class));
             routes.add(new AuthorizedRoute(ADD_BOOK_VIEW,addBooks, AddBookView.class));
             routes.add(new AuthorizedRoute(LOANED_BOOKS_VIEW,loanedBooks, LoanedBooksView.class));
+            routes.add(new AuthorizedRoute(ATTENDING_SEMINARS_VIEW,attendingSeminars, AttendingSeminarsView.class));
             routes.add(new AuthorizedRoute(ADD_SEMINAR_VIEW,addSeminars, AddSeminarView.class));
             routes.add(new AuthorizedRoute(PERSONS,persons, AddPersonView.class));
             routes.add(new AuthorizedRoute(LOGOUT, logout, LogoutView.class));
@@ -110,6 +114,7 @@ public class AuthService {
             routes.add(new AuthorizedRoute(BOOKS,bookAdmin, BookView.class));
             routes.add(new AuthorizedRoute(ADD_BOOK_VIEW,addBooks, AddBookView.class));
             routes.add(new AuthorizedRoute(LOANED_BOOKS_VIEW,loanedBooks, LoanedBooksView.class));
+            routes.add(new AuthorizedRoute(ATTENDING_SEMINARS_VIEW,attendingSeminars, AttendingSeminarsView.class));
             routes.add(new AuthorizedRoute(SEMINARS,seminars, SeminarView.class));
             routes.add(new AuthorizedRoute(ADD_SEMINAR_VIEW,addSeminars, AddSeminarView.class));
             routes.add(new AuthorizedRoute(PERSONS,persons, AddPersonView.class));

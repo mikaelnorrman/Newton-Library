@@ -19,11 +19,13 @@ public class Editor extends VerticalLayout implements KeyNotifier {
     protected SeminarsRepository seminarRepository;
     protected PersonRepository personRepository;
     protected LoanedBooksRepository loanedBooksRepository;
+    protected AttendingSeminarsRepository attendingSeminarsRepository;
 
     protected Books books;
     protected Seminars seminars;
     protected Person persons;
     protected LoanedBooks loanedBooks;
+    protected AttendingSeminars attendingSeminars;
 
 
     Button save = new Button("Save", VaadinIcon.PLUS.create());
@@ -35,6 +37,7 @@ public class Editor extends VerticalLayout implements KeyNotifier {
     Binder<Seminars> seminarsBinder;
     Binder<Person> personBinder;
     Binder<LoanedBooks> loanedBooksBinder;
+    Binder<AttendingSeminars> attendingSeminarsBinder;
 
 
     protected ChangeHandler changeHandler;
