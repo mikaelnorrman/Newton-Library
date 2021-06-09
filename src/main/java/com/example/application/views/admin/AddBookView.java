@@ -30,8 +30,8 @@ public class AddBookView extends VerticalLayout {
         searchBlock.setColumns("id", "title", "description", "genre", "author", "ages",
                 "physicalAmount", "eBook", "price", "physicalActiveBorrowed", "eActiveBorrowed",
                 "totalAmountBorrowed", "shelf", "section", "isbn", "publisher", "isActive");
-        searchBlock.getGrid().getColumnByKey("id").setWidth("50px").setFlexGrow(0);
-        searchBlock.getGrid().getColumnByKey("description").setWidth("150px").setFlexGrow(0);
+        searchBlock.setColumnWidth("id", "50px");
+        searchBlock.setColumnWidth("description", "150px");
 
         this.addBook = new Button("New book", VaadinIcon.PLUS.create());
         searchBlock.getFilterLayout().add(addBook);
