@@ -37,7 +37,7 @@ public class BookView extends Div {
         setId("book-admin-view");
 
         searchBlock = new BookSearchBlock(Books.class, booksRepository);
-        searchBlock.addFilters(BookSearchBlock.TITLE, BookSearchBlock.AUTHOR, BookSearchBlock.GENRE, BookSearchBlock.ISBN);
+        searchBlock.addFilters(BookSearchBlock.MULTISEARCH);
         searchBlock.setColumns("title", "author", "genre", "ages", "section", "shelf");
         searchBlock.showItemDetailsButton();
         searchBlock.getGrid().addComponentColumn(Book -> createLoanButton(Book));
