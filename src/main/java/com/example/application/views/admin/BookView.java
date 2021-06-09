@@ -71,7 +71,7 @@ public class BookView extends Div {
 
     private Button createLoanButton(Grid<Books> grid, Books item) {
         boolean checkLoancard = VaadinSession.getCurrent().getAttribute(Person.class).getLoancard() == true; // koll så att användaren har ett lånekort.
-        boolean checkExpired = VaadinSession.getCurrent().getAttribute(LoanedBooks.class).getExpired();
+        //boolean checkExpired = VaadinSession.getCurrent().getAttribute(LoanedBooks.class).getExpired();
         Integer idPersons = VaadinSession.getCurrent().getAttribute(Person.class).getIdPersons();       // hämta ut inloggade personens id.
         String firstNamePersons = VaadinSession.getCurrent().getAttribute(Person.class).getFirstName(); // hämta ut inloggade personens fistName.
         String lastNamePersons = VaadinSession.getCurrent().getAttribute(Person.class).getLastName();   // hämta ut inloggade personens lastName.
@@ -100,7 +100,7 @@ public class BookView extends Div {
         });
 
 
-        if (checkLoancard && !checkExpired) {
+        if (checkLoancard) {
             try {
                 if (!connectorMySQL.callcheck_loan(idPersons,item.getId()))
                 {
@@ -114,10 +114,11 @@ public class BookView extends Div {
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
-        } else if (checkExpired){
+        }/* else if (checkExpired){
             expiredButton.addThemeVariants(ButtonVariant.LUMO_ERROR, ButtonVariant.LUMO_SMALL);
             return expiredButton;
-        } else {
+        } */
+         else {
             loanButton.addThemeVariants(ButtonVariant.LUMO_CONTRAST, ButtonVariant.LUMO_SMALL);
         }
         return noCardButton;

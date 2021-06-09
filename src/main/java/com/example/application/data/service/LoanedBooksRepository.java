@@ -9,7 +9,7 @@ public interface LoanedBooksRepository extends JpaRepository<LoanedBooks, Intege
 
     List<LoanedBooks>findByUserID (Integer userID);
     List<LoanedBooks>findAll();
-    List<LoanedBooks>findExpiredBooks (Integer userID, Integer expired);
+    //List<LoanedBooks>findExpiredBooks (Integer userID, Integer expired);
 
 
 

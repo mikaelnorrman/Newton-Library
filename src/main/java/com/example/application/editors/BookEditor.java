@@ -103,6 +103,7 @@ public class BookEditor extends Editor {
         description.setClearButtonVisible(true);
         description.setErrorMessage("Your description needs to be at least one character long");
         description.setMinLength(1);
+        description.setMaxLength(1000);
         description.addThemeVariants(TextFieldVariant.LUMO_SMALL);
     }
 
@@ -136,7 +137,7 @@ public class BookEditor extends Editor {
         forAges.setLabel("For Ages");
         forAges.setPlaceholder("Enter a age");
         forAges.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: 0-3 or 15-99");
-        forAges.setPattern("\\d{1,2}\\-\\d{1,3}");
+        forAges.setPattern("(\\d{1,2}\\-\\d{1,3})");
         forAges.setErrorMessage(NUMBERS_ONLY);
         forAges.setClearButtonVisible(true);
         forAges.setErrorMessage(NUMBERS_ONLY + "\nThe book age you enter needs to be an age range between two ages\nExample: 0-3, 3-6 or 15-99 etc" );

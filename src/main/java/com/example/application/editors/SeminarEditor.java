@@ -125,6 +125,7 @@ public class SeminarEditor extends Editor {
         description.setClearButtonVisible(true);
         description.setErrorMessage("Your description needs to be at least one character long");
         description.setMinLength(1);
+        description.setMaxLength(1000);
         description.addThemeVariants(TextFieldVariant.LUMO_SMALL);
     }
 
