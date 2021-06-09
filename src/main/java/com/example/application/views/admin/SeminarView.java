@@ -19,6 +19,7 @@ import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.notification.NotificationVariant;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.server.VaadinSession;
+import org.joda.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.vaadin.artur.helpers.CrudServiceDataProvider;
 
@@ -85,11 +86,11 @@ public class SeminarView extends Div {
             String nameOfSeminar = item.getName();
             item.getId_seminar();
             item.getName();
-            attendingSeminarsEditor.saveAttendingSeminar(new AttendingSeminars (nameOfSeminar, 0,idOfSeminar,idPersons,firstNamePersons,lastNamePersons));
+            attendingSeminarsEditor.saveAttendingSeminar(new AttendingSeminars (nameOfSeminar, 0, idOfSeminar, idPersons,LocalDateTime.now().toString(), firstNamePersons,lastNamePersons));
             successAttendingSeminarNotification(item);
         });
 
-        Button attendingButton = new Button ("Seminar booked!", editor -> {
+        Button attendingButton = new Button ("Seminar booked", editor -> {
             errorAttendingSeminarNotification(item);
         });
 
@@ -123,7 +124,7 @@ public class SeminarView extends Div {
 
     private void attendingSeminarNotification(Seminars item, String firstNamePersons, String lastNamePersons) {
         Notification loanedCardNotificationFail = new Notification(firstNamePersons + " " + lastNamePersons +
-                "\nYou cant attend the seminar " + item.getName() + "\nYou need to get a SuperHero T-Shirt");
+                "\nYou cant attend the seminar: " + item.getName() + "\nYou need to get a SuperHero T-Shirt");
         loanedCardNotificationFail.addThemeVariants(NotificationVariant.LUMO_ERROR);
         loanedCardNotificationFail.setDuration(DURATION_NOTIFICATION);
         loanedCardNotificationFail.setPosition(Notification.Position.MIDDLE);
@@ -131,7 +132,7 @@ public class SeminarView extends Div {
     }
 
     private void errorAttendingSeminarNotification(Seminars item) {
-        Notification errorLoanedBookNotification = new Notification("You already attend the seminar \n" + item.getName());
+        Notification errorLoanedBookNotification = new Notification("You already attend the seminar:\n" + item.getName());
         errorLoanedBookNotification.addThemeVariants(NotificationVariant.LUMO_ERROR);
         errorLoanedBookNotification.setDuration(DURATION_NOTIFICATION);
         errorLoanedBookNotification.setPosition(Notification.Position.MIDDLE);
@@ -139,7 +140,7 @@ public class SeminarView extends Div {
     }
 
     private void successAttendingSeminarNotification (Seminars item) {
-        Notification successLoanedBookNotification = new Notification("You attending the seminar \n" + item.getName());
+        Notification successLoanedBookNotification = new Notification("You attending the seminar: \n" + item.getName());
         successLoanedBookNotification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
         successLoanedBookNotification.setDuration(DURATION_NOTIFICATION);
         successLoanedBookNotification.setPosition(Notification.Position.MIDDLE);

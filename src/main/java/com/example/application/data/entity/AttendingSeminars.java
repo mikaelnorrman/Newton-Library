@@ -22,7 +22,8 @@ public class AttendingSeminars {
 
 
     @Column(name = "seminars_id_seminars")
-    private Integer seminars_id_seminar;
+    private Integer seminars_id_seminars;
+
 
     @Column(name = "users_id_users")
     private Integer userId;
@@ -38,14 +39,16 @@ public class AttendingSeminars {
 
     public AttendingSeminars(String name,
                              Integer expired,
-                             Integer seminars_id_seminar,
+                             Integer seminars_id_seminars,
                              Integer users_id_users,
+                             String date,
                              String firstName,
                              String lastName) {
         this.name = name;
         this.expired = expired;
-        this.seminars_id_seminar = seminars_id_seminar;
+        this.seminars_id_seminars = seminars_id_seminars;
         this.userId = users_id_users;
+        this.date = date;
         this.firstName = firstName;
         this.lastName = lastName;
     }
@@ -82,12 +85,12 @@ public class AttendingSeminars {
         this.expired = expired;
     }
 
-    public Integer getSeminars_id_seminar() {
-        return seminars_id_seminar;
+    public Integer getSeminars_id_seminars() {
+        return seminars_id_seminars;
     }
 
-    public void setSeminars_id_seminar(Integer seminars_id_seminar) {
-        this.seminars_id_seminar = seminars_id_seminar;
+    public void setSeminars_id_seminars(Integer seminars_id_seminars) {
+        this.seminars_id_seminars = seminars_id_seminars;
     }
 
     public Integer getUsers_id_users() {
@@ -121,7 +124,7 @@ public class AttendingSeminars {
                 ", name='" + name + '\'' +
                 ", attending='" + date + '\'' +
                 ", expired=" + expired +
-                ", id_seminars=" + seminars_id_seminar +
+                ", id_seminars=" + seminars_id_seminars +
                 ", id_users=" + userId +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
