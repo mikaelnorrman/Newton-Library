@@ -80,7 +80,7 @@ public class SeminarView extends Div {
         String firstNamePersons = VaadinSession.getCurrent().getAttribute(Person.class).getFirstName();         // hämta ut inloggade personens fistName.
         String lastNamePersons = VaadinSession.getCurrent().getAttribute(Person.class).getLastName();           // hämta ut inloggade personens lastName.
 
-        Button attendButton = new Button("Attending seminar",  editor  -> {
+        Button attendButton = new Button("Book seminar",  editor  -> {
             Integer idOfSeminar = item.getId_seminar();
             String nameOfSeminar = item.getName();
             item.getId_seminar();
