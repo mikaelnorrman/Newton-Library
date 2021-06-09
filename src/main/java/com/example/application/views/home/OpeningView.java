@@ -20,7 +20,6 @@ public class OpeningView extends VerticalLayout {
         TextArea textArea = new TextArea();
         textArea.setWidth("400px");
 
-
         textArea.setValue("""
                Biblioteket har öppet följande tider:
                
@@ -37,6 +36,7 @@ public class OpeningView extends VerticalLayout {
                
                Tillgänglighet av information, alltid och var som helst!""");
         add(textArea);
+
 
     }
 }
