@@ -8,6 +8,7 @@ import com.example.application.data.service.BookService;
 import com.example.application.data.service.BooksRepository;
 import com.example.application.data.service.LoanedBooksRepository;
 import com.example.application.editors.LoanedBookEditor;
+import com.example.application.views.search.BookSearchBlock;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.dependency.CssImport;
@@ -33,7 +34,8 @@ public class BookView extends Div {
     final LoanedBookEditor loanedBookEditor;
     public static final String TITLE_IN_SET_ATTRIBUTE = "Title";
     public static final String NUMBERS_ONLY = "Numbers only. 0,1,2,3,4,5,6,7,8,9";
-    private Grid<Books> grid;
+    //private Grid<Books> grid;
+    private BookSearchBlock searchBlock;
 
     private LoanedBooks loanedbooks = new LoanedBooks();
 
@@ -46,6 +48,13 @@ public class BookView extends Div {
         setId("book-admin-view");
         this.bookService = bookService;
         // Configure Grid - This will show up in the Grid
+        searchBlock = new BookSearchBlock(Books.class, booksRepository);
+        searchBlock.addFilters(BookSearchBlock.TITLE, BookSearchBlock.AUTHOR, BookSearchBlock.GENRE, BookSearchBlock.ISBN);
+        searchBlock.setColumns("title", "author", "genre", "ages", "section", "shelf");
+        searchBlock.showItemDetailsButton();
+        searchBlock.getGrid().addComponentColumn(Book -> createLoanButton(searchBlock.getGrid(), Book));
+        add(searchBlock);
+        /*
         grid = new Grid<>(Books.class);
 
         add(grid);
@@ -64,6 +73,7 @@ public class BookView extends Div {
         grid.setHeightFull();
         grid.setVisible(true);
         itemDetails();
+         */
     }
 
 
@@ -139,6 +149,7 @@ public class BookView extends Div {
         successLoanedBookNotification.setPosition(Notification.Position.MIDDLE);
         successLoanedBookNotification.open();
     }
+    /*
     private void itemDetails() {
         grid.setItemDetailsRenderer(TemplateRenderer.<Books>of(
                 "<div class='custom-details' style='border: 2px solid #1676f3; border-radius: 5px;"
@@ -147,7 +158,7 @@ public class BookView extends Div {
                         + "<H3 style='margin: 0 0 0.25em;'>[[item.title]]</H3>"
                         + "<H4 style='margin: 0 0 0.75em; font-style: italic; font-weight: 400;'>[[item.author]]</H4>"
                         + "<p style='margin: 0 0 0.75em;'>[[item.description]]</p>"
-                        + "<div style='display: flex; flex-flow: row wrap; /*justify-content: space-between;*/'>"
+                        + "<div style='display: flex; flex-flow: row wrap; /*justify-content: space-between;* /'>"
                         + "<span style='margin-right: 1.75em; min-width: 150px;'>Publisher: <b>[[item.publisher]]</b></span>"
                         + "<span style='margin-right: 1.75em; min-width: 150px;'>ISBN: <b>[[item.isbn]]</b></span>"
                         + "<span style='margin-right: 1.75em; min-width: 150px;'>Books available: <b>[[item.available]]</b></span>"
@@ -167,5 +178,5 @@ public class BookView extends Div {
         grid.setDetailsVisibleOnClick(true);
         //grid.addColumn(new NativeButtonRenderer<>("Details", item -> grid.setDetailsVisible(item, !grid.isDetailsVisible(item))));
     }
-
+    */
 }

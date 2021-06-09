@@ -29,7 +29,8 @@ public class BookSearchBlock extends AbstractSearchBlock<Books, BooksRepository>
             }
         } else if (choice.equals(ISBN)) {
             if (filterText == null || filterText.isEmpty()) {
-                grid.setItems(repository.findAll());
+                //grid.setItems(repository.findAll());
+                filterItems("", TITLE);
             } else {
                 grid.setItems(repository.findByIsbnStartsWithIgnoreCase(filterText));
             }
@@ -38,7 +39,7 @@ public class BookSearchBlock extends AbstractSearchBlock<Books, BooksRepository>
             filters.forEach(textField -> {
                 String searchString = textField.getValue();
                 if ( ! searchString.isEmpty() ) {
-                    switch (textField.getLabel()) {
+                    switch (textField.getPlaceholder()) {
                         case TITLE -> searchArgs[0] = "%" + searchString + "%";
                         case AUTHOR -> searchArgs[1] = "%" + searchString + "%";
                         case GENRE -> searchArgs[2] = "%" + searchString + "%";

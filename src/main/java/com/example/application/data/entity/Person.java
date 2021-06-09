@@ -164,8 +164,8 @@ public class Person {
     public void setLoancard(Boolean loancard) { this.loancard = loancard; }
 
     public boolean checkPassword(String password) {
-        return true;
-        //return DigestUtils.sha1Hex(password).equals(this.password);
+        //return true;
+        return DigestUtils.sha1Hex(password).equals(this.password);
     }
 
 
