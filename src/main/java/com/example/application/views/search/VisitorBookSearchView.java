@@ -20,8 +20,8 @@ public class VisitorBookSearchView extends Div {
 
     @Autowired
     public VisitorBookSearchView(BooksRepository repository) {
+        setSizeFull();
         visitorSearch = new BookSearchBlock(Books.class, repository);
-        visitorSearch.setFilterTitle("Filter by...");
         visitorSearch.addFilters(BookSearchBlock.MULTISEARCH);
         visitorSearch.setColumns("title", "author", "genre", "ages", "section", "shelf");
         visitorSearch.showItemDetailsButton();

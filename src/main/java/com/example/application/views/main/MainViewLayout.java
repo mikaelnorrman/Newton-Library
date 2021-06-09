@@ -54,9 +54,11 @@ public class MainViewLayout extends AppLayout {
         layout.add(new DrawerToggle());
         viewTitle = new H1();
         layout.add(viewTitle);
-        layout.add(new H1(VaadinSession.getCurrent().getAttribute(Person.class).getFirstName()));
-        layout.add(new H1(VaadinSession.getCurrent().getAttribute(Person.class).getLastName()));
-        layout.add(new Image("images/user.svg", "Avatar"));
+        if (VaadinSession.getCurrent().getAttribute(Person.class) != null) {
+            layout.add(new H1(VaadinSession.getCurrent().getAttribute(Person.class).getFirstName()));
+            layout.add(new H1(VaadinSession.getCurrent().getAttribute(Person.class).getLastName()));
+            layout.add(new Image("images/user.svg", "Avatar"));
+        }
         return layout;
     }
 
