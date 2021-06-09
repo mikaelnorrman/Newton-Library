@@ -32,9 +32,8 @@ public class AttendingSeminarsView extends Div {
         this.gridAdmin = new Grid<>(AttendingSeminars.class);
 
         add(grid);
-        grid.setColumns("name", "date", "expired");
+        grid.setColumns("name", "expired");
         grid.getColumnByKey("name").setAutoWidth(true);
-        grid.getColumnByKey("date").setAutoWidth(true);
         grid.getColumnByKey("expired").setAutoWidth(true);
         grid.addThemeVariants(GridVariant.LUMO_NO_BORDER,
                 GridVariant.LUMO_NO_ROW_BORDERS, GridVariant.LUMO_ROW_STRIPES);
