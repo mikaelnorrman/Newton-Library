@@ -43,7 +43,7 @@ public class AuthService {
 
     //TODO - ta bort && user.isActive()
     public void authenticate(String email, String password) throws AuthException {
-        List<Person> personList = personRepository.findByEmailStartsWithIgnoreCase(email);
+        List<Person> personList = personRepository.findByEmailIgnoreCase(email);
         if (personList.size() != 1) {
             throw new AuthException();
         }
