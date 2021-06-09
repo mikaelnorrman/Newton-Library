@@ -31,7 +31,8 @@ public abstract class AbstractSearchBlock<S, T extends JpaRepository<S, Integer>
     public void setColumns(String... propertyNames) {
         grid.setColumns(propertyNames);
         grid.getColumns().forEach(column -> column.setAutoWidth(true)); //Default
-        grid.addThemeVariants(GridVariant.LUMO_NO_BORDER);
+        grid.addThemeVariants(GridVariant.LUMO_NO_BORDER,
+                GridVariant.LUMO_NO_ROW_BORDERS, GridVariant.LUMO_ROW_STRIPES);
         grid.setHeight("400px");
         grid.setItems(repository.findAll());
     }

@@ -4,17 +4,24 @@ import com.example.application.data.entity.Books;
 import com.example.application.data.service.BooksRepository;
 import com.example.application.editors.BookEditor;
 import com.example.application.views.search.BookSearchBlock;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.CssImport;
+import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.grid.GridVariant;
 import com.vaadin.flow.component.icon.VaadinIcon;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.component.textfield.TextFieldVariant;
+import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @PageTitle("Add BookView")
 @CssImport("./styles/views/admin/admin-view.css")
 public class AddBookView extends VerticalLayout {
-/**/
+/* * /
     private final BookSearchBlock searchBlock;
     final BookEditor editor;
     private final Button addBook;
@@ -49,7 +56,7 @@ public class AddBookView extends VerticalLayout {
             searchBlock.refreshGrid();
         });
     }
-/* * /
+/* */
     private final BooksRepository repository;
     final BookEditor editor;
     final Grid<Books> grid;
@@ -174,7 +181,7 @@ public class AddBookView extends VerticalLayout {
     }
 
     void listBook(String filterText, int choice) {
-        if (StringUtils.isEmpty(filterText)) {
+        if (filterText == null || filterText.isEmpty()) {
             grid.setItems(repository.findAll());
         } else {
             if (choice == 1) {
