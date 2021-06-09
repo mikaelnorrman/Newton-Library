@@ -42,8 +42,8 @@ public class Seminars {
                     String length,
                     String seatsBooked,
                     Date dateTime,
-                    String active
-                    ) {
+                    String active) {
+
         this.name = name;
         this.presenter = presenter;
         this.description = description;
@@ -104,7 +104,6 @@ public class Seminars {
     public void setDateTime(Date dateTime) {
         this.dateTime = dateTime;
     }
-
 
     public String getActive() {
         return active;

@@ -31,8 +31,7 @@ public class BookView extends Div {
     public static final int DURATION_NOTIFICATION = 4500;
     ConnectorMySQL connectorMySQL = new ConnectorMySQL();
     final LoanedBookEditor loanedBookEditor;
-    public static final String TITLE_IN_SET_ATTRIBUTE = "Title";
-    public static final String NUMBERS_ONLY = "Numbers only. 0,1,2,3,4,5,6,7,8,9";
+
     private Grid<Books> grid;
 
     private LoanedBooks loanedbooks = new LoanedBooks();
@@ -57,10 +56,14 @@ public class BookView extends Div {
         grid.getColumnByKey("section").setAutoWidth(true);
         grid.getColumnByKey("shelf").setAutoWidth(true);
         //grid.getColumnByKey("description").setWidth("150px").setFlexGrow(0);
+
         grid.addComponentColumn(Book -> createLoanButton(grid, Book));
+
         grid.setDataProvider(new CrudServiceDataProvider<Books, Void>(bookService));
+
         grid.addThemeVariants(GridVariant.LUMO_NO_BORDER,
                 GridVariant.LUMO_NO_ROW_BORDERS, GridVariant.LUMO_ROW_STRIPES);
+
         grid.setHeightFull();
         grid.setVisible(true);
         itemDetails();
@@ -139,6 +142,7 @@ public class BookView extends Div {
         successLoanedBookNotification.setPosition(Notification.Position.MIDDLE);
         successLoanedBookNotification.open();
     }
+
     private void itemDetails() {
         grid.setItemDetailsRenderer(TemplateRenderer.<Books>of(
                 "<div class='custom-details' style='border: 2px solid #1676f3; border-radius: 5px;"
