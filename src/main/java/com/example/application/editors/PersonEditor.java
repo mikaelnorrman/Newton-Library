@@ -33,6 +33,7 @@ public class PersonEditor extends Editor {
     //Checkbox roleId;
 
 
+
     public PersonEditor(PersonRepository personRepository) {
         this.personRepository = personRepository;
         this.personBinder = new Binder<>(Person.class);
@@ -104,6 +105,7 @@ public class PersonEditor extends Editor {
         first_name.setPlaceholder("Enter first name");
         first_name.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: Johan");
         first_name.setClearButtonVisible(true);
+        first_name.setAutofocus(true);
         first_name.setErrorMessage("Your first name needs to be at least one character long");
         first_name.setMinLength(1);
         first_name.setRequired(true);
@@ -166,6 +168,10 @@ public class PersonEditor extends Editor {
         social_security_no.setPlaceholder("Social Security No");
         social_security_no.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: 19901015");
         social_security_no.setClearButtonVisible(true);
+        social_security_no.setMinLength(10);
+        social_security_no.setMaxLength(10);
+        social_security_no.setPattern("(\\d{10})");
+        social_security_no.setErrorMessage("Your social security number needs to be between 10-12 digits long.");
         social_security_no.addThemeVariants(TextFieldVariant.LUMO_SMALL);
     }
 

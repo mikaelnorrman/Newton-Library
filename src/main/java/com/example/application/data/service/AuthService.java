@@ -6,7 +6,6 @@ import com.example.application.views.admin.*;
 import com.example.application.views.home.OpeningView;
 import com.example.application.views.logout.LogoutView;
 import com.example.application.views.main.MainViewLayout;
-import com.example.application.views.search.SearchView;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.router.RouteConfiguration;
 import com.vaadin.flow.server.VaadinSession;
@@ -85,7 +84,7 @@ public class AuthService {
         var userBook = "UserBooks";
         var addBooks = "Add Books";
         var loanedBooks = "Loaned Books";
-        var attendingSeminars = "Attending Seminars";
+        var attendingSeminars = "Booked Seminars";
         var persons = "Add Users";
         var seminars = "Seminars";
         var search = "Search";
@@ -110,7 +109,7 @@ public class AuthService {
 
         } else if (role.equals(Role.SUPERADMIN)) {
             routes.add(new AuthorizedRoute(OPENING, opening, OpeningView.class));
-            routes.add(new AuthorizedRoute(SEARCH, search, SearchView.class));
+            //routes.add(new AuthorizedRoute(SEARCH, search, SearchView.class));
             routes.add(new AuthorizedRoute(BOOKS,bookAdmin, BookView.class));
             routes.add(new AuthorizedRoute(ADD_BOOK_VIEW,addBooks, AddBookView.class));
             routes.add(new AuthorizedRoute(LOANED_BOOKS_VIEW,loanedBooks, LoanedBooksView.class));

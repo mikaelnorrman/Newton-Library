@@ -19,13 +19,11 @@ import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.notification.NotificationVariant;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.server.VaadinSession;
-import org.joda.time.DateTime;
 import org.joda.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.vaadin.artur.helpers.CrudServiceDataProvider;
 
 import java.sql.SQLException;
-import java.time.LocalDate;
 
 @PageTitle("Seminars")
 @CssImport("./styles/views/admin/admin-view.css")
@@ -83,7 +81,7 @@ public class SeminarView extends Div {
         String firstNamePersons = VaadinSession.getCurrent().getAttribute(Person.class).getFirstName();         // hämta ut inloggade personens fistName.
         String lastNamePersons = VaadinSession.getCurrent().getAttribute(Person.class).getLastName();           // hämta ut inloggade personens lastName.
 
-        Button attendButton = new Button("Attending seminar",  editor  -> {
+        Button attendButton = new Button("Book seminar",  editor  -> {
             Integer idOfSeminar = item.getId_seminar();
             String nameOfSeminar = item.getName();
             item.getId_seminar();
@@ -109,7 +107,7 @@ public class SeminarView extends Div {
                 attendButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY, ButtonVariant.LUMO_SMALL);
                 return attendButton;
             } else {
-                attendingButton.addThemeVariants(ButtonVariant.LUMO_ERROR, ButtonVariant.LUMO_SMALL);
+                attendingButton.addThemeVariants(ButtonVariant.LUMO_SUCCESS, ButtonVariant.LUMO_SMALL);
                 return attendingButton;
             }
         } catch (SQLException throwables) {

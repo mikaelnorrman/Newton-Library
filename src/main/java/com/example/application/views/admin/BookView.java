@@ -91,22 +91,27 @@ public class BookView extends Div {
         Button loanedButton = new Button ("Book loaned", editor -> {
             errorLoanedBookNotification(item);
         });
+        Button expiredButton = new Button ("BOOK EXPIRED!", editor -> {
+            expiredLoanedBookNotification(item);
+        });
 
         Button noCardButton = new Button ("Loan Book", editor -> {
             loanedCardNotification(item, firstNamePersons, lastNamePersons);
-
         });
 
 
         if (checkLoancard) {
             try {
-                if (!connectorMySQL.callcheck_loan(idPersons,item.getId()))
+                if (!connectorMySQL.callcheck_loan(idPersons,item.getId()) && !connectorMySQL.checkExpiredBook(idPersons,item.getId()))
                 {
                     loanButton.setDisableOnClick(true);
                     loanButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY, ButtonVariant.LUMO_SMALL);
                     return loanButton;
+                } else if (connectorMySQL.checkExpiredBook(idPersons,item.getId())) {
+                    expiredButton.addThemeVariants(ButtonVariant.LUMO_ERROR, ButtonVariant.LUMO_SMALL);
+                    return expiredButton;
                 } else {
-                    loanedButton.addThemeVariants(ButtonVariant.LUMO_ERROR, ButtonVariant.LUMO_SMALL);
+                    loanedButton.addThemeVariants(ButtonVariant.LUMO_SUCCESS, ButtonVariant.LUMO_SMALL);
                     return loanedButton;
                 }
             } catch (SQLException throwables) {
@@ -129,6 +134,14 @@ public class BookView extends Div {
 
     private void errorLoanedBookNotification(Books item) {
         Notification errorLoanedBookNotification = new Notification("You already loaned the book \n" + item.getTitle());
+        errorLoanedBookNotification.addThemeVariants(NotificationVariant.LUMO_ERROR);
+        errorLoanedBookNotification.setDuration(DURATION_NOTIFICATION);
+        errorLoanedBookNotification.setPosition(Notification.Position.MIDDLE);
+        errorLoanedBookNotification.open();
+    }
+
+    private void expiredLoanedBookNotification(Books item) {
+        Notification errorLoanedBookNotification = new Notification("This book has expired: " + item.getTitle() + "! \n Please return it immediately or we will have to charge you for it. ");
         errorLoanedBookNotification.addThemeVariants(NotificationVariant.LUMO_ERROR);
         errorLoanedBookNotification.setDuration(DURATION_NOTIFICATION);
         errorLoanedBookNotification.setPosition(Notification.Position.MIDDLE);
