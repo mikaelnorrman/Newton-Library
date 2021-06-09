@@ -80,7 +80,8 @@ public class BookView extends Div {
             String titleOfBook = item.getTitle();
             item.getTitle();
             item.getId();
-            loanedBookEditor.saveLoaned(new LoanedBooks(idOfBooks, idPersons,titleOfBook, 0));
+            loanedBookEditor.saveLoaned(new LoanedBooks(idOfBooks, idPersons,titleOfBook, 0, firstNamePersons,
+                    lastNamePersons));
             successLoanedBookNotification(item);
         });
 
