@@ -89,7 +89,7 @@ public class SeminarView extends Div {
             successAttendingSeminarNotification(item);
         });
 
-        Button attendingButton = new Button ("Seminar attend", editor -> {
+        Button attendingButton = new Button ("Seminar booked!", editor -> {
             errorAttendingSeminarNotification(item);
         });
 
