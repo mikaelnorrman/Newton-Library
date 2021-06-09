@@ -33,7 +33,9 @@ public class OpeningView extends VerticalLayout {
                SÖNDAG       10:00 - 16:00
                
                Kring helgdagar kan tiderna ändras.
-               Kontakta personal för frågor.""");
+               Kontakta personal för frågor.
+               
+               Tillgänglighet av information, alltid och var som helst!""");
         add(textArea);
 
     }

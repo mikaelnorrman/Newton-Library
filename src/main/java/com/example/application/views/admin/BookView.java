@@ -71,19 +71,17 @@ public class BookView extends Div {
 
     private Button createLoanButton(Grid<Books> grid, Books item) {
         boolean checkLoancard = VaadinSession.getCurrent().getAttribute(Person.class).getLoancard() == true; // koll så att användaren har ett lånekort.
-        //boolean checkExpired = VaadinSession.getCurrent().getAttribute(LoanedBooks.class).getExpired();
         Integer idPersons = VaadinSession.getCurrent().getAttribute(Person.class).getIdPersons();       // hämta ut inloggade personens id.
         String firstNamePersons = VaadinSession.getCurrent().getAttribute(Person.class).getFirstName(); // hämta ut inloggade personens fistName.
         String lastNamePersons = VaadinSession.getCurrent().getAttribute(Person.class).getLastName();   // hämta ut inloggade personens lastName.
-
-
 
         Button loanButton = new Button("Loan book",  editor  -> {
             Integer idOfBooks = item.getId();
             String titleOfBook = item.getTitle();
             item.getTitle();
             item.getId();
-            loanedBookEditor.saveLoaned(new LoanedBooks(idOfBooks, idPersons,titleOfBook, false));
+            loanedBookEditor.saveLoaned(new LoanedBooks(idOfBooks, idPersons,titleOfBook, 0, firstNamePersons,
+                    lastNamePersons));
             successLoanedBookNotification(item);
         });
 
@@ -93,10 +91,7 @@ public class BookView extends Div {
 
         Button noCardButton = new Button ("Loan Book", editor -> {
             loanedCardNotification(item, firstNamePersons, lastNamePersons);
-        });
 
-        Button expiredButton = new Button ("BOOK EXPIRED!", editor -> {
-            errorLoanedBookExpiredNotification(item);
         });
 
 
@@ -108,17 +103,13 @@ public class BookView extends Div {
                     loanButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY, ButtonVariant.LUMO_SMALL);
                     return loanButton;
                 } else {
-                    loanedButton.addThemeVariants(ButtonVariant.LUMO_SUCCESS, ButtonVariant.LUMO_SMALL);
+                    loanedButton.addThemeVariants(ButtonVariant.LUMO_ERROR, ButtonVariant.LUMO_SMALL);
                     return loanedButton;
                 }
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
-        }/* else if (checkExpired){
-            expiredButton.addThemeVariants(ButtonVariant.LUMO_ERROR, ButtonVariant.LUMO_SMALL);
-            return expiredButton;
-        } */
-         else {
+        } else {
             loanButton.addThemeVariants(ButtonVariant.LUMO_CONTRAST, ButtonVariant.LUMO_SMALL);
         }
         return noCardButton;
@@ -139,14 +130,6 @@ public class BookView extends Div {
         errorLoanedBookNotification.setDuration(DURATION_NOTIFICATION);
         errorLoanedBookNotification.setPosition(Notification.Position.MIDDLE);
         errorLoanedBookNotification.open();
-    }
-
-    private void errorLoanedBookExpiredNotification(Books item) {
-        Notification errorLoanedBookExpiredNotification = new Notification("This book has expired \n" + item.getTitle() + "! \n Please return this imediately or we'll have to charge you. ");
-        errorLoanedBookExpiredNotification.addThemeVariants(NotificationVariant.LUMO_ERROR);
-        errorLoanedBookExpiredNotification.setDuration(DURATION_NOTIFICATION);
-        errorLoanedBookExpiredNotification.setPosition(Notification.Position.MIDDLE);
-        errorLoanedBookExpiredNotification.open();
     }
 
     private void successLoanedBookNotification (Books item) {

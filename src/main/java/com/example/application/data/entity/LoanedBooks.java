@@ -18,7 +18,7 @@ public class LoanedBooks {
     private String loaned;
 
     @Column(name = "expired")
-    private Boolean expired;
+    private Integer expired;
 
     @Column(name = "books_id_books")
     private Integer books_id_books;
@@ -27,7 +27,13 @@ public class LoanedBooks {
     private String dueDate;
 
     @Column(name = "users_id_users")
-    private Integer userID;
+    private Integer userId;
+
+    @Column(name= "first_name")
+    private String firstName;
+
+    @Column(name= "last_name")
+    private String lastName;
 
     public LoanedBooks(){
     }
@@ -37,12 +43,16 @@ public class LoanedBooks {
             Integer books_id_books,
             Integer users_id_users,
             String title,
-            Boolean expired) {
+            Integer expired,
+            String firstName,
+            String lastName) {
 
         this.books_id_books = books_id_books;
-        this.userID = users_id_users;
+        this.userId = users_id_users;
         this.title = title;
         this.expired = expired;
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
 
@@ -64,11 +74,11 @@ public class LoanedBooks {
         this.loaned = loaned;
     }
 
-    public boolean getExpired() {
+    public int getExpired() {
         return expired;
     }
 
-    public void setExpired(boolean expired) {
+    public void setExpired(int expired) {
         this.expired = expired;
     }
 
@@ -81,11 +91,11 @@ public class LoanedBooks {
     }
 
     public Integer getUsers_id_users() {
-        return userID;
+        return userId;
     }
 
     public void setUsers_id_users(Integer users_id_users) {
-        this.userID = users_id_users;
+        this.userId = users_id_users;
     }
 
     public String getTitle(){return this.title;}
@@ -93,6 +103,15 @@ public class LoanedBooks {
     public String getDueDate (){return  this.dueDate;}
 
     public void setDueDate (){this.dueDate = dueDate;}
+
+    public String getFirstName() { return firstName; }
+
+    public void setFirstName(String firstName) { this.firstName = firstName; }
+
+    public String getLastName() { return lastName; }
+
+    public void setLastName(String lastName) { this.lastName = lastName; }
+
 
     @Override
     public String toString() {
@@ -102,8 +121,10 @@ public class LoanedBooks {
                 ", loaned='" + loaned + '\'' +
                 ", expired=" + expired +
                 ", books_id_books=" + books_id_books +
-                ", users_id_users=" + userID +
+                ", users_id_users='" + userId +
                 ", dueDate='" + dueDate +
+                ", firstName='" + firstName +
+                ", lastName='" + lastName +
                 '}';
     }
 }
