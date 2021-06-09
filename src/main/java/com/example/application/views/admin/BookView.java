@@ -11,7 +11,6 @@ import com.example.application.views.search.BookSearchBlock;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.dependency.CssImport;
-import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.notification.NotificationVariant;
@@ -41,14 +40,14 @@ public class BookView extends Div {
         searchBlock.addFilters(BookSearchBlock.TITLE, BookSearchBlock.AUTHOR, BookSearchBlock.GENRE, BookSearchBlock.ISBN);
         searchBlock.setColumns("title", "author", "genre", "ages", "section", "shelf");
         searchBlock.showItemDetailsButton();
-        searchBlock.getGrid().addComponentColumn(Book -> createLoanButton(searchBlock.getGrid(), Book));
+        searchBlock.getGrid().addComponentColumn(Book -> createLoanButton(Book));
         add(searchBlock);
     }
 
 
 // ----------------------------------------------------------------------------------------------------
 
-    private Button createLoanButton(Grid<Books> grid, Books item) {
+    private Button createLoanButton(Books item) {
         boolean checkLoancard = VaadinSession.getCurrent().getAttribute(Person.class).getLoancard() == true; // koll så att användaren har ett lånekort.
         Integer idPersons = VaadinSession.getCurrent().getAttribute(Person.class).getIdPersons();       // hämta ut inloggade personens id.
         String firstNamePersons = VaadinSession.getCurrent().getAttribute(Person.class).getFirstName(); // hämta ut inloggade personens fistName.
