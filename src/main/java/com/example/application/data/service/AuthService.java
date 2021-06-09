@@ -84,7 +84,7 @@ public class AuthService {
         var userBook = "UserBooks";
         var addBooks = "Add Books";
         var loanedBooks = "Loaned Books";
-        var attendingSeminars = "Attending Seminars";
+        var attendingSeminars = "Booked Seminars";
         var persons = "Add Users";
         var seminars = "Seminars";
         var search = "Search";
