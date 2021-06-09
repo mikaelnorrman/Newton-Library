@@ -21,7 +21,7 @@ public class AttendingSeminars {
     private Integer expired;
 
 
-    @Column(name = "seminars_id_seminar")
+    @Column(name = "seminars_id_seminars")
     private Integer seminars_id_seminar;
 
     @Column(name = "users_id_users")

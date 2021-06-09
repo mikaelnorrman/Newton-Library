@@ -60,16 +60,17 @@ public class BookSearchBlock extends AbstractSearchBlock<Books, BooksRepository>
 
     public void showItemDetailsButton() {
         grid.setItemDetailsRenderer(TemplateRenderer.<Books>of(
-                "<div class='custom-details' style='border: 1px solid #cccccc; border-radius: 5px; background-color: white;"
-                    + " box-shadow: 0 2px 4px 2px rgba(0,128,255,0.1); padding: 10px 15px; width: 100%; box-sizing: border-box;'>"
+                "<div class='custom-details' style='border: 1px solid #cccccc; border-radius: 5px; "
+                    + "box-shadow: 0 2px 4px 2px rgba(0,128,255,0.1); color: black; background-color: white; "
+                    + "padding: 10px 15px; width: 100%; box-sizing: border-box;'>"
                         + "<div>"
-                        + "<H3 style='margin: 0 0 0.25em;'>[[item.title]]</H3>"
-                        + "<H4 style='margin: 0 0 0.75em; font-style: italic; font-weight: 400;'>[[item.author]]</H4>"
-                        + "<p style='margin: 0 0 0.75em;'>[[item.description]]</p>"
+                        + "<H3 style='margin: 0 0 0.25em; color: black;'>[[item.title]]</H3>"
+                        + "<H4 style='margin: 0 0 0.75em; color: black; font-style: italic; font-weight: 400;'>[[item.author]]</H4>"
+                        + "<p style='margin: 0 0 0.75em; color: black;'>[[item.description]]</p>"
                         + "<div style='display: flex; flex-flow: row wrap; /*justify-content: space-between;*/'>"
-                        + "<span style='margin-right: 1.75em; min-width: 150px;'>Publisher: <b>[[item.publisher]]</b></span>"
-                        + "<span style='margin-right: 1.75em; min-width: 150px;'>ISBN: <b>[[item.isbn]]</b></span>"
-                        + "<span style='margin-right: 1.75em; min-width: 150px;'>Books available: <b>[[item.available]]</b></span>"
+                        + "<span style='margin-right: 1.75em; min-width: 150px; color: black;'>Publisher: <b>[[item.publisher]]</b></span>"
+                        + "<span style='margin-right: 1.75em; min-width: 150px; color: black;'>ISBN: <b>[[item.isbn]]</b></span>"
+                        + "<span style='margin-right: 1.75em; min-width: 150px; color: black;'>Books available: <b>[[item.available]]</b></span>"
                         + "</div>"
                         + "</div>"
                         + "</div>")
