@@ -55,8 +55,10 @@ public class MainViewLayout extends AppLayout {
         viewTitle = new H1();
         layout.add(viewTitle);
         if (VaadinSession.getCurrent().getAttribute(Person.class) != null) {
-            layout.add(new H1(VaadinSession.getCurrent().getAttribute(Person.class).getFirstName()));
-            layout.add(new H1(VaadinSession.getCurrent().getAttribute(Person.class).getLastName()));
+            H1 activeFirstName = new H1(VaadinSession.getCurrent().getAttribute(Person.class).getFirstName());
+            H1 activeLastName = new H1(VaadinSession.getCurrent().getAttribute(Person.class).getLastName());
+            layout.add(activeFirstName, activeLastName);
+            activeFirstName.getStyle().set("margin-left","auto");
             layout.add(new Image("images/user.svg", "Avatar"));
         }
         return layout;
