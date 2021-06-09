@@ -12,7 +12,7 @@ public class AttendingSeminarsEditor extends Editor {
         this.attendingSeminarsBinder = new Binder<>(AttendingSeminars.class);
     }
 
-    public void saveAttending(AttendingSeminars attendingSeminars){
+    public void saveAttendingSeminar(AttendingSeminars attendingSeminars){
         attendingSeminarsRepository.save(attendingSeminars);
     }
 

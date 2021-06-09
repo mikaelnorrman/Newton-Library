@@ -32,9 +32,9 @@ public class AttendingSeminarsView extends Div {
         this.gridAdmin = new Grid<>(AttendingSeminars.class);
 
         add(grid);
-        grid.setColumns("name", "attending", "expired");
+        grid.setColumns("name", "date", "expired");
         grid.getColumnByKey("name").setAutoWidth(true);
-        grid.getColumnByKey("attending").setAutoWidth(true);
+        grid.getColumnByKey("date").setAutoWidth(true);
         grid.getColumnByKey("expired").setAutoWidth(true);
         grid.addThemeVariants(GridVariant.LUMO_NO_BORDER,
                 GridVariant.LUMO_NO_ROW_BORDERS, GridVariant.LUMO_ROW_STRIPES);
@@ -43,9 +43,9 @@ public class AttendingSeminarsView extends Div {
 
 
         add(gridAdmin);
-        gridAdmin.setColumns("name", "attending", "expired", "firstName", "lastName");
+        gridAdmin.setColumns("name", "date", "expired", "firstName", "lastName");
         gridAdmin.getColumnByKey("name").setAutoWidth(true);
-        gridAdmin.getColumnByKey("attending").setAutoWidth(true);
+        gridAdmin.getColumnByKey("date").setAutoWidth(true);
         gridAdmin.getColumnByKey("expired").setAutoWidth(true);
         gridAdmin.getColumnByKey("firstName").setAutoWidth(true);
         gridAdmin.getColumnByKey("lastName").setAutoWidth(true);

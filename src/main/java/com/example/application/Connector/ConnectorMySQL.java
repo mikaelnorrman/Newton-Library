@@ -45,4 +45,25 @@ public class ConnectorMySQL implements Connector {
       return bool;
     }
 
+
+    public Boolean callattendingSeminar (Integer usersID, Integer seminarID) throws SQLException {
+
+        Boolean bool = false;
+        int boolVal;
+        String sql = "Call attendingSeminar(?,?,?);";
+        try (CallableStatement stmt = connection.prepareCall(sql)) {
+            stmt.setInt(1, usersID);
+            stmt.setInt(2, seminarID);
+            stmt.registerOutParameter(3, Types.BOOLEAN);
+            stmt.execute();
+            boolVal = stmt.getInt(3);
+
+        }
+        if (boolVal == 0){
+            bool = false;
+        }else if (boolVal == 1){
+            bool = true;
+        }
+        return bool;
+    }
 }

@@ -14,15 +14,15 @@ public class AttendingSeminars {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "attending")
-    private String attending;
+    @Column(name = "date")
+    private String date;
 
     @Column(name = "expired")
     private Integer expired;
 
 
-    @Column(name = "seminars_id_seminars")
-    private Integer seminars_id_seminars;
+    @Column(name = "seminars_id_seminar")
+    private Integer seminars_id_seminar;
 
     @Column(name = "users_id_users")
     private Integer userId;
@@ -38,13 +38,13 @@ public class AttendingSeminars {
 
     public AttendingSeminars(String name,
                              Integer expired,
-                             Integer seminars_id_seminars,
+                             Integer seminars_id_seminar,
                              Integer users_id_users,
                              String firstName,
                              String lastName) {
         this.name = name;
         this.expired = expired;
-        this.seminars_id_seminars = seminars_id_seminars;
+        this.seminars_id_seminar = seminars_id_seminar;
         this.userId = users_id_users;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -66,12 +66,12 @@ public class AttendingSeminars {
         this.name = name;
     }
 
-    public String getAttending() {
-        return attending;
+    public String getDate() {
+        return date;
     }
 
-    public void setAttending(String attending) {
-        this.attending = attending;
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public Integer getExpired() {
@@ -82,20 +82,20 @@ public class AttendingSeminars {
         this.expired = expired;
     }
 
-    public Integer getSeminars_id_seminars() {
-        return seminars_id_seminars;
+    public Integer getSeminars_id_seminar() {
+        return seminars_id_seminar;
     }
 
-    public void setSeminars_id_seminars(Integer seminars_id_seminars) {
-        this.seminars_id_seminars = seminars_id_seminars;
+    public void setSeminars_id_seminar(Integer seminars_id_seminar) {
+        this.seminars_id_seminar = seminars_id_seminar;
     }
 
     public Integer getUsers_id_users() {
         return userId;
     }
 
-    public void setId_users(Integer users_id_users) {
-        this.userId = users_id_users;
+    public void setId_users(Integer users_id_user) {
+        this.userId = users_id_user;
     }
 
     public String getFirstName() {
@@ -119,9 +119,9 @@ public class AttendingSeminars {
         return "AttendingSeminars{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", attending='" + attending + '\'' +
+                ", attending='" + date + '\'' +
                 ", expired=" + expired +
-                ", id_seminars=" + seminars_id_seminars +
+                ", id_seminars=" + seminars_id_seminar +
                 ", id_users=" + userId +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
