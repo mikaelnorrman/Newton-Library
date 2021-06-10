@@ -20,7 +20,7 @@ public class LoginView extends Composite<LoginOverlay> {
 
         LoginOverlay loginOverlay = getContent();
         loginOverlay.setTitle("Welcome");
-        loginOverlay.setDescription("LibSys");
+        loginOverlay.setDescription("LibSys \nTillgänglighet av information, alltid och var som helst!");
         loginOverlay.setOpened(true);
 
         loginOverlay.addLoginListener(event -> {try {
