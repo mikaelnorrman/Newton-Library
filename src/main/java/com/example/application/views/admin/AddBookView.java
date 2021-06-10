@@ -58,6 +58,7 @@ public class AddBookView extends VerticalLayout {
         });
     }
 /* */
+
     private final BooksRepository repository;
     final BookEditor editor;
     final Grid<Books> grid;

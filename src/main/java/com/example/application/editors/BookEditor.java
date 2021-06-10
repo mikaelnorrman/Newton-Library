@@ -121,7 +121,6 @@ public class BookEditor extends Editor {
 
     private void authorEdit() {
         author = new TextField();
-        author.setLabel("Author");
         author.setLabel("Book Author");
         author.setPlaceholder("Enter the author");
         author.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: Paulo Coelho");
@@ -138,7 +137,6 @@ public class BookEditor extends Editor {
         forAges.setPlaceholder("Enter a age");
         forAges.getElement().setAttribute(TITLE_IN_SET_ATTRIBUTE, "Example: 0-3 or 15-99");
         forAges.setPattern("(\\d{1,2}\\-\\d{1,3})");
-        forAges.setErrorMessage(NUMBERS_ONLY);
         forAges.setClearButtonVisible(true);
         forAges.setErrorMessage(NUMBERS_ONLY + "\nThe book age you enter needs to be an age range between two ages\nExample: 0-3, 3-6 or 15-99 etc" );
         forAges.setMinLength(1);
@@ -179,11 +177,6 @@ public class BookEditor extends Editor {
         price.setMinLength(1);
         price.setPattern("[0-9]");
         price.setErrorMessage(NUMBERS_ONLY);
-        price.addValueChangeListener(event -> {
-            if (price.isInvalid()) {
-                Notification.show("Invalid price");
-            }
-        });
         price.setRequired(true);
         price.addThemeVariants(TextFieldVariant.LUMO_SMALL);
     }
