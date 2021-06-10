@@ -94,13 +94,7 @@ public class SeminarView extends Div {
             errorAttendingSeminarNotification(item);
         });
 
-        Button noCardButton = new Button ("Loan Book", editor -> {
-            attendingSeminarNotification(item, firstNamePersons, lastNamePersons);
-
-        });
-
-            if (checkLoancard) {
-            try {
+        try {
             if (!connectorMySQL.callattendingSeminar(idPersons,item.getId_seminar()))
             {
                 attendButton.setDisableOnClick(true);
@@ -113,10 +107,7 @@ public class SeminarView extends Div {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-    } else {
-                attendButton.addThemeVariants(ButtonVariant.LUMO_CONTRAST, ButtonVariant.LUMO_SMALL);
-    }
-        return noCardButton;
+    return attendButton;
     }
 
 
